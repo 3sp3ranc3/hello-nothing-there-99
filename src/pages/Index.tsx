@@ -1,8 +1,20 @@
+import Navbar from "@/components/layout/Navbar";
+import HeroSection from "@/components/sections/HeroSection";
+import TheAirSection from "@/components/sections/TheAirSection";
+import TheArchitectSection from "@/components/sections/TheArchitectSection";
+import TheAceSection from "@/components/sections/TheAceSection";
+import PaddleCoverSection from "@/components/sections/PaddleCoverSection";
+
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <p className="text-foreground">blank project</p>
-    </div>
+    <main className="bg-background">
+      <Navbar />
+      <HeroSection />
+      <TheAirSection />
+      <TheArchitectSection />
+      <TheAceSection />
+      <PaddleCoverSection />
+    </main>
   );
 };
 
