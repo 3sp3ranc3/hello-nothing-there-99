@@ -206,8 +206,9 @@ const TheArchitect = () => {
             <h2 className="tempo-headline text-4xl md:text-5xl lg:text-6xl">IMPOSE ORDER ON CHAOS</h2>
             <p className="tempo-body text-muted-foreground text-lg lg:text-xl leading-relaxed">
               Power without direction is wasted energy. The Architect is not about sacrificing power; it's about
-              harnessing it. With a swing weight calibrated for stability, this paddle ensures that when you swing hard,
-              the ball goes exactly where you intend. It connects your hand to the ball with zero interference.
+              harnessing it. With a swing weight calibrated for stability and raw carbon surface designed for frame
+              perfect spin, this paddle ensures that when you swing, the ball goes exactly where you intend. It connects
+              your hand to the ball with zero interference.
             </p>
           </motion.div>
         </div>
