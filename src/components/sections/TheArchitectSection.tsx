@@ -1,9 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import TempoButton from "@/components/ui/TempoButton";
-import ProductPlaceholder from "@/components/ui/ProductPlaceholder";
+import architectPaddleFront from "@/assets/architect-paddle-front.png";
+import architectPaddleRotated from "@/assets/architect-paddle-rotated.png";
 
 const TheArchitectSection = () => {
+  const [isHovered, setIsHovered] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -23,12 +25,25 @@ const TheArchitectSection = () => {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-0 min-h-screen">
             {/* Image - Left side, Sticky */}
             <div className="lg:sticky lg:top-0 lg:h-screen flex items-center py-24">
-              <div className="relative w-full">
-                <ProductPlaceholder 
-                  aspectRatio="1/1" 
-                  className="w-full max-w-md mx-auto lg:mx-0"
-                  label="THE ARCHITECT"
-                />
+              <div 
+                className="relative w-full max-w-md mx-auto lg:mx-0 cursor-pointer"
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden tempo-shadow">
+                  {/* Front image - default */}
+                  <img
+                    src={architectPaddleFront}
+                    alt="The Architect Paddle - Front"
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${isHovered ? 'opacity-0' : 'opacity-100'}`}
+                  />
+                  {/* Rotated image - on hover */}
+                  <img
+                    src={architectPaddleRotated}
+                    alt="The Architect Paddle - Rotated"
+                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                  />
+                </div>
                 
                 {/* Background text bleed */}
                 <div className="absolute -z-10 top-0 -right-8 lg:-right-20">
