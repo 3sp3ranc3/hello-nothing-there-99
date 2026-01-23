@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
+import MegaFooter from "@/components/layout/MegaFooter";
 import ProductGallery from "@/components/products/ProductGallery";
 import ProductInfo from "@/components/products/ProductInfo";
 import TechSpecs from "@/components/products/TechSpecs";
 import ProductFAQ from "@/components/products/ProductFAQ";
-
 const images = [
   { label: "Image 1: Front" },
   { label: "Image 2: Side" },
@@ -116,6 +116,8 @@ const TheArchitect = () => {
           </motion.button>
         </div>
       </section>
+
+      <MegaFooter />
     </main>
   );
 };

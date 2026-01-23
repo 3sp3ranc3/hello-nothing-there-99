@@ -1,0 +1,147 @@
+import { Link, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowLeft, ChevronRight } from "lucide-react";
+import Navbar from "@/components/layout/Navbar";
+import MegaFooter from "@/components/layout/MegaFooter";
+
+const legalContent: Record<string, { title: string; content: string[] }> = {
+  privacy: {
+    title: "Privacy Policy",
+    content: [
+      "Your privacy is important to us. This Privacy Policy explains how Tempo Pickleball collects, uses, discloses, and safeguards your information when you visit our website or make a purchase.",
+      "We collect information you provide directly to us, such as when you create an account, make a purchase, subscribe to our newsletter, or contact us for support. This may include your name, email address, postal address, phone number, and payment information.",
+      "We use the information we collect to process transactions, send you order confirmations and updates, respond to your comments and questions, and provide customer support. We may also use your information to send promotional communications, such as information about products, features, and events offered by Tempo Pickleball.",
+      "We implement appropriate technical and organizational security measures designed to protect the security of any personal information we process. However, please also remember that we cannot guarantee that the internet itself is 100% secure.",
+      "You may opt out of receiving promotional communications from us by following the instructions in those messages. If you opt out, we may still send you non-promotional communications, such as those about your account or our ongoing business relations.",
+    ],
+  },
+  terms: {
+    title: "Terms of Service",
+    content: [
+      "Welcome to Tempo Pickleball. These Terms of Service govern your use of our website and your purchase of products from us. By accessing our website or placing an order, you agree to be bound by these terms.",
+      "All products displayed on our website are subject to availability. We reserve the right to discontinue any product at any time. Prices for our products are subject to change without notice. We shall not be liable to you or any third party for any modification, price change, suspension, or discontinuance of any product.",
+      "When you place an order, you offer to buy the products selected. We may accept your offer by sending a confirmation email. The contract is formed when we dispatch your order. We reserve the right to refuse any order placed through our site.",
+      "We warrant that our products will be free from defects in materials and workmanship for a period of 30 days from the date of purchase. This warranty does not cover damage caused by misuse, negligence, or normal wear and tear.",
+      "Our liability to you for any claim arising from your purchase shall not exceed the price you paid for the product. We shall not be liable for any indirect, incidental, special, or consequential damages.",
+    ],
+  },
+  shipping: {
+    title: "Shipping Information",
+    content: [
+      "We offer free standard shipping on all orders over $100 within the continental United States. Orders under $100 are subject to a flat shipping rate of $8.95.",
+      "Standard shipping typically takes 5-7 business days. Expedited shipping options are available at checkout for an additional fee. Express shipping (2-3 business days) is $14.95, and overnight shipping is $24.95.",
+      "Orders are processed within 1-2 business days. You will receive a shipping confirmation email with tracking information once your order has shipped. Please allow up to 24 hours for tracking information to become active.",
+      "We currently ship to all 50 US states and Canada. International shipping rates and delivery times vary by destination. Import duties and taxes may apply and are the responsibility of the recipient.",
+      "If your package is lost or damaged during transit, please contact our customer service team within 7 days of the expected delivery date. We will work with the carrier to resolve the issue promptly.",
+    ],
+  },
+  returns: {
+    title: "Returns & Refunds",
+    content: [
+      "We want you to be completely satisfied with your Tempo purchase. That's why we offer a 30-day trial period on all our paddles. If you're not satisfied for any reason, you may return your paddle within 30 days of delivery for a full refund.",
+      "To initiate a return, please contact our customer service team. You will receive a prepaid return shipping label via email. Please ensure the product is in its original packaging and in resalable condition.",
+      "Refunds will be processed within 5-7 business days of receiving your returned item. The refund will be credited to your original payment method. Please note that it may take an additional 3-5 business days for the refund to appear on your statement.",
+      "Accessories and apparel must be unused and in original packaging to qualify for a return. Items marked as final sale are not eligible for return or exchange.",
+      "For defective products, please contact us immediately. We will arrange for a replacement or refund at no additional cost to you. Photos of the defect may be required.",
+    ],
+  },
+  accessibility: {
+    title: "Accessibility Statement",
+    content: [
+      "Tempo Pickleball is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.",
+      "We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1, Level AA. These guidelines explain how to make web content more accessible for people with disabilities and user-friendly for everyone.",
+      "Our website includes features such as keyboard navigation, descriptive alt text for images, proper heading structure, sufficient color contrast, and resizable text. We regularly test our website with assistive technologies including screen readers.",
+      "If you encounter any accessibility barriers on our website, please contact us. We welcome your feedback and will consider it as we evaluate ways to accommodate all of our customers and improve our accessibility policies.",
+      "To report an accessibility issue or request assistance, please email us at accessibility@tempopickleball.com or call our customer service line. We aim to respond to accessibility feedback within 2 business days.",
+    ],
+  },
+};
+
+const LegalPage = () => {
+  const { slug } = useParams<{ slug: string }>();
+  const page = legalContent[slug || "privacy"];
+
+  if (!page) {
+    return null;
+  }
+
+  return (
+    <main className="bg-background min-h-screen">
+      <Navbar />
+      
+      <div className="pt-32 pb-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          {/* Breadcrumb */}
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+          >
+            <Link to="/" className="hover:text-foreground transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="w-4 h-4" />
+            <span className="text-foreground">{page.title}</span>
+          </motion.nav>
+
+          {/* Back Button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <Link 
+              to="/"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground 
+                       hover:text-foreground transition-colors mb-12"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
+            </Link>
+          </motion.div>
+
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-5xl font-extrabold tracking-wide uppercase mb-12"
+          >
+            {page.title}
+          </motion.h1>
+
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="space-y-6"
+          >
+            {page.content.map((paragraph, index) => (
+              <p 
+                key={index}
+                className="text-base md:text-lg leading-relaxed text-muted-foreground"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </motion.div>
+
+          {/* Last Updated */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-sm text-muted-foreground mt-12 pt-8 border-t border-border"
+          >
+            Last updated: January 2026
+          </motion.p>
+        </div>
+      </div>
+
+      <MegaFooter />
+    </main>
+  );
+};
+
+export default LegalPage;
