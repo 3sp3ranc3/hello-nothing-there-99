@@ -55,9 +55,11 @@ export default {
           bone: "hsl(var(--tempo-bone))",
           carbon: "hsl(var(--tempo-carbon))",
           vapor: "hsl(var(--tempo-vapor))",
+          mist: "hsl(var(--tempo-mist))",
           forest: "hsl(var(--tempo-forest))",
           crimson: "hsl(var(--tempo-crimson))",
           navy: "hsl(var(--tempo-navy))",
+          stock: "hsl(var(--tempo-stock))",
         },
       },
       borderRadius: {

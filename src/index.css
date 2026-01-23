@@ -43,9 +43,11 @@
     --tempo-bone: 50 11% 97%;
     --tempo-carbon: 0 0% 10%;
     --tempo-vapor: 50 6% 90%;
+    --tempo-mist: 0 0% 94%; /* Mist Grey #F0F0F0 */
     --tempo-forest: 147 28% 24%; /* #2D4F38 */
     --tempo-crimson: 352 54% 35%; /* #8B2635 */
-    --tempo-navy: 213 39% 18%; /* #1B2A41 */
+    --tempo-navy: 218 31% 15%; /* Deep Navy #1a2332 */
+    --tempo-stock: 142 71% 45%; /* Stock indicator green */
   }
 }
 
