@@ -1,237 +1,202 @@
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
-import architectPaddleFront from "@/assets/architect-paddle-front.png";
-import architectPaddleRotated from "@/assets/architect-paddle-rotated.png";
 
-const specs = [
-  { label: "WEIGHT", value: "8.1 oz", description: "Optimized for Hand Speed" },
-  { label: "CORE", value: "16mm Polypropylene", description: "Vibration Control" },
-  { label: "GRIP", value: "5.5 inch", description: "Elongated for Reach" },
+const imagePlaceholders = [
+  "Image 1: Front Pic",
+  "Image 2: Side Pic",
+  "Image 3: Handle Detail",
+  "Image 4: Bottom Cap",
+  "Image 5: Tech Layer",
+  "Image 6: Tech Core",
 ];
 
-interface PhotoPlaceholderProps {
-  aspect: "3/4" | "1/1" | "16/9";
-  direction: string;
-  overlayText?: string;
-  overlaySubtext?: string;
-  className?: string;
-}
-
-const PhotoPlaceholder = ({ aspect, direction, overlayText, overlaySubtext, className }: PhotoPlaceholderProps) => {
-  const aspectClasses = {
-    "3/4": "aspect-[3/4]",
-    "1/1": "aspect-square",
-    "16/9": "aspect-video",
-  };
-
-  return (
-    <div className={`relative bg-[#E5E5E5] overflow-hidden ${aspectClasses[aspect]} ${className}`}>
-      <div className="absolute inset-0 flex items-center justify-center p-8">
-        <p className="text-center text-foreground/50 text-sm font-mono leading-relaxed max-w-md">{direction}</p>
-      </div>
-      {overlayText && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-foreground/80 to-transparent"
-        >
-          <p className="tempo-spec text-background tracking-widest mb-1">{overlayText}</p>
-          {overlaySubtext && <p className="text-background/80 text-sm">{overlaySubtext}</p>}
-        </motion.div>
-      )}
-    </div>
-  );
-};
+const specs = [
+  { label: "CORE", value: "Polypropylene", description: "(Vibration Control)" },
+  { label: "WEIGHT", value: "8.10 oz", description: "(Optimized for Hand Speed)" },
+  { label: "GRIP", value: "5.5 in", description: "(Elongated)" },
+  { label: "BALANCE", value: "Central/Neutral", description: "" },
+  { label: "SURFACE", value: "Raw T700 Carbon", description: "" },
+  { label: "WARRANTY", value: "30 Days", description: "(Performance Guarantee)" },
+];
 
 const TheArchitect = () => {
   const [isButtonHovered, setIsButtonHovered] = useState(false);
-  const [isImageHovered, setIsImageHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const techSectionRef = useRef<HTMLElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const image1Y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const image2Y = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const image3Y = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const scrollToSpecs = () => {
+    techSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <main className="bg-background min-h-screen">
       <Navbar />
 
-      {/* Hero Split Section */}
-      <section ref={containerRef} className="pt-20 lg:pt-24">
-        <div className="tempo-container">
-          <div className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-16">
-            {/* Left Column - Scrollable Images */}
-            <div className="space-y-8 lg:space-y-12 order-2 lg:order-1">
-              {/* Image 1 - Hero Shot with actual paddle images */}
-              <motion.div style={{ y: image1Y }} className="relative">
-                <div
-                  className="relative aspect-[3/4] bg-[#E5E5E5] overflow-hidden cursor-pointer"
-                  onMouseEnter={() => setIsImageHovered(true)}
-                  onMouseLeave={() => setIsImageHovered(false)}
-                >
-                  {/* Front image */}
-                  <img
-                    src={architectPaddleFront}
-                    alt="The Architect Paddle - Front View"
-                    className={`absolute inset-0 w-full h-full object-contain p-8 transition-opacity duration-500 ${isImageHovered ? "opacity-0" : "opacity-100"}`}
-                  />
-                  {/* Rotated image - on hover */}
-                  <img
-                    src={architectPaddleRotated}
-                    alt="The Architect Paddle - Rotated View"
-                    className={`absolute inset-0 w-full h-full object-contain p-8 transition-opacity duration-500 ${isImageHovered ? "opacity-100" : "opacity-0"}`}
-                  />
-                  {/* Photo direction overlay */}
-                  <div className="absolute inset-0 flex items-end p-6 pointer-events-none">
-                    <p className="text-foreground/30 text-xs font-mono">
-                      PHOTO DIRECTION: High-contrast hero shot of paddle face. Hard light casting sharp shadows.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Image 2 - Texture Shot */}
-              <motion.div style={{ y: image2Y }}>
-                <PhotoPlaceholder
-                  aspect="1/1"
-                  direction="PHOTO DIRECTION: Macro extreme close-up of the T-700 Carbon Weave. Lighting highlights the grit and texture."
-                  overlayText="ISO-STATIC™ CARBON FACE"
-                  overlaySubtext="Maximum friction for surgical spin."
-                />
-              </motion.div>
-
-              {/* Image 3 - Exploded View */}
-              <motion.div style={{ y: image3Y }}>
-                <PhotoPlaceholder
-                  aspect="16/9"
-                  direction="PHOTO DIRECTION: Technical 'Exploded View' diagram. Separating the Honeycomb core, the edge guard, and the face layers."
-                  overlayText="ZERO-RESONANCE CORE"
-                  overlaySubtext="Dampens vibration without killing your drive."
-                />
-              </motion.div>
-            </div>
-
-            {/* Right Column - Sticky Buy Box */}
-            <div className="order-1 lg:order-2 lg:sticky lg:top-24 lg:h-fit">
+      {/* PART 1: THE SPLIT SECTION */}
+      <section className="pt-20 lg:pt-24 border-b border-foreground">
+        <div className="flex flex-col lg:flex-row">
+          {/* Left Column - Scrollable Gallery (60%) */}
+          <div className="w-full lg:w-[60%] p-4 lg:p-8 space-y-4">
+            {imagePlaceholders.map((label, index) => (
               <motion.div
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-6"
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                className="aspect-[4/5] bg-[#E5E5E5] flex items-center justify-center"
               >
-                {/* Label */}
-                <span className="font-mono text-xs text-foreground/60 tracking-widest">CONTROL SERIES | MODEL 02</span>
-
-                {/* Title */}
-                <h1 className="tempo-headline text-5xl md:text-6xl lg:text-7xl">THE ARCHITECT</h1>
-
-                {/* Price */}
-                <p className="text-3xl font-medium">$220.00</p>
-
-                {/* Description */}
-                <p className="tempo-body text-muted-foreground leading-relaxed max-w-md">
-                  Precision-milled for the tactician. The Architect channels your power into absolute placement. A
-                  high-friction carbon chassis that turns defensive blocks into offensive counters.
+                <p className="font-mono text-sm text-foreground/50 text-center px-8">
+                  {label}
                 </p>
-
-                {/* CTA Button */}
-                <motion.button
-                  onMouseEnter={() => setIsButtonHovered(true)}
-                  onMouseLeave={() => setIsButtonHovered(false)}
-                  whileTap={{ scale: 0.98 }}
-                  className={`w-full py-4 px-8 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300 flex items-center justify-center gap-3 ${
-                    isButtonHovered ? "bg-tempo-navy text-background" : "bg-foreground text-background"
-                  }`}
-                >
-                  <motion.span animate={{ x: isButtonHovered ? -8 : 0 }} transition={{ duration: 0.3 }}>
-                    Add to Cart
-                  </motion.span>
-                  <motion.span
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{
-                      opacity: isButtonHovered ? 1 : 0,
-                      x: isButtonHovered ? 0 : -10,
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.span>
-                </motion.button>
-
-                {/* Shipping Note */}
-                <p className="text-xs text-muted-foreground text-center">Ships free. 30-day trial.</p>
-
-                {/* Divider */}
-                <div className="border-t border-border pt-6 mt-8">
-                  <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Weight</span>
-                      <span className="font-medium">8.1 oz</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Core</span>
-                      <span className="font-medium">16mm PP</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Surface</span>
-                      <span className="font-medium">T-700 Carbon</span>
-                    </div>
-                  </div>
-                </div>
               </motion.div>
+            ))}
+          </div>
+
+          {/* Right Column - Sticky Buy Box (40%) */}
+          <div className="w-full lg:w-[40%] lg:sticky lg:top-0 lg:h-screen border-l border-foreground">
+            <div className="p-8 lg:p-12 h-full flex flex-col justify-center space-y-6">
+              {/* Title */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="tempo-headline text-4xl md:text-5xl lg:text-6xl"
+              >
+                THE ARCHITECT
+              </motion.h1>
+
+              {/* Short Description */}
+              <p className="tempo-body text-muted-foreground leading-relaxed">
+                The tactician's instrument. Engineered for absolute placement, vibration control, and neutralizing opponent power.
+              </p>
+
+              {/* Price Block */}
+              <div className="space-y-2">
+                <p className="text-3xl font-semibold">$145.00</p>
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-green-500" />
+                  <span className="text-sm text-muted-foreground">Currently in Stock</span>
+                </div>
+              </div>
+
+              {/* Key Features */}
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start gap-2">
+                  <span className="text-foreground/60">•</span>
+                  <span>Iso-Static™ Carbon Face (45° Weave)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-foreground/60">•</span>
+                  <span>Zero-Resonance Polypropylene Core</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-foreground/60">•</span>
+                  <span>Hydro-Wick Octagonal Grip</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-foreground/60">•</span>
+                  <span>Muted Acoustic Profile</span>
+                </li>
+              </ul>
+
+              {/* View Specs Button */}
+              <button
+                onClick={scrollToSpecs}
+                className="w-full py-3 px-6 border border-foreground rounded-full text-sm uppercase tracking-widest font-medium hover:bg-foreground hover:text-background transition-colors duration-300"
+              >
+                View Specs
+              </button>
+
+              {/* Trust Signals */}
+              <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Try it or Love it - 30 Days</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4" />
+                  <span>Premium Shipping</span>
+                </div>
+              </div>
+
+              {/* Primary CTA */}
+              <motion.button
+                onMouseEnter={() => setIsButtonHovered(true)}
+                onMouseLeave={() => setIsButtonHovered(false)}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-4 px-8 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300 flex items-center justify-center gap-3 ${
+                  isButtonHovered ? "bg-tempo-crimson text-background" : "bg-foreground text-background"
+                }`}
+              >
+                <motion.span
+                  animate={{ x: isButtonHovered ? -8 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  Add to Cart
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{
+                    opacity: isButtonHovered ? 1 : 0,
+                    x: isButtonHovered ? 0 : -10,
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </motion.span>
+              </motion.button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Philosophy Section - Full Width */}
-      <section className="py-24 lg:py-32 mt-16 lg:mt-24 border-y border-foreground">
+      {/* PART 2: THE TECH SECTION */}
+      <section ref={techSectionRef} id="tech-specs" className="py-24 lg:py-32">
         <div className="tempo-container">
-          <motion.div
+          {/* Banner Headline */}
+          <motion.h2
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center space-y-8"
+            className="tempo-headline text-4xl md:text-5xl lg:text-7xl text-center mb-8"
           >
-            <h2 className="tempo-headline text-4xl md:text-5xl lg:text-6xl">IMPOSE ORDER ON CHAOS</h2>
-            <p className="tempo-body text-muted-foreground text-lg lg:text-xl leading-relaxed">
-              Power without direction is wasted energy. The Architect is not about sacrificing power; it's about
-              harnessing it. With a swing weight calibrated for stability and raw carbon surface designed for frame
-              perfect spin, this paddle ensures that when you swing, the ball goes exactly where you intend. It connects
-              your hand to the ball with zero interference.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+            IMPOSE ORDER ON CHAOS
+          </motion.h2>
 
-      {/* Tech Specs Grid */}
-      <section className="py-16 lg:py-24">
-        <div className="tempo-container">
-          <div className="grid md:grid-cols-3 border border-foreground">
+          {/* Long Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="tempo-body text-muted-foreground text-center max-w-2xl mx-auto mb-16 lg:mb-24 leading-relaxed"
+          >
+            Power without direction is wasted energy. The Architect is calibrated to neutralize kinetic energy at the kitchen line, turning your opponent's aggression into your opportunity. A chassis so rigid it feels less like a trampoline, and more like a wall.
+          </motion.p>
+
+          {/* THE SPEC GRID (3x2) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 border border-foreground">
             {specs.map((spec, index) => (
               <motion.div
                 key={spec.label}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
                 viewport={{ once: true }}
-                className={`p-8 lg:p-12 text-center ${
-                  index < specs.length - 1 ? "border-b md:border-b-0 md:border-r border-foreground" : ""
+                className={`aspect-square flex flex-col items-center justify-center p-6 text-center ${
+                  index % 3 !== 2 ? "md:border-r border-foreground" : ""
+                } ${index < 3 ? "border-b border-foreground" : ""} ${
+                  index < 3 && index % 3 !== 2 ? "" : ""
                 }`}
               >
-                <span className="tempo-spec text-muted-foreground block mb-2">{spec.label}</span>
-                <span className="text-2xl lg:text-3xl font-medium block mb-2">{spec.value}</span>
-                <span className="text-sm text-muted-foreground">({spec.description})</span>
+                <span className="tempo-spec text-muted-foreground block mb-3">{spec.label}</span>
+                <span className="text-xl lg:text-2xl font-medium block">{spec.value}</span>
+                {spec.description && (
+                  <span className="text-sm text-muted-foreground mt-1">{spec.description}</span>
+                )}
               </motion.div>
             ))}
           </div>
@@ -239,14 +204,14 @@ const TheArchitect = () => {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 lg:py-24 border-t border-border">
+      <section className="py-16 lg:py-24 border-t border-foreground">
         <div className="tempo-container text-center">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-foreground text-background py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-tempo-navy transition-colors duration-300"
+            className="bg-foreground text-background py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-tempo-crimson transition-colors duration-300"
           >
-            Add to Cart — $220.00
+            Add to Cart — $145.00
           </motion.button>
         </div>
       </section>
