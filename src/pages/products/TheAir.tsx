@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
+import MegaFooter from "@/components/layout/MegaFooter";
 import TempoButton from "@/components/ui/TempoButton";
 import ProductPlaceholder from "@/components/ui/ProductPlaceholder";
-
 const specs = [
   { label: "Weight", value: "7.4 oz" },
   { label: "Core Thickness", value: "14mm" },
@@ -123,6 +123,8 @@ const TheAir = () => {
           </div>
         </div>
       </section>
+
+      <MegaFooter />
     </main>
   );
 };

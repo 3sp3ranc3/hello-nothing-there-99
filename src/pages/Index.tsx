@@ -1,4 +1,5 @@
 import Navbar from "@/components/layout/Navbar";
+import MegaFooter from "@/components/layout/MegaFooter";
 import HeroSection from "@/components/sections/HeroSection";
 import PerformanceQuizSection from "@/components/sections/PerformanceQuizSection";
 import TheAirSection from "@/components/sections/TheAirSection";
@@ -16,6 +17,7 @@ const Index = () => {
       <TheArchitectSection />
       <TheAceSection />
       <PaddleCoverSection />
+      <MegaFooter />
     </main>
   );
 };
