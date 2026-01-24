@@ -38,19 +38,13 @@ const MegaFooter = () => {
     { name: "The Architect", href: "/products/the-architect" },
     { name: "The Air", href: "/products/the-air" },
     { name: "The Ace", href: "/products/the-ace" },
-    { name: "Complete Paddles Collection", href: "/collections/paddles" },
-    { name: "Accessories & Gear", href: "/collections/accessories" },
-    { name: "Apparel", href: "/collections/apparel" },
   ];
 
   const supportLinks = [
     { name: "About Tempo", href: "/pages/about" },
-    { name: "Athlete Stories", href: "/pages/athletes" },
     { name: "Contact Concierge", href: "/pages/contact" },
     { name: "FAQ & Help Center", href: "/pages/faq" },
     { name: "Track Your Order", href: "/pages/track-order" },
-    { name: "Warranty Registration", href: "/pages/warranty" },
-    { name: "Paddle Comparison Tool", href: "/tools/compare" },
   ];
 
   const legalLinks = [
