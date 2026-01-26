@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 
 const collections: Record<string, { 
@@ -13,9 +13,7 @@ const collections: Record<string, {
     title: "Complete Paddles Collection",
     description: "Precision-engineered paddles for every play style. From power drives to surgical placement, find your instrument.",
     products: [
-      { name: "The Architect", price: "$145.00", href: "/products/the-architect", tag: "Control" },
-      { name: "The Air", price: "$165.00", href: "/products/the-air", tag: "Speed" },
-      { name: "The Ace", price: "$185.00", href: "/products/the-ace", tag: "Power" },
+      { name: "The Architect", price: "$135.00", href: "/", tag: "Now Available" },
     ],
   },
   accessories: {
@@ -49,8 +47,8 @@ const CollectionPage = () => {
   }
 
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
       
       <div className="pt-32 pb-24">
         {/* Hero */}
@@ -58,7 +56,7 @@ const CollectionPage = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-6 text-tempo-carbon"
           >
             {collection.title}
           </motion.h1>
@@ -66,7 +64,7 @@ const CollectionPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+            className="text-lg md:text-xl text-tempo-carbon/70 max-w-2xl"
           >
             {collection.description}
           </motion.p>
@@ -87,33 +85,33 @@ const CollectionPage = () => {
                   className="group block"
                 >
                   {/* Product Image Placeholder */}
-                  <div className="aspect-[4/5] bg-tempo-mist mb-4 overflow-hidden relative">
+                  <div className="aspect-[4/5] bg-tempo-carbon/5 mb-4 overflow-hidden relative">
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-sm text-muted-foreground uppercase tracking-widest">
+                      <span className="text-sm text-tempo-carbon/50 uppercase tracking-widest">
                         {product.name}
                       </span>
                     </div>
                     {product.tag && (
                       <span className="absolute top-4 left-4 text-xs font-medium uppercase tracking-widest 
-                                     bg-foreground text-background px-3 py-1">
+                                     bg-tempo-carbon text-tempo-bone px-3 py-1 rounded-full">
                         {product.tag}
                       </span>
                     )}
-                    <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 
+                    <div className="absolute inset-0 bg-tempo-carbon/0 group-hover:bg-tempo-carbon/5 
                                   transition-colors duration-300" />
                   </div>
                   
                   {/* Product Info */}
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold group-hover:text-tempo-navy transition-colors">
+                      <h3 className="text-lg font-semibold group-hover:text-tempo-navy transition-colors text-tempo-carbon">
                         {product.name}
                       </h3>
-                      <p className="text-muted-foreground">{product.price}</p>
+                      <p className="text-tempo-carbon/60">{product.price}</p>
                     </div>
                     <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 
                                          transform translate-x-0 group-hover:translate-x-1
-                                         transition-all duration-300" />
+                                         transition-all duration-300 text-tempo-carbon" />
                   </div>
                 </Link>
               </motion.div>

@@ -1,11 +1,12 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import ProductGallery from "@/components/products/ProductGallery";
 import ProductInfo from "@/components/products/ProductInfo";
 import TechSpecs from "@/components/products/TechSpecs";
 import ProductFAQ from "@/components/products/ProductFAQ";
+
 const images = [
   { label: "Image 1: Front" },
   { label: "Image 2: Side" },
@@ -37,8 +38,8 @@ const faqItems = [
     answer: "We believe in The Architect. If it doesn't improve your game within 30 days, return it for a full refund. No questions asked. We'll even cover return shipping.",
   },
   {
-    question: "How is The Architect different from The Ace?",
-    answer: "The Architect is engineered for control and precision. It features a larger sweet spot, dampened core, and balanced weight distribution. The Ace, in contrast, is optimized for raw power with a head-heavy balance and stiffer face.",
+    question: "Why preorder only?",
+    answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you.",
   },
   {
     question: "Is this paddle tournament approved?",
@@ -46,7 +47,7 @@ const faqItems = [
   },
   {
     question: "What is the shipping time?",
-    answer: "Orders placed before 2PM EST ship same-day. Standard delivery is 3-5 business days. Expedited shipping options are available at checkout.",
+    answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships.",
   },
   {
     question: "What grip size should I choose?",
@@ -62,8 +63,8 @@ const TheArchitect = () => {
   };
 
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
 
       {/* PART 1: THE SPLIT SECTION */}
       <section className="pt-20 lg:pt-24">
@@ -79,7 +80,7 @@ const TheArchitect = () => {
               <ProductInfo
                 title="THE ARCHITECT"
                 description="The tactician's instrument. Engineered for absolute placement, vibration control, and neutralizing opponent power."
-                price="$145.00"
+                price="$135.00"
                 features={features}
                 onViewSpecs={scrollToSpecs}
               />
@@ -89,7 +90,7 @@ const TheArchitect = () => {
       </section>
 
       {/* PART 2: THE TECH SECTION */}
-      <section ref={techSectionRef} className="border-t border-border">
+      <section ref={techSectionRef} className="border-t border-tempo-carbon/10">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
           <TechSpecs
             headline="IMPOSE ORDER ON CHAOS"
@@ -105,14 +106,14 @@ const TheArchitect = () => {
       </div>
 
       {/* Bottom CTA */}
-      <section className="py-16 lg:py-24 border-t border-border">
+      <section className="py-16 lg:py-24 border-t border-tempo-carbon/10">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-foreground text-background py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-tempo-navy transition-colors duration-300"
+            className="bg-tempo-carbon text-tempo-bone py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-tempo-navy transition-colors duration-300"
           >
-            Add to Cart — $145.00
+            Reserve Now — $135.00
           </motion.button>
         </div>
       </section>

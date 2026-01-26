@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Phone, MapPin } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import { toast } from "@/hooks/use-toast";
 
@@ -39,8 +39,8 @@ const ContactPage = () => {
   };
 
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
       
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
@@ -48,7 +48,7 @@ const ContactPage = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block"
+            className="text-sm uppercase tracking-widest text-tempo-carbon/60 mb-4 block"
           >
             Get in Touch
           </motion.span>
@@ -56,7 +56,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8 text-tempo-carbon"
           >
             CONTACT CONCIERGE
           </motion.h1>
@@ -64,7 +64,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+            className="text-lg md:text-xl text-tempo-carbon/70 max-w-2xl leading-relaxed"
           >
             Questions about your order? Need help finding the right paddle? Our team is here to help.
           </motion.p>
@@ -84,57 +84,57 @@ const ContactPage = () => {
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+                <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                   Name *
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-border bg-transparent px-4 py-3 
-                           focus:border-foreground outline-none transition-colors"
+                  className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                           focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+                <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                   Email *
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full border border-border bg-transparent px-4 py-3 
-                           focus:border-foreground outline-none transition-colors"
+                  className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                           focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
                   placeholder="your@email.com"
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Subject
               </label>
               <input
                 type="text"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full border border-border bg-transparent px-4 py-3 
-                         focus:border-foreground outline-none transition-colors"
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
                 placeholder="How can we help?"
               />
             </div>
             
             <div>
-              <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Message *
               </label>
               <textarea
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 rows={6}
-                className="w-full border border-border bg-transparent px-4 py-3 
-                         focus:border-foreground outline-none transition-colors resize-none"
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors resize-none text-tempo-carbon"
                 placeholder="Tell us more..."
               />
             </div>
@@ -142,8 +142,8 @@ const ContactPage = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-3 bg-foreground text-background 
-                       px-10 py-4 uppercase tracking-widest font-medium text-sm
+              className="inline-flex items-center gap-3 bg-tempo-carbon text-tempo-bone 
+                       px-10 py-4 uppercase tracking-widest font-medium text-sm rounded-full
                        hover:bg-tempo-navy transition-colors duration-300
                        disabled:opacity-50 disabled:cursor-not-allowed"
             >
@@ -160,45 +160,45 @@ const ContactPage = () => {
             className="lg:pl-12 space-y-12"
           >
             <div>
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-6">
+              <h3 className="text-xl font-bold uppercase tracking-wide mb-6 text-tempo-carbon">
                 Other Ways to Reach Us
               </h3>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 mt-1 text-muted-foreground" />
+                  <Mail className="w-5 h-5 mt-1 text-tempo-carbon/60" />
                   <div>
-                    <p className="font-medium">Email</p>
-                    <a href="mailto:support@tempopickleball.com" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <p className="font-medium text-tempo-carbon">Email</p>
+                    <a href="mailto:support@tempopickleball.com" className="text-tempo-carbon/60 hover:text-tempo-carbon transition-colors">
                       support@tempopickleball.com
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 mt-1 text-muted-foreground" />
+                  <Phone className="w-5 h-5 mt-1 text-tempo-carbon/60" />
                   <div>
-                    <p className="font-medium">Phone</p>
-                    <a href="tel:1-800-TEMPO-00" className="text-muted-foreground hover:text-foreground transition-colors">
+                    <p className="font-medium text-tempo-carbon">Phone</p>
+                    <a href="tel:1-800-TEMPO-00" className="text-tempo-carbon/60 hover:text-tempo-carbon transition-colors">
                       1-800-TEMPO-00
                     </a>
-                    <p className="text-sm text-muted-foreground">Mon-Fri, 9am-5pm PST</p>
+                    <p className="text-sm text-tempo-carbon/50">Mon-Fri, 9am-5pm PST</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 mt-1 text-muted-foreground" />
+                  <MapPin className="w-5 h-5 mt-1 text-tempo-carbon/60" />
                   <div>
-                    <p className="font-medium">Headquarters</p>
-                    <p className="text-muted-foreground">
-                      123 Precision Drive<br />
-                      San Diego, CA 92101
+                    <p className="font-medium text-tempo-carbon">Headquarters</p>
+                    <p className="text-tempo-carbon/60">
+                      Sydney, NSW<br />
+                      Australia
                     </p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="p-8 bg-tempo-mist">
-              <h4 className="font-bold uppercase tracking-wide mb-3">Response Time</h4>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+            <div className="p-8 bg-white border border-tempo-carbon/10">
+              <h4 className="font-bold uppercase tracking-wide mb-3 text-tempo-carbon">Response Time</h4>
+              <p className="text-tempo-carbon/60 text-sm leading-relaxed">
                 Our concierge team typically responds within 2-4 hours during business hours. 
                 For urgent order issues, please call us directly.
               </p>

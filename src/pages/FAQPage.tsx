@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import Navbar from "@/components/layout/Navbar";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import {
   Accordion,
@@ -14,11 +14,11 @@ const faqCategories = [
     items: [
       {
         question: "How long does shipping take?",
-        answer: "Standard shipping takes 5-7 business days. Expedited shipping (2-3 days) and overnight options are available at checkout. All orders over $100 ship free.",
+        answer: "Standard shipping takes 5-7 business days within Australia. Expedited shipping (2-3 days) and overnight options are available at checkout. All orders over $100 ship free.",
       },
       {
         question: "Do you ship internationally?",
-        answer: "Yes! We ship to over 50 countries. International shipping rates and delivery times vary by destination. Import duties may apply and are the responsibility of the recipient.",
+        answer: "Currently we ship to Australia and New Zealand. International shipping to the US and Europe coming with Batch 003. Join the waitlist to be notified.",
       },
       {
         question: "How can I track my order?",
@@ -30,16 +30,16 @@ const faqCategories = [
     title: "Products & Paddles",
     items: [
       {
-        question: "What's the difference between The Architect, The Air, and The Ace?",
-        answer: "The Architect is our control paddle, designed for tactical play and precision placement. The Air is built for speed, featuring our lightest core for quick reactions. The Ace is our power paddle, engineered for aggressive players who want to dominate rallies.",
+        question: "What makes The Architect different?",
+        answer: "The Architect features a 31% larger sweet spot than industry average (independently tested), T700 carbon fiber face, and 16mm polymer honeycomb core. We sell direct—cutting out the 40%+ markup you pay at retail.",
       },
       {
-        question: "Are your paddles tournament approved?",
-        answer: "Yes, all Tempo paddles are USAPA approved for tournament play. You can find them on the official approved paddle list.",
+        question: "Is The Architect tournament approved?",
+        answer: "Yes, The Architect is USAPA approved for tournament play. You can find it on the official approved paddle list.",
       },
       {
-        question: "What weight should I choose?",
-        answer: "Paddle weight is personal preference. Lighter paddles (under 7.8oz) offer more maneuverability, while heavier paddles (8.2oz+) provide more power. Most players prefer the 7.9-8.1oz range for balance.",
+        question: "What weight is The Architect?",
+        answer: "The Architect weighs 8.1 oz, optimized for hand speed and control. This mid-weight provides the perfect balance between power and maneuverability.",
       },
     ],
   },
@@ -64,8 +64,8 @@ const faqCategories = [
 
 const FAQPage = () => {
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
       
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
@@ -73,7 +73,7 @@ const FAQPage = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block"
+            className="text-sm uppercase tracking-widest text-tempo-carbon/60 mb-4 block"
           >
             Help Center
           </motion.span>
@@ -81,7 +81,7 @@ const FAQPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8 text-tempo-carbon"
           >
             FAQ & HELP
           </motion.h1>
@@ -89,7 +89,7 @@ const FAQPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+            className="text-lg md:text-xl text-tempo-carbon/70 max-w-2xl leading-relaxed"
           >
             Find answers to common questions about orders, products, and policies.
           </motion.p>
@@ -107,7 +107,7 @@ const FAQPage = () => {
               viewport={{ once: true }}
               transition={{ delay: catIndex * 0.1 }}
             >
-              <h2 className="text-xl font-bold uppercase tracking-wide mb-6 pb-4 border-b border-border">
+              <h2 className="text-xl font-bold uppercase tracking-wide mb-6 pb-4 border-b border-tempo-carbon/10 text-tempo-carbon">
                 {category.title}
               </h2>
               <Accordion type="single" collapsible className="space-y-2">
@@ -115,12 +115,12 @@ const FAQPage = () => {
                   <AccordionItem 
                     key={itemIndex} 
                     value={`${catIndex}-${itemIndex}`}
-                    className="border-b border-border"
+                    className="border-b border-tempo-carbon/10"
                   >
-                    <AccordionTrigger className="text-left hover:no-underline py-6 text-base font-medium hover:text-tempo-navy transition-colors">
+                    <AccordionTrigger className="text-left hover:no-underline py-6 text-base font-medium hover:text-tempo-navy transition-colors text-tempo-carbon">
                       {item.question}
                     </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground leading-relaxed pb-6">
+                    <AccordionContent className="text-tempo-carbon/70 leading-relaxed pb-6">
                       {item.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -132,13 +132,13 @@ const FAQPage = () => {
       </section>
 
       {/* Still Need Help */}
-      <section className="py-24 px-6 bg-tempo-mist">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-[1400px] mx-auto text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-3xl font-bold tracking-wide uppercase mb-6"
+            className="text-2xl md:text-3xl font-bold tracking-wide uppercase mb-6 text-tempo-carbon"
           >
             STILL HAVE QUESTIONS?
           </motion.h2>
@@ -147,7 +147,7 @@ const FAQPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-muted-foreground mb-8"
+            className="text-tempo-carbon/60 mb-8"
           >
             Our concierge team is ready to help with any questions you have.
           </motion.p>
@@ -157,7 +157,7 @@ const FAQPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="inline-block bg-foreground text-background px-10 py-4 
+            className="inline-block bg-tempo-carbon text-tempo-bone px-10 py-4 rounded-full
                      uppercase tracking-widest font-medium text-sm
                      hover:bg-tempo-navy transition-colors duration-300"
           >

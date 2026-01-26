@@ -40,14 +40,15 @@
     --radius: 0.5rem;
     
     /* Tempo Product Accents */
-    --tempo-bone: 50 11% 97%;
-    --tempo-carbon: 0 0% 10%;
+    --tempo-bone: 43 16% 92%; /* #efede7 */
+    --tempo-carbon: 0 0% 12%; /* #1e1e1e */
     --tempo-vapor: 50 6% 90%;
     --tempo-mist: 0 0% 94%; /* Mist Grey #F0F0F0 */
     --tempo-forest: 147 28% 24%; /* #2D4F38 */
     --tempo-crimson: 352 54% 35%; /* #8B2635 */
-    --tempo-navy: 218 31% 15%; /* Deep Navy #1a2332 */
+    --tempo-navy: 214 51% 12%; /* #0f1b2d */
     --tempo-stock: 142 71% 45%; /* Stock indicator green */
+    --tempo-gold: 45 93% 47%; /* Gold for sold out */
   }
 }
 
