@@ -60,6 +60,7 @@ export default {
           crimson: "hsl(var(--tempo-crimson))",
           navy: "hsl(var(--tempo-navy))",
           stock: "hsl(var(--tempo-stock))",
+          gold: "hsl(var(--tempo-gold))",
         },
       },
       borderRadius: {

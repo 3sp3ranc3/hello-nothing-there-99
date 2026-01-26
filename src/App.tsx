@@ -10,10 +10,11 @@ import ScrollToTop from "@/components/layout/ScrollToTop";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
-// Lazy load product pages
-const TheAir = lazy(() => import("./pages/products/TheAir"));
+// Lazy load batch page
+const Batch001Page = lazy(() => import("./pages/Batch001Page"));
+
+// Lazy load The Architect product page
 const TheArchitect = lazy(() => import("./pages/products/TheArchitect"));
-const TheAce = lazy(() => import("./pages/products/TheAce"));
 
 // Lazy load collection pages
 const CollectionPage = lazy(() => import("./pages/CollectionPage"));
@@ -34,9 +35,9 @@ const queryClient = new QueryClient();
 
 // Loading fallback component
 const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
+  <div className="min-h-screen bg-tempo-bone flex items-center justify-center">
     <div className="text-center">
-      <div className="text-3xl font-black tracking-[0.2em] uppercase animate-pulse">
+      <div className="text-3xl font-black tracking-[0.2em] uppercase animate-pulse text-tempo-carbon">
         TEMPO
       </div>
     </div>
@@ -52,13 +53,14 @@ const App = () => (
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            {/* Home */}
+            {/* Home - Batch 002 */}
             <Route path="/" element={<Index />} />
             
+            {/* Batch 001 - Sold Out */}
+            <Route path="/batch-001" element={<Batch001Page />} />
+            
             {/* Product Pages */}
-            <Route path="/products/the-air" element={<TheAir />} />
             <Route path="/products/the-architect" element={<TheArchitect />} />
-            <Route path="/products/the-ace" element={<TheAce />} />
             
             {/* Collection Pages */}
             <Route path="/collections/:slug" element={<CollectionPage />} />

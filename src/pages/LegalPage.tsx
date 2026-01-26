@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ChevronRight } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 
 const legalContent: Record<string, { title: string; content: string[] }> = {
@@ -28,10 +28,10 @@ const legalContent: Record<string, { title: string; content: string[] }> = {
   shipping: {
     title: "Shipping Information",
     content: [
-      "We offer free standard shipping on all orders over $100 within the continental United States. Orders under $100 are subject to a flat shipping rate of $8.95.",
+      "We offer free standard shipping on all orders over $100 within Australia. Orders under $100 are subject to a flat shipping rate of $8.95.",
       "Standard shipping typically takes 5-7 business days. Expedited shipping options are available at checkout for an additional fee. Express shipping (2-3 business days) is $14.95, and overnight shipping is $24.95.",
       "Orders are processed within 1-2 business days. You will receive a shipping confirmation email with tracking information once your order has shipped. Please allow up to 24 hours for tracking information to become active.",
-      "We currently ship to all 50 US states and Canada. International shipping rates and delivery times vary by destination. Import duties and taxes may apply and are the responsibility of the recipient.",
+      "We currently ship to Australia and New Zealand. International shipping to the US and Europe coming soon.",
       "If your package is lost or damaged during transit, please contact our customer service team within 7 days of the expected delivery date. We will work with the carrier to resolve the issue promptly.",
     ],
   },
@@ -66,8 +66,8 @@ const LegalPage = () => {
   }
 
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
       
       <div className="pt-32 pb-24 px-6">
         <div className="max-w-3xl mx-auto">
@@ -75,13 +75,13 @@ const LegalPage = () => {
           <motion.nav
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-2 text-sm text-muted-foreground mb-8"
+            className="flex items-center gap-2 text-sm text-tempo-carbon/60 mb-8"
           >
-            <Link to="/" className="hover:text-foreground transition-colors">
+            <Link to="/" className="hover:text-tempo-carbon transition-colors">
               Home
             </Link>
             <ChevronRight className="w-4 h-4" />
-            <span className="text-foreground">{page.title}</span>
+            <span className="text-tempo-carbon">{page.title}</span>
           </motion.nav>
 
           {/* Back Button */}
@@ -92,8 +92,8 @@ const LegalPage = () => {
           >
             <Link 
               to="/"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground 
-                       hover:text-foreground transition-colors mb-12"
+              className="inline-flex items-center gap-2 text-sm text-tempo-carbon/60 
+                       hover:text-tempo-carbon transition-colors mb-12"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to Home
@@ -105,7 +105,7 @@ const LegalPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl font-extrabold tracking-wide uppercase mb-12"
+            className="text-4xl md:text-5xl font-extrabold tracking-wide uppercase mb-12 text-tempo-carbon"
           >
             {page.title}
           </motion.h1>
@@ -120,7 +120,7 @@ const LegalPage = () => {
             {page.content.map((paragraph, index) => (
               <p 
                 key={index}
-                className="text-base md:text-lg leading-relaxed text-muted-foreground"
+                className="text-base md:text-lg leading-relaxed text-tempo-carbon/70"
               >
                 {paragraph}
               </p>
@@ -132,7 +132,7 @@ const LegalPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-sm text-muted-foreground mt-12 pt-8 border-t border-border"
+            className="text-sm text-tempo-carbon/50 mt-12 pt-8 border-t border-tempo-carbon/10"
           >
             Last updated: January 2026
           </motion.p>

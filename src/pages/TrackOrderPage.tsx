@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Package, Truck, CheckCircle } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+import { Search, Package, CheckCircle } from "lucide-react";
+import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import { toast } from "@/hooks/use-toast";
 
@@ -30,7 +30,6 @@ const TrackOrderPage = () => {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // Simulate order lookup
     setOrderStatus({
       number: orderNumber,
       status: "In Transit",
@@ -47,8 +46,8 @@ const TrackOrderPage = () => {
   };
 
   return (
-    <main className="bg-background min-h-screen">
-      <Navbar />
+    <main className="bg-tempo-bone min-h-screen">
+      <BatchNavbar />
       
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
@@ -56,7 +55,7 @@ const TrackOrderPage = () => {
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block"
+            className="text-sm uppercase tracking-widest text-tempo-carbon/60 mb-4 block"
           >
             Order Status
           </motion.span>
@@ -64,7 +63,7 @@ const TrackOrderPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8"
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8 text-tempo-carbon"
           >
             TRACK YOUR ORDER
           </motion.h1>
@@ -72,7 +71,7 @@ const TrackOrderPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
+            className="text-lg md:text-xl text-tempo-carbon/70 max-w-2xl leading-relaxed"
           >
             Enter your order details to see the latest shipping status.
           </motion.p>
@@ -90,29 +89,29 @@ const TrackOrderPage = () => {
             className="space-y-6"
           >
             <div>
-              <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Order Number
               </label>
               <input
                 type="text"
                 value={orderNumber}
                 onChange={(e) => setOrderNumber(e.target.value)}
-                className="w-full border border-border bg-transparent px-4 py-3 
-                         focus:border-foreground outline-none transition-colors"
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
                 placeholder="e.g. TEMPO-12345"
               />
             </div>
             
             <div>
-              <label className="block text-sm uppercase tracking-widest font-medium mb-2">
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Email Address
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full border border-border bg-transparent px-4 py-3 
-                         focus:border-foreground outline-none transition-colors"
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
                 placeholder="your@email.com"
               />
             </div>
@@ -121,7 +120,7 @@ const TrackOrderPage = () => {
               type="submit"
               disabled={isLoading}
               className="w-full inline-flex items-center justify-center gap-3 
-                       bg-foreground text-background px-10 py-4 
+                       bg-tempo-carbon text-tempo-bone px-10 py-4 rounded-full
                        uppercase tracking-widest font-medium text-sm
                        hover:bg-tempo-navy transition-colors duration-300
                        disabled:opacity-50 disabled:cursor-not-allowed"
@@ -136,13 +135,13 @@ const TrackOrderPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-12 p-8 bg-tempo-mist"
+              className="mt-12 p-8 bg-white border border-tempo-carbon/10"
             >
               <div className="flex items-center gap-4 mb-8">
-                <Package className="w-8 h-8" />
+                <Package className="w-8 h-8 text-tempo-carbon" />
                 <div>
-                  <p className="text-sm text-muted-foreground">Order {orderStatus.number}</p>
-                  <p className="text-xl font-bold">{orderStatus.status}</p>
+                  <p className="text-sm text-tempo-carbon/60">Order {orderStatus.number}</p>
+                  <p className="text-xl font-bold text-tempo-carbon">{orderStatus.status}</p>
                 </div>
               </div>
 
@@ -151,8 +150,8 @@ const TrackOrderPage = () => {
                   <div key={step.label} className="flex items-center gap-4">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
                       step.completed 
-                        ? 'bg-foreground text-background' 
-                        : 'bg-border text-muted-foreground'
+                        ? 'bg-tempo-carbon text-tempo-bone' 
+                        : 'bg-tempo-carbon/10 text-tempo-carbon/60'
                     }`}>
                       {step.completed ? (
                         <CheckCircle className="w-5 h-5" />
@@ -161,11 +160,11 @@ const TrackOrderPage = () => {
                       )}
                     </div>
                     <div className="flex-1">
-                      <p className={step.completed ? 'font-medium' : 'text-muted-foreground'}>
+                      <p className={step.completed ? 'font-medium text-tempo-carbon' : 'text-tempo-carbon/60'}>
                         {step.label}
                       </p>
                       {step.date && (
-                        <p className="text-sm text-muted-foreground">{step.date}</p>
+                        <p className="text-sm text-tempo-carbon/50">{step.date}</p>
                       )}
                     </div>
                   </div>
