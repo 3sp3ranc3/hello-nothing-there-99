@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import BatchNavbar from "@/components/layout/BatchNavbar";
@@ -7,6 +7,9 @@ import ProductGallery from "@/components/products/ProductGallery";
 import ProductInfo from "@/components/products/ProductInfo";
 import TechSpecs from "@/components/products/TechSpecs";
 import ProductFAQ from "@/components/products/ProductFAQ";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import StickyReserveButton from "@/components/ui/StickyReserveButton";
+import FounderStoryModal from "@/components/ui/FounderStoryModal";
 
 const images = [
   { label: "Image 1: Front" },
@@ -18,19 +21,43 @@ const images = [
 ];
 
 const features = [
-  "Iso-Static™ Carbon Face (45° Weave)",
-  "Zero-Resonance Polypropylene Core",
-  "Hydro-Wick Octagonal Grip",
-  "Muted Acoustic Profile",
+  "Thermoformed construction with TRUFOAM Core",
+  "T700 Carbon Fiber face with sandblasted finish",
+  "Frameless wide body design",
+  "130mm elongated grip handle",
 ];
 
 const specs = [
-  { label: "CORE", value: "Polypropylene", description: "(Vibration Control)" },
-  { label: "WEIGHT", value: "8.10 oz", description: "(Optimized for Hand Speed)" },
-  { label: "GRIP", value: "5.5 in", description: "(Elongated)" },
-  { label: "BALANCE", value: "Central/Neutral" },
-  { label: "SURFACE", value: "Raw T700 Carbon" },
-  { label: "WARRANTY", value: "30 Days", description: "(Performance Guarantee)" },
+  { 
+    label: "CORE", 
+    value: "TRUFOAM", 
+    description: "Black TRUFOAM Core Technology for optimal energy transfer and vibration dampening" 
+  },
+  { 
+    label: "WEIGHT", 
+    value: "8.2 oz", 
+    description: "Balanced weight optimized for both power and control" 
+  },
+  { 
+    label: "GRIP", 
+    value: "130mm", 
+    description: "Elongated handle for two-handed backhand versatility" 
+  },
+  { 
+    label: "BALANCE", 
+    value: "Central", 
+    description: "Neutral balance point for consistent swing dynamics" 
+  },
+  { 
+    label: "SURFACE", 
+    value: "T700 Carbon Fiber", 
+    description: "Full UV print with sandblasted texture for spin generation" 
+  },
+  { 
+    label: "WARRANTY", 
+    value: "30-Day Play Test", 
+    description: "Full performance guarantee or your money back" 
+  },
 ];
 
 const faqItems = [
@@ -52,11 +79,12 @@ const faqItems = [
   },
   {
     question: "What grip size should I choose?",
-    answer: "The Architect features a 5.5 inch elongated grip, suitable for most hand sizes. If you prefer a smaller grip, overgrips can be removed. For larger hands, consider adding an overgrip for additional circumference.",
+    answer: "The Architect features a 130mm elongated grip, suitable for most hand sizes and enabling two-handed backhands. If you prefer a smaller grip, overgrips can be removed. For larger hands, consider adding an overgrip for additional circumference.",
   },
 ];
 
 const TheArchitect = () => {
+  const [isFounderModalOpen, setIsFounderModalOpen] = useState(false);
   const techSectionRef = useRef<HTMLElement>(null);
 
   const scrollToSpecs = () => {
@@ -82,6 +110,7 @@ const TheArchitect = () => {
                 title="THE ARCHITECT"
                 description="The tactician's instrument. Engineered for absolute placement, vibration control, and neutralizing opponent power."
                 price="$135.00"
+                retailPrice="$195.00"
                 features={features}
                 onViewSpecs={scrollToSpecs}
               />
@@ -90,18 +119,26 @@ const TheArchitect = () => {
         </div>
       </section>
 
-      {/* PART 2: THE TECH SECTION */}
-      <section ref={techSectionRef} className="border-t border-tempo-carbon/10">
+      {/* PART 2: SPECS GRID SECTION */}
+      <section ref={techSectionRef} className="py-16 lg:py-24 border-t border-tempo-carbon/10">
         <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <TechSpecs
-            headline="IMPOSE ORDER ON CHAOS"
-            description="Power without direction is wasted energy. The Architect is calibrated to neutralize kinetic energy at the kitchen line, turning your opponent's aggression into your opportunity. A chassis so rigid it feels less like a trampoline, and more like a wall."
-            specs={specs}
-          />
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16"
+          >
+            Technical Specifications
+          </motion.h2>
+          <TechSpecs specs={specs} variant="grid-only" />
         </div>
       </section>
 
-      {/* PART 3: FAQ SECTION */}
+      {/* PART 3: TESTIMONIALS SECTION */}
+      <TestimonialsSection />
+
+      {/* PART 4: FAQ SECTION */}
       <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
         <ProductFAQ items={faqItems} />
       </div>
@@ -119,7 +156,12 @@ const TheArchitect = () => {
         </div>
       </section>
 
-      <MegaFooter />
+      <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
+      <StickyReserveButton />
+      <FounderStoryModal 
+        isOpen={isFounderModalOpen} 
+        onClose={() => setIsFounderModalOpen(false)} 
+      />
     </main>
   );
 };
