@@ -39,9 +39,8 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
   };
 
   const equipmentLinks = [
-    { name: "The Architect", href: "/products/the-architect" },
-    { name: "The Air", href: "/products/the-air" },
-    { name: "The Ace", href: "/products/the-ace" },
+    { name: "Architect Batch 001", href: "/batch-001" },
+    { name: "Architect Batch 002", href: "/products/the-architect" },
   ];
 
   const supportLinks = [
