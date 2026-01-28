@@ -55,18 +55,20 @@ const BatchNavbar = () => {
             </Link>
 
             {/* Batch Navigation */}
-            <div className="flex items-center gap-4 lg:gap-8">
+            <div className="flex items-center gap-6 lg:gap-10">
               {/* Batch 001 - Exhausted */}
               <Link
                 to="/batch-001"
-                className={`relative flex flex-col items-center px-3 lg:px-4 py-2 text-xs lg:text-sm uppercase tracking-widest font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`relative flex flex-col items-center px-2 lg:px-4 py-2 transition-all duration-300 ${
                   isBatch001 
                     ? "text-tempo-carbon" 
                     : "text-tempo-carbon/60 hover:text-tempo-carbon"
                 }`}
               >
-                <span>Architect Batch 001</span>
-                <span className="mt-1 px-2 py-0.5 bg-tempo-crimson text-tempo-bone text-[9px] lg:text-[10px] rounded-full font-semibold tracking-wider">
+                <span className="text-[10px] lg:text-xs uppercase tracking-[0.15em] font-medium whitespace-nowrap">
+                  Architect Batch 001
+                </span>
+                <span className="mt-1 px-2 py-0.5 bg-tempo-crimson text-tempo-bone text-[8px] lg:text-[9px] rounded-full font-semibold tracking-wider">
                   EXHAUSTED
                 </span>
               </Link>
@@ -74,17 +76,17 @@ const BatchNavbar = () => {
               {/* Batch 002 - Product Page */}
               <Link
                 to="/products/the-architect"
-                className={`relative px-3 lg:px-4 py-2 text-xs lg:text-sm uppercase tracking-widest font-medium transition-all duration-300 whitespace-nowrap ${
+                className={`relative flex flex-col items-center px-2 lg:px-4 py-2 transition-all duration-300 ${
                   isBatch002 
                     ? "text-tempo-navy" 
                     : "text-tempo-carbon/60 hover:text-tempo-carbon"
                 }`}
               >
-                <span>Architect Batch 002</span>
+                <span className="text-[10px] lg:text-xs uppercase tracking-[0.15em] font-medium whitespace-nowrap">
+                  Architect Batch 002
+                </span>
                 {isBatch002 && (
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-tempo-navy"
-                  />
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-tempo-navy" />
                 )}
               </Link>
             </div>
