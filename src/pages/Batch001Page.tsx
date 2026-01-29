@@ -6,25 +6,24 @@ import MegaFooter from "@/components/layout/MegaFooter";
 
 const testimonials = [
   {
-    painPoint: "Mishits / Sweet Spot",
-    quote: "Tired of mishits on fast exchanges? The 31% larger sweet spot means more forgiveness at the kitchen. My off-center hits now have control instead of popping up.",
-    name: "Marcus Chen",
-    rating: "4.5 DUPR",
-    location: "Sydney, NSW",
+    tag: "Mis-hits / Sweet Spot",
+    quote: "The sweet spot is honestly massive. I've hit many off-centre shots that should've been dead but popped nicely over the net. Super forgiving if your aim isn't perfect like mine - it almost feels like cheating. So glad I gave that paddle a shot.",
+    name: "Oliver",
   },
   {
-    painPoint: "Dead Feel / Touch Shots",
-    quote: "My old paddle felt dead on touch shots. The Architect's 16mm polymer honeycomb core maintains perfect feel while adding stability. My dinking game improved noticeably.",
-    name: "Sarah Williams",
-    rating: "4.2 DUPR",
-    location: "Bondi, NSW",
+    tag: "Spin",
+    quote: "I bought this as a backup for my $300 tournament paddle but ended up making it the only one I reach for. The amount of spin you can get with this is crazy, the face bites so hard it feels like you have a whole extra second to place the ball. It just gives you that locked-in confidence that usually takes weeks to build with a new paddle.",
+    name: "Lachlan",
   },
   {
-    painPoint: "Arm Fatigue / Value",
-    quote: "After long sessions, my arm would ache. The optimized weight distribution plus the center hole design reduces strain significantly. And at $135 vs $200+ paddles? No-brainer upgrade.",
-    name: "James Park",
-    rating: "4.0 DUPR",
-    location: "Melbourne, VIC",
+    tag: "Dinks",
+    quote: "I'm so glad my partner put me onto Tempo. Honestly feels like a hidden gem that hasn't blown up yet. I used to tense up every time I had to dink because I'd always pop it up and eat a smash, but the touch on this feels surgical. It really lets me neutralise the pace and keep my dinks unattackable.",
+    name: "Rachel",
+  },
+  {
+    tag: "Manoeuvrability",
+    quote: "The swing weight on this is dialled in perfectly. It cuts through the air fast enough to keep up in rapid-fire kitchen rallies, but it still feels very substantial on contact. Plus, the vibration dampening is top tier - I can play 5 sets straight and have zero arm fatigue.",
+    name: "Eric",
   },
 ];
 
@@ -110,7 +109,7 @@ const Batch001Page = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
@@ -121,35 +120,16 @@ const Batch001Page = () => {
                 className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm"
               >
                 <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
-                  {testimonial.painPoint}
+                  {testimonial.tag}
                 </span>
 
-                <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-8">
+                <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
                   "{testimonial.quote}"
                 </blockquote>
 
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-tempo-carbon/10 flex items-center justify-center">
-                    <span className="text-sm font-bold text-tempo-carbon">
-                      {testimonial.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-tempo-carbon">{testimonial.name}</p>
-                    <p className="text-sm text-tempo-carbon/60">
-                      {testimonial.rating} · {testimonial.location}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-tempo-carbon/5">
-                  <span className="flex items-center gap-2 text-xs text-tempo-stock">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    Verified Batch 001 Owner
-                  </span>
-                </div>
+                <p className="text-tempo-carbon/70 font-medium">
+                  — {testimonial.name}
+                </p>
               </motion.div>
             ))}
           </div>
