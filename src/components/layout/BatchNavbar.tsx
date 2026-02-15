@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CartDrawer } from "@/components/ui/CartDrawer";
 
 const BatchNavbar = () => {
   const location = useLocation();
@@ -91,8 +92,10 @@ const BatchNavbar = () => {
               </Link>
             </div>
 
-            {/* Empty div for spacing balance */}
-            <div className="w-20 lg:w-24" />
+            {/* Cart */}
+            <div className="w-20 lg:w-24 flex justify-end">
+              <CartDrawer />
+            </div>
           </div>
         </div>
       </motion.nav>

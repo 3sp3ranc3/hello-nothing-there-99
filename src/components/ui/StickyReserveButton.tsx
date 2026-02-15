@@ -1,25 +1,23 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
-const StickyReserveButton = () => {
+interface StickyReserveButtonProps {
+  onAddToCart: () => Promise<void>;
+  isLoading: boolean;
+  disabled: boolean;
+}
+
+const StickyReserveButton = ({ onAddToCart, isLoading, disabled }: StickyReserveButtonProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show after scrolling past hero section (roughly 600px)
       setIsVisible(window.scrollY > 600);
     };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const scrollToReserve = () => {
-    const reserveSection = document.getElementById("reserve");
-    if (reserveSection) {
-      reserveSection.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
 
   return (
     <AnimatePresence>
@@ -32,11 +30,12 @@ const StickyReserveButton = () => {
           className="fixed bottom-6 right-6 z-50 md:hidden"
         >
           <motion.button
-            onClick={scrollToReserve}
+            onClick={onAddToCart}
+            disabled={isLoading || disabled}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 px-6 py-4 bg-tempo-carbon text-tempo-bone text-sm uppercase tracking-widest font-bold rounded-full shadow-lg hover:bg-tempo-navy transition-colors"
+            className="flex items-center gap-2 px-6 py-4 bg-tempo-carbon text-tempo-bone text-sm uppercase tracking-widest font-bold rounded-full shadow-lg hover:bg-tempo-navy transition-colors disabled:opacity-50"
           >
-            Reserve Now — $135
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135"}
           </motion.button>
         </motion.div>
       )}
