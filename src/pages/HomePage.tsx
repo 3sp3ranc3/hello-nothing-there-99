@@ -44,7 +44,7 @@ const HomePage = () => {
                 The Tactician's Instrument
               </span>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-wide text-tempo-bone mb-6" style={{ lineHeight: 1.1 }}>
-                Discover Architect
+                Discover The Architect
               </h2>
               <p className="text-tempo-bone/60 max-w-md mx-auto mb-8">
                 Engineered for absolute placement, vibration control, and neutralizing opponent power.
