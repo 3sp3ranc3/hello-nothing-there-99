@@ -24,7 +24,7 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <button className="text-xs uppercase tracking-[0.15em] font-medium text-tempo-carbon/60 hover:text-tempo-carbon transition-colors relative">
+        <button className="text-xs uppercase tracking-[0.15em] font-medium text-current transition-colors relative">
           Cart ({totalItems})
         </button>
       </SheetTrigger>
