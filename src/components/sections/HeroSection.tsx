@@ -31,7 +31,7 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg lg:text-2xl font-medium uppercase tracking-[0.2em] mt-4">
-            THE ARCHITECT:BATCH 002
+            BATCH 002 : ARCHITECT
 
           </motion.p>
 
