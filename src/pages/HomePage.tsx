@@ -18,7 +18,7 @@ const HomePage = () => {
       <BatchComparisonSection />
 
       {/* Discovery CTA Section */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-20">
         <div className="max-w-[1000px] mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -27,7 +27,7 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <Link to="/products/the-architect" className="group block">
-              <div className="relative py-16 lg:py-20 px-8 lg:px-16 border border-tempo-carbon/20 rounded-sm bg-tempo-navy/[0.02] hover:bg-tempo-navy/[0.05] transition-all duration-500 overflow-hidden">
+              <div className="relative py-12 lg:py-16 px-8 lg:px-16 border border-tempo-carbon/20 rounded-sm bg-tempo-navy/[0.02] hover:bg-tempo-navy/[0.05] transition-all duration-500 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-tempo-navy/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative">
                   <span className="inline-block text-xs uppercase tracking-widest font-medium text-tempo-navy mb-4">

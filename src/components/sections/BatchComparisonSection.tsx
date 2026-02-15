@@ -5,7 +5,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const BatchComparisonSection = () => {
   return (
-    <section className="py-16 lg:py-24 border-y border-tempo-carbon/10">
+    <section className="py-12 lg:py-16 border-y border-tempo-carbon/10">
       <div className="max-w-[900px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -13,7 +13,7 @@ const BatchComparisonSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <p className="text-xs uppercase tracking-[0.25em] font-medium text-tempo-carbon/50 mb-4">
             The Journey
