@@ -4,6 +4,7 @@ import heroImage from "@/assets/hero-image.png";
 
 const HeroSection = () => {
   return (
+    <>
     <section className="w-full">
       {/* Desktop: image with overlaid text */}
       <div className="hidden md:block relative h-[70vh] w-full overflow-hidden">
@@ -105,8 +106,16 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
-    </section>);
+    </section>
 
+    {/* Trust Bar */}
+    <div className="w-full py-4 border-b border-tempo-carbon/10 bg-tempo-bone">
+      <p className="text-center text-xs uppercase tracking-[0.25em] font-medium text-tempo-carbon/50">
+        Engineered in Sydney &nbsp;|&nbsp; Limited Batch Release
+      </p>
+    </div>
+  </>
+  );
 };
 
 export default HeroSection;
