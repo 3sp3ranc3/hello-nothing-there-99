@@ -43,7 +43,8 @@ const BatchComparisonSection = () => {
 
             <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-2">100 units · Limited run</p>
             <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-2">Athlete-tested in Sydney</p>
-            <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-8">Foundation build</p>
+            <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-4">Foundation build</p>
+            <p className="text-lg font-bold text-tempo-carbon/40 mb-8">$245</p>
 
             <span className="inline-block px-5 py-2 rounded-full border border-tempo-crimson/20 text-xs uppercase tracking-widest font-medium text-tempo-crimson/50">
               Allocation Exhausted
@@ -68,7 +69,8 @@ const BatchComparisonSection = () => {
 
             <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-2">250 units · Enhanced build</p>
             <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-2">Refined from 300+ hours of feedback</p>
-            <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-8">Open to all players nationwide</p>
+            <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-4">Open to all players nationwide</p>
+            <p className="text-lg font-bold text-tempo-carbon mb-8">$135 <span className="text-xs font-medium text-tempo-carbon/40 line-through ml-1">$195</span></p>
 
             <Link to="/products/the-architect">
               <motion.span
