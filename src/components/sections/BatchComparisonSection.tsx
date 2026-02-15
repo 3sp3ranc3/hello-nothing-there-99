@@ -5,8 +5,8 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const BatchComparisonSection = () => {
   return (
-    <section className="py-20 lg:py-28 border-y border-tempo-carbon/10">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-12">
+    <section className="py-16 lg:py-24 border-y border-tempo-carbon/10">
+      <div className="max-w-[900px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,7 +45,7 @@ const BatchComparisonSection = () => {
             <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-2">Athlete-tested in Sydney</p>
             <p className="text-sm text-tempo-carbon/50 leading-relaxed mb-8">Foundation build</p>
 
-            <span className="inline-block px-5 py-2 rounded-full border border-tempo-carbon/15 text-xs uppercase tracking-widest font-medium text-tempo-carbon/35">
+            <span className="inline-block px-5 py-2 rounded-full border border-tempo-crimson/20 text-xs uppercase tracking-widest font-medium text-tempo-crimson/50">
               Allocation Exhausted
             </span>
           </motion.div>
@@ -68,13 +68,13 @@ const BatchComparisonSection = () => {
 
             <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-2">250 units · Enhanced build</p>
             <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-2">Refined from 300+ hours of feedback</p>
-            <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-8">67 of 250 remaining</p>
+            <p className="text-sm text-tempo-carbon/70 leading-relaxed mb-8">Open to all players nationwide</p>
 
             <Link to="/products/the-architect">
               <motion.span
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-block px-6 py-2.5 rounded-full bg-tempo-carbon text-tempo-bone text-xs uppercase tracking-widest font-medium cursor-pointer hover:bg-tempo-carbon/90 transition-colors"
+                className="inline-block px-6 py-2.5 rounded-full bg-tempo-navy text-tempo-bone text-xs uppercase tracking-widest font-medium cursor-pointer hover:bg-tempo-navy/90 transition-colors"
               >
                 Available for Preorder
               </motion.span>
