@@ -1,5 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 interface Testimonial {
   tag: string;
@@ -35,28 +37,30 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-shadow"
-    >
-      {/* Tag Pill */}
-      <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
-        {testimonial.tag}
-      </span>
+    <Link to="/products/the-architect" className="block group">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 40 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-all duration-300 h-full"
+      >
+        <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
+          {testimonial.tag}
+        </span>
 
-      {/* Quote */}
-      <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
-        "{testimonial.quote}"
-      </blockquote>
+        <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
+          "{testimonial.quote}"
+        </blockquote>
 
-      {/* Name */}
-      <p className="text-tempo-carbon/70 font-medium">
-        — {testimonial.name}
-      </p>
-    </motion.div>
+        <div className="flex items-center justify-between">
+          <p className="text-tempo-carbon/70 font-medium">
+            — {testimonial.name}
+          </p>
+          <ArrowRight className="w-4 h-4 text-tempo-carbon/30 group-hover:text-tempo-navy group-hover:translate-x-1 transition-all duration-300" />
+        </div>
+      </motion.div>
+    </Link>
   );
 };
 
@@ -76,10 +80,10 @@ const TestimonialsSection = () => {
           className="text-center mb-12 lg:mb-16"
         >
           <span className="text-xs uppercase tracking-widest text-tempo-carbon/60 mb-4 block">
-            From Our First Batch Players
+            From Our Batch 001 Players
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide text-tempo-carbon">
-            Why Players Are Switching
+            What Players Said
           </h2>
         </motion.div>
 
