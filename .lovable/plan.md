@@ -1,95 +1,95 @@
 
-
-# Update Testimonials - Simplified Design
+# Shopify Integration for Tempo
 
 ## Overview
-Replace testimonials on both Batch 001 and Batch 002 pages with the new content, using a minimal card design with only the tag, quote, and reviewer's first name.
+Wire up the existing Tempo site with real Shopify cart and checkout functionality. The "Add to Cart" and "Reserve Now" buttons on The Architect product page will create real Shopify carts via the Storefront API, with a cart drawer accessible from the navbar.
 
 ---
 
-## New Testimonials Content (Both Pages)
+## What Gets Built
 
-| Tag | Quote | Name |
-|-----|-------|------|
-| Mis-hits / Sweet Spot | "The sweet spot is honestly massive. I've hit many off-centre shots that should've been dead but popped nicely over the net. Super forgiving if your aim isn't perfect like mine - it almost feels like cheating. So glad I gave that paddle a shot." | Oliver |
-| Spin | "I bought this as a backup for my $300 tournament paddle but ended up making it the only one I reach for. The amount of spin you can get with this is crazy, the face bites so hard it feels like you have a whole extra second to place the ball. It just gives you that locked-in confidence that usually takes weeks to build with a new paddle." | Lachlan |
-| Dinks | "I'm so glad my partner put me onto Tempo. Honestly feels like a hidden gem that hasn't blown up yet. I used to tense up every time I had to dink because I'd always pop it up and eat a smash, but the touch on this feels surgical. It really lets me neutralise the pace and keep my dinks unattackable." | Rachel |
-| Manoeuvrability | "The swing weight on this is dialled in perfectly. It cuts through the air fast enough to keep up in rapid-fire kitchen rallies, but it still feels very substantial on contact. Plus, the vibration dampening is top tier - I can play 5 sets straight and have zero arm fatigue." | Eric |
-
----
-
-## Card Design - Minimal Structure
-
-Each testimonial card will contain only:
-1. **Tag pill** - Topic badge (e.g., "Spin")
-2. **Quote** - The testimonial text
-3. **Name** - First name only, simple text
-
-**Removed elements:**
-- Avatar circle with initials
-- Rating/location line
-- Verified badge with checkmark
-- Bottom border separator
+1. **Storefront API client** - A shared utility to talk to Shopify's GraphQL API
+2. **Zustand cart store** - Persistent cart state synced with Shopify in real-time
+3. **Cart sync hook** - Automatically clears the cart after checkout completes
+4. **Cart drawer** - Slide-out panel styled to match the Tempo design system, triggered from the navbar
+5. **Button wiring** - All "Add to Cart", "Reserve Now", and sticky CTA buttons on The Architect page will add the real Shopify product to the cart
 
 ---
 
-## File Changes
+## New Files
 
-### 1. `src/components/sections/TestimonialsSection.tsx` (Batch 002)
+| File | Purpose |
+|------|---------|
+| `src/lib/shopify.ts` | Storefront API constants, `storefrontApiRequest` helper, cart mutations (create, add, update, remove), and `ShopifyProduct` types |
+| `src/stores/cartStore.ts` | Zustand store with `persist` middleware for cart items, cartId, checkoutUrl, and all cart operations |
+| `src/hooks/useCartSync.ts` | Hook that syncs cart on page load and when user returns from checkout tab |
+| `src/components/ui/CartDrawer.tsx` | Sheet-based cart drawer styled with Tempo colors (bone/carbon/navy), pill buttons, uppercase tracking |
 
-**Headers:**
-- Subheading: "From Our First Batch Players"
-- Headline: "Why Players Are Switching"
+---
 
-**Interface simplified to:**
+## Modified Files
+
+| File | Change |
+|------|--------|
+| `src/App.tsx` | Add `useCartSync` hook call inside a wrapper component |
+| `src/components/layout/BatchNavbar.tsx` | Add cart icon + item count badge to the right side (replacing the empty spacer div), open CartDrawer on click |
+| `src/pages/products/TheArchitect.tsx` | Wire "Add to Cart" button, "Reserve Now" bottom CTA, and StickyReserveButton to call `addItem` from the cart store with the real Shopify variant |
+| `src/components/ui/StickyReserveButton.tsx` | Wire the mobile sticky button to add the product to cart |
+
+---
+
+## Technical Details
+
+### Shopify API Config
+- Store domain: `tempopickleball-97521.myshopify.com`
+- Storefront token: `57b7175e5cc2d576df3f1a0f7f01047d`
+- API version: `2025-07`
+- Product: "The Architect - Batch 002" (ID: `10118554779924`, Variant ID: `gid://shopify/ProductVariant/51966639833364`)
+
+### Dependencies
+- Install `zustand` for cart state management
+
+### Cart Drawer Design (Tempo-styled)
+- Background: `bg-tempo-bone`
+- Text: `text-tempo-carbon`
+- Checkout button: `bg-tempo-carbon text-tempo-bone rounded-full uppercase tracking-widest`
+- Quantity controls: pill-shaped, matching existing button styles
+- Checkout opens in a new tab via `window.open(checkoutUrl, '_blank')`
+- Checkout URL always includes `channel=online_store` parameter
+
+### Navbar Cart Icon
+- Replaces the empty spacer `<div>` on the right side of BatchNavbar
+- Shows item count badge when cart has items
+- Styled minimally: just the cart icon text "CART (0)" or similar, matching Tempo's uppercase tracking style
+
+### Product Page Wiring
+- The product page will fetch "The Architect" from the Storefront API on mount to get the real GraphQL variant ID
+- All CTA buttons call `cartStore.addItem()` with the fetched product data
+- Loading state shown on buttons during cart operations
+- Toast notification (top-center, not bottom-right) confirms item added
+
+### Purchase Flow
 ```text
-interface Testimonial {
-  tag: string;
-  quote: string;
-  name: string;
-}
+User clicks "Add to Cart" or "Reserve Now"
+  --> Storefront API: cartCreate (first item) or cartLinesAdd (subsequent)
+  --> Cart state updates with lineId from Shopify
+  --> Toast confirms addition
+  --> User opens cart drawer from navbar
+  --> Clicks "Checkout"
+  --> window.open(checkoutUrl, '_blank') to Shopify checkout
+  --> On return, useCartSync clears completed cart
 ```
 
-**Card structure:**
-```text
-+----------------------------------+
-|  [Tag Pill]                      |
-|                                  |
-|  "Quote text here..."            |
-|                                  |
-|  - Name                          |
-+----------------------------------+
-```
-
-**Grid:** 2x2 layout (`lg:grid-cols-2`)
-
 ---
 
-### 2. `src/pages/Batch001Page.tsx`
+## Implementation Order
 
-**Headers (keep existing):**
-- Subheading: "What Batch 001 Players Said"
-- Headline: "Real Feedback"
-
-**Same testimonials content and minimal card design as Batch 002**
-
-**Grid:** 2x2 layout (`lg:grid-cols-2`)
-
----
-
-## Technical Implementation
-
-### TestimonialsSection.tsx
-1. Simplify interface to `tag`, `quote`, `name` only
-2. Replace testimonials array with 4 new items
-3. Update headers to new copy
-4. Simplify TestimonialCard - remove avatar, rating/location, verified badge
-5. Just show: tag pill, quote, and "- Name" at the bottom
-6. Change grid to `lg:grid-cols-2`
-
-### Batch001Page.tsx
-1. Replace testimonials array with same 4 new items
-2. Simplify card rendering - remove avatar, rating/location, verified badge
-3. Keep existing headers unchanged
-4. Change grid to `lg:grid-cols-2`
-
+1. Install `zustand`
+2. Create `src/lib/shopify.ts` (API client + types + cart mutations)
+3. Create `src/stores/cartStore.ts` (Zustand persistent store)
+4. Create `src/hooks/useCartSync.ts`
+5. Create `src/components/ui/CartDrawer.tsx` (Tempo-styled)
+6. Update `src/components/layout/BatchNavbar.tsx` (add cart trigger)
+7. Update `src/pages/products/TheArchitect.tsx` (wire all buttons)
+8. Update `src/components/ui/StickyReserveButton.tsx` (wire mobile CTA)
+9. Update `src/App.tsx` (add useCartSync)
