@@ -18,7 +18,7 @@ const HomePage = () => {
       <BatchNavbar />
       <HeroSection />
       <BatchComparisonSection />
-      <TestimonialsSection />
+      <TestimonialsSection linkable />
 
       {/* Discovery CTA Section */}
       <section className="relative py-20 lg:py-28 overflow-hidden">

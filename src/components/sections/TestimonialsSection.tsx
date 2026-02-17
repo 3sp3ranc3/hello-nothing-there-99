@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 
 interface Testimonial {
   tag: string;
@@ -32,39 +32,63 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; index: number }) => {
+const StarRating = () => (
+  <div className="flex items-center gap-0.5 mb-4">
+    {Array.from({ length: 5 }).map((_, i) => (
+      <Star key={i} className="w-4 h-4 fill-tempo-carbon text-tempo-carbon" />
+    ))}
+  </div>
+);
+
+const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testimonial; index: number; linkable: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  return (
-    <Link to="/products/the-architect" className="block group">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 40 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-        className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-all duration-300 h-full"
-      >
-        <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
-          {testimonial.tag}
-        </span>
+  const content = (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-all duration-300 h-full"
+    >
+      <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
+        {testimonial.tag}
+      </span>
 
-        <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
-          "{testimonial.quote}"
-        </blockquote>
+      <StarRating />
 
-        <div className="flex items-center justify-between">
-          <p className="text-tempo-carbon/70 font-medium">
-            — {testimonial.name}
-          </p>
+      <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
+        "{testimonial.quote}"
+      </blockquote>
+
+      <div className="flex items-center justify-between">
+        <p className="text-tempo-carbon/70 font-medium">
+          — {testimonial.name}
+        </p>
+        {linkable && (
           <ArrowRight className="w-4 h-4 text-tempo-carbon/30 group-hover:text-tempo-navy group-hover:translate-x-1 transition-all duration-300" />
-        </div>
-      </motion.div>
-    </Link>
+        )}
+      </div>
+    </motion.div>
   );
+
+  if (linkable) {
+    return (
+      <Link to="/products/the-architect" className="block group">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 };
 
-const TestimonialsSection = () => {
+interface TestimonialsSectionProps {
+  linkable?: boolean;
+}
+
+const TestimonialsSection = ({ linkable = false }: TestimonialsSectionProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
 
@@ -90,7 +114,7 @@ const TestimonialsSection = () => {
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} testimonial={testimonial} index={index} />
+            <TestimonialCard key={index} testimonial={testimonial} index={index} linkable={linkable} />
           ))}
         </div>
       </div>
