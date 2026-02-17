@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 interface ProductDescriptionProps {
   onScrollToSpecs: () => void;
@@ -69,14 +70,25 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
         )}
       </AnimatePresence>
 
-      {/* Pills */}
+      {/* Action row */}
       <div className="flex items-center gap-3">
+        {/* MORE / LESS - inline text toggle, not a bordered pill */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="py-2 px-6 border border-tempo-carbon rounded-full text-xs uppercase tracking-widest font-medium transition-colors duration-300 hover:border-tempo-navy hover:text-tempo-navy"
+          className="flex items-center gap-1 text-xs uppercase tracking-widest font-medium text-tempo-carbon/50 hover:text-tempo-carbon transition-colors duration-300 group"
         >
-          {isExpanded ? "Less" : "More"}
+          <span>{isExpanded ? "Less" : "Read More"}</span>
+          <motion.span
+            animate={{ rotate: isExpanded ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ChevronDown className="w-3.5 h-3.5" />
+          </motion.span>
         </button>
+
+        <span className="text-tempo-carbon/20">|</span>
+
+        {/* SPECS - bordered pill */}
         <button
           onClick={onScrollToSpecs}
           className="py-2 px-6 border border-tempo-carbon rounded-full text-xs uppercase tracking-widest font-medium transition-colors duration-300 hover:border-tempo-navy hover:text-tempo-navy"
