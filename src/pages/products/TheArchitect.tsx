@@ -15,13 +15,16 @@ import FounderStoryModal from "@/components/ui/FounderStoryModal";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
-const images = [
-  { label: "Image 1: Front" },
-  { label: "Image 2: Side" },
-  { label: "Image 3: Handle Detail" },
-  { label: "Image 4: Bottom Cap" },
-  { label: "Image 5: Tech Layer" },
-  { label: "Image 6: Tech Core" },
+import img1 from "@/assets/architect-batch002-1.webp";
+import img2 from "@/assets/architect-batch002-2.webp";
+import img3 from "@/assets/architect-batch002-3.webp";
+import img4 from "@/assets/architect-batch002-4.webp";
+
+const productImages = [
+  { src: img1, alt: "The Architect — 45° angle view" },
+  { src: img2, alt: "The Architect — Surface detail" },
+  { src: img3, alt: "The Architect — Augmented reality specs" },
+  { src: img4, alt: "The Architect — Tournament rotation" },
 ];
 
 const features = [
@@ -103,7 +106,7 @@ const TheArchitect = () => {
         <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
             <div className="w-full lg:w-[60%]">
-              <ProductGallery images={images} />
+              <ProductGallery images={productImages} />
             </div>
 
             <div className="w-full lg:w-[40%]">
