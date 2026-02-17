@@ -120,8 +120,6 @@ const TheArchitect = () => {
                     </blockquote>
                   </motion.div>
 
-                  <ProductDescription onScrollToSpecs={scrollToSpecs} />
-
                   {/* Pricing Card */}
                   <div className="bg-tempo-navy/5 border border-tempo-navy/10 rounded-lg p-6 space-y-4">
                     <span className="text-xs uppercase tracking-widest text-tempo-navy font-semibold">Batch 002 Preorder</span>
@@ -196,6 +194,9 @@ const TheArchitect = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Product Description */}
+                  <ProductDescription onScrollToSpecs={scrollToSpecs} />
                 </div>
               </div>
             </div>
