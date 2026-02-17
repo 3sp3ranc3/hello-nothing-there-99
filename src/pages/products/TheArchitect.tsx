@@ -8,6 +8,7 @@ import MegaFooter from "@/components/layout/MegaFooter";
 import ProductGallery from "@/components/products/ProductGallery";
 import TechSpecs from "@/components/products/TechSpecs";
 import ProductFAQ from "@/components/products/ProductFAQ";
+import ProductDescription from "@/components/products/ProductDescription";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 import FounderStoryModal from "@/components/ui/FounderStoryModal";
@@ -119,19 +120,7 @@ const TheArchitect = () => {
                     </blockquote>
                   </motion.div>
 
-                  <div>
-                    <ul className="space-y-2 text-sm">
-                      {features.map((feature, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <span className="text-tempo-navy font-bold">•</span>
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button onClick={scrollToSpecs} className="mt-4 py-2 px-6 border border-tempo-carbon rounded-full text-xs uppercase tracking-widest font-medium transition-colors duration-300 hover:border-tempo-navy hover:text-tempo-navy">
-                      View Specs
-                    </button>
-                  </div>
+                  <ProductDescription onScrollToSpecs={scrollToSpecs} />
 
                   {/* Pricing Card */}
                   <div className="bg-tempo-navy/5 border border-tempo-navy/10 rounded-lg p-6 space-y-4">
