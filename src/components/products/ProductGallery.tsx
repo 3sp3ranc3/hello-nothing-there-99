@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
@@ -10,9 +10,19 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isZooming, setIsZooming] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [transformOrigin, setTransformOrigin] = useState("center center");
+  const mainRef = useRef<HTMLDivElement>(null);
 
   const handleThumbnailHover = useCallback((index: number) => {
     setActiveIndex(index);
+  }, []);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!mainRef.current) return;
+    const rect = mainRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setTransformOrigin(`${x}% ${y}%`);
   }, []);
 
   const handleMainClick = useCallback(() => {
@@ -53,9 +63,11 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
 
         {/* Main Image */}
         <div
+          ref={mainRef}
           className="flex-1 relative aspect-[4/5] overflow-hidden cursor-zoom-in bg-tempo-mist"
           onMouseEnter={() => setIsZooming(true)}
           onMouseLeave={() => setIsZooming(false)}
+          onMouseMove={handleMouseMove}
           onClick={handleMainClick}
         >
           <AnimatePresence mode="wait">
@@ -64,16 +76,14 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
               src={images[activeIndex].src}
               alt={images[activeIndex].alt}
               initial={{ opacity: 0 }}
-              animate={{
-                opacity: 1,
-                scale: isZooming ? 1.15 : 1,
-              }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{
-                opacity: { duration: 0.3 },
-                scale: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+              transition={{ opacity: { duration: 0.3 } }}
+              className="w-full h-full object-contain transition-transform duration-500 ease-out"
+              style={{
+                transformOrigin,
+                transform: isZooming ? "scale(2)" : "scale(1)",
               }}
-              className="w-full h-full object-cover"
             />
           </AnimatePresence>
         </div>
@@ -90,7 +100,6 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
             className="fixed inset-0 z-[100] bg-black/95 flex items-center justify-center cursor-pointer"
             onClick={handleCloseFullscreen}
           >
-            {/* Close Button */}
             <button
               onClick={handleCloseFullscreen}
               className="absolute top-6 right-6 z-10 text-white/70 hover:text-white transition-colors"
@@ -98,7 +107,6 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
               <X className="w-6 h-6" />
             </button>
 
-            {/* Thumbnail strip at bottom */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">
               {images.map((image, index) => (
                 <button
@@ -122,7 +130,6 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
               ))}
             </div>
 
-            {/* Fullscreen Image */}
             <motion.img
               key={`fs-${activeIndex}`}
               src={images[activeIndex].src}
