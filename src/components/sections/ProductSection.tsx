@@ -3,12 +3,10 @@ import { motion, useInView } from "framer-motion";
 import ProductGallery from "@/components/products/ProductGallery";
 
 const images = [
-  { label: "Image 1: Front" },
-  { label: "Image 2: Side" },
-  { label: "Image 3: Handle Detail" },
-  { label: "Image 4: Bottom Cap" },
-  { label: "Image 5: Tech Layer" },
-  { label: "Image 6: Tech Core" },
+  { src: "/placeholder.svg", alt: "Image 1: Front" },
+  { src: "/placeholder.svg", alt: "Image 2: Side" },
+  { src: "/placeholder.svg", alt: "Image 3: Handle Detail" },
+  { src: "/placeholder.svg", alt: "Image 4: Bottom Cap" },
 ];
 
 const features = [
