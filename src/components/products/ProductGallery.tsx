@@ -70,22 +70,15 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
           onMouseMove={handleMouseMove}
           onClick={handleMainClick}
         >
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={activeIndex}
-              src={images[activeIndex].src}
-              alt={images[activeIndex].alt}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ opacity: { duration: 0.3 } }}
-              className="w-full h-full object-contain transition-transform duration-500 ease-out"
-              style={{
-                transformOrigin,
-                transform: isZooming ? "scale(2)" : "scale(1)",
-              }}
-            />
-          </AnimatePresence>
+          <img
+            src={images[activeIndex].src}
+            alt={images[activeIndex].alt}
+            className="w-full h-full object-contain transition-transform duration-500 ease-out"
+            style={{
+              transformOrigin,
+              transform: isZooming ? "scale(1.35)" : "scale(1)",
+            }}
+          />
         </div>
       </div>
 
