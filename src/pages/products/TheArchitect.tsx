@@ -12,7 +12,7 @@ import ProductDescription from "@/components/products/ProductDescription";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 import FounderStoryModal from "@/components/ui/FounderStoryModal";
-import TopoWaveDivider from "@/components/ui/TopoWaveDivider";
+import topoBg from "@/assets/topo-background.webp";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
@@ -208,12 +208,15 @@ const TheArchitect = () => {
         </div>
       </section>
 
-      {/* TOPO WAVE TRANSITION */}
-      <TopoWaveDivider />
-
-      {/* DARK NAVY SECTION */}
-      <div className="bg-tempo-navy">
-        {/* PART 2: SPECS */}
+      {/* DARK NAVY SECTION WITH TOPO BACKGROUND */}
+      <div
+        style={{
+          backgroundImage: `url(${topoBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'top center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
         <section ref={techSectionRef} className="py-16 lg:py-24">
           <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
             <motion.h2
