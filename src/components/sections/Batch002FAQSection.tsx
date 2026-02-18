@@ -18,8 +18,8 @@ const faqItems = [
     answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships.",
   },
   {
-    question: "What is the 30-day trial?",
-    answer: "We believe in The Architect. If it doesn't improve your game within 30 days, return it for a full refund. No questions asked. We'll even cover return shipping.",
+    question: "What is your warranty policy?",
+    answer: "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws, including issues with core materials, severe deformation, or delamination. Email support@tempopickleball.store to file a claim.",
   },
   {
     question: "How is this different from other paddles?",

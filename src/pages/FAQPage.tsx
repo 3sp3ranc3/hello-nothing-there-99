@@ -48,11 +48,11 @@ const faqCategories = [
     items: [
       {
         question: "What is your return policy?",
-        answer: "We offer a 30-day trial on all paddles. If you're not completely satisfied, return it for a full refund. The paddle must be in resalable condition.",
+        answer: "All sales are final once the paddle has been used or packaging removed. Unopened paddles may be returned within 14 days of delivery. Preorders can be cancelled before the cutoff date for a full refund.",
       },
       {
         question: "What does the warranty cover?",
-        answer: "Our paddles come with a 30-day performance guarantee covering manufacturing defects. This doesn't cover damage from misuse, drops, or normal wear and tear.",
+        answer: "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws, including core material issues, severe deformation, or delamination. This does not cover normal wear and tear, impact damage, or misuse.",
       },
       {
         question: "How do I initiate a return?",

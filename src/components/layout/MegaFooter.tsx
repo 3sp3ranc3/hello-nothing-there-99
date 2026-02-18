@@ -55,7 +55,7 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
     { name: "Privacy Policy", href: "/pages/privacy" },
     { name: "Terms of Service", href: "/pages/terms" },
     { name: "Shipping Information", href: "/pages/shipping" },
-    { name: "Returns & Refunds", href: "/pages/returns" },
+    { name: "Warranty & Return Policy", href: "/pages/returns" },
     { name: "Accessibility Statement", href: "/pages/accessibility" },
   ];
 
@@ -274,7 +274,7 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
 
             {/* Trust Badges - Desktop Only */}
             <p className="text-xs tracking-wide text-tempo-bone/50 hidden lg:block">
-              100% Secure Checkout | Free Shipping Over $100 | 30-Day Returns
+              100% Secure Checkout | Free Shipping Over $100 | 12-Month Warranty
             </p>
 
             {/* Payment Icons */}

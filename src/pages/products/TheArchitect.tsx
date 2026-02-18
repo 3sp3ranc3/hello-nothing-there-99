@@ -48,11 +48,11 @@ const specs = [
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
   { label: "BALANCE", value: "Central", description: "Neutral balance point for consistent swing dynamics" },
   { label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
-  { label: "WARRANTY", value: "30-Day Play Test", description: "Full performance guarantee or your money back" },
+  { label: "WARRANTY", value: "12-Month Limited", description: "Coverage against manufacturer defects and workmanship flaws" },
 ];
 
 const faqItems = [
-  { question: "What is the 30-day trial?", answer: "We believe in The Architect. If it doesn't improve your game within 30 days, return it for a full refund. No questions asked. We'll even cover return shipping." },
+  { question: "What is your warranty policy?", answer: "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws. Email support@tempopickleball.store with photos and your order number to file a claim." },
   { question: "Why preorder only?", answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you." },
   { question: "Is this paddle tournament approved?", answer: "Yes. The Architect is fully approved by the USA Pickleball Association (USAPA) for tournament play. Its specifications meet all regulatory requirements." },
   { question: "What is the shipping time?", answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships." },
