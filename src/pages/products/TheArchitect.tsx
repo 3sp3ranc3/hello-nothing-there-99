@@ -44,7 +44,7 @@ const features = [
 
 const specs = [
   { label: "CORE", value: "TRUFOAM", description: "4th generation polymer core. The best available. Delivers maximum legal power (0.43 PBCoR) with optimal energy transfer and durability." },
-  { label: "SURFACE", value: "T700 Carbon Fiber", description: "Sandblasted texture for the best spin generation" },
+  { label: "SURFACE", value: "T700 Carbon Fiber", description: "Sandblasted texture finish for the best spin generation" },
   { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
   { label: "BALANCE", value: "Central", description: "Neutral balance point for consistent swing dynamics" },
