@@ -13,14 +13,12 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 import FounderStoryModal from "@/components/ui/FounderStoryModal";
 import {
-  AlertDialog,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogCancel,
-} from "@/components/ui/alert-dialog";
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
@@ -304,23 +302,28 @@ const TheArchitect = () => {
       </div>
 
       {/* Quantity Picker Dialog */}
-      <AlertDialog open={isQtyDialogOpen} onOpenChange={setIsQtyDialogOpen}>
-        <AlertDialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-sm">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="tempo-headline text-xl text-center tracking-widest">
+      <Dialog open={isQtyDialogOpen} onOpenChange={(open) => {
+        if (!open) {
+          handleAddToCartWithQty(1);
+        }
+        setIsQtyDialogOpen(open);
+      }}>
+        <DialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-xs rounded-2xl p-6 [&>button]:hidden">
+          <DialogHeader>
+            <DialogTitle className="tempo-headline text-2xl text-center tracking-widest font-black">
               SELECT QUANTITY
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-center text-tempo-carbon/50 text-xs uppercase tracking-wider">
+            </DialogTitle>
+            <DialogDescription className="text-center text-tempo-carbon/60 text-xs uppercase tracking-wider font-semibold">
               Limited to 2 per customer
-            </AlertDialogDescription>
-          </AlertDialogHeader>
+            </DialogDescription>
+          </DialogHeader>
           <div className="flex gap-4 py-4">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(1)}
               disabled={isLoading}
-              className="flex-1 py-5 border border-tempo-carbon/20 rounded-full text-tempo-carbon font-semibold text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
+              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
             >
               {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1"}
             </motion.button>
@@ -329,18 +332,13 @@ const TheArchitect = () => {
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(2)}
               disabled={isLoading}
-              className="flex-1 py-5 border border-tempo-carbon/20 rounded-full text-tempo-carbon font-semibold text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
+              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
             >
               {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2"}
             </motion.button>
           </div>
-          <AlertDialogFooter className="justify-center">
-            <AlertDialogCancel className="border-tempo-carbon/20 text-tempo-carbon/60 rounded-full">
-              Cancel
-            </AlertDialogCancel>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        </DialogContent>
+      </Dialog>
 
       <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
       <StickyReserveButton onAddToCart={() => setIsQtyDialogOpen(true)} isLoading={isLoading} disabled={!shopifyProduct} />
