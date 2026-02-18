@@ -19,6 +19,7 @@ import img1 from "@/assets/architect-45deg.webp";
 import img2 from "@/assets/architect-detail.webp";
 import img3 from "@/assets/architect-specs.webp";
 import img4 from "@/assets/architect-pair.webp";
+import topoBackground from "@/assets/topo-background.png";
 
 const productImages = [
   { src: img1, alt: "The Architect — 45° angle view" },
@@ -207,42 +208,53 @@ const TheArchitect = () => {
         </div>
       </section>
 
-      {/* PART 2: SPECS */}
-      <section ref={techSectionRef} className="py-16 lg:py-24 border-t border-tempo-carbon/10 mt-16">
-        <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-            className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16"
-          >
-            Technical Specifications
-          </motion.h2>
-          <TechSpecs specs={specs} variant="grid-only" />
+      {/* DARK TOPO SECTION — Specs, Testimonials, FAQ, Bottom CTA */}
+      <div
+        className="relative bg-tempo-navy bg-cover bg-center mt-16"
+        style={{ backgroundImage: `url(${topoBackground})` }}
+      >
+        {/* Semi-transparent overlay for readability */}
+        <div className="absolute inset-0 bg-tempo-navy/80" />
+
+        <div className="relative z-10">
+          {/* PART 2: SPECS */}
+          <section ref={techSectionRef} className="py-16 lg:py-24">
+            <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true }}
+                className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-tempo-bone"
+              >
+                Technical Specifications
+              </motion.h2>
+              <TechSpecs specs={specs} variant="grid-only" dark />
+            </div>
+          </section>
+
+          <TestimonialsSection dark />
+
+          <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
+            <ProductFAQ items={faqItems} dark />
+          </div>
+
+          {/* Bottom CTA */}
+          <section className="py-16 lg:py-24">
+            <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAddToCart}
+                disabled={isLoading || !shopifyProduct}
+                className="bg-tempo-bone text-tempo-carbon py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50"
+              >
+                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
+              </motion.button>
+            </div>
+          </section>
         </div>
-      </section>
-
-      <TestimonialsSection />
-
-      <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-        <ProductFAQ items={faqItems} />
       </div>
-
-      {/* Bottom CTA */}
-      <section className="py-16 lg:py-24 border-t border-tempo-carbon/10">
-        <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={handleAddToCart}
-            disabled={isLoading || !shopifyProduct}
-            className="bg-tempo-carbon text-tempo-bone py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-tempo-navy transition-colors duration-300 disabled:opacity-50"
-          >
-            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
-          </motion.button>
-        </div>
-      </section>
 
       <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
       <StickyReserveButton onAddToCart={handleAddToCart} isLoading={isLoading} disabled={!shopifyProduct} />
