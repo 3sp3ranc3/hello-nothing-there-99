@@ -27,7 +27,7 @@ const testimonials: Testimonial[] = [
   },
   {
     tag: "Manoeuvrability",
-    quote: "The swing weight on this is dialled in perfectly. It cuts through the air fast enough to keep up in rapid-fire kitchen rallies, but it still feels very substantial on contact. Plus, the vibration dampening is top tier - I can play 5 sets straight and have zero arm fatigue.",
+    quote: "The balance on this thing is really nice. It's quick enough through the kitchen but still has good weight behind it when you need power. Also noticed my arm doesn't get tired like it used to with my old paddle, even after long sessions. The vibration dampening in the handle makes an actual difference.",
     name: "Eric",
   },
 ];
