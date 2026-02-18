@@ -38,12 +38,12 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
 
               <div>
                 <p className="font-semibold text-tempo-carbon mb-1">T700 Carbon Fiber with Sandblasted Texture</p>
-                <p>The face of The Architect features aerospace-grade T700 carbon fiber, known for its exceptional strength-to-weight ratio and consistent response characteristics. We've finished the surface with a sandblasted texture that creates microscopic grip points across the entire face, generating reliable spin on every shot without compromising USAP compliance. This isn't gimmick texture; it's engineered friction that lasts.</p>
+                <p>The face of The Architect features aerospace-grade T700 carbon fiber, known for its exceptional strength-to-weight ratio and consistent response characteristics. We've finished the surface with a sandblasted texture that creates microscopic grip points across the entire face, generating reliable spin on every shot without compromising tournament compliance. This isn't gimmick texture; it's engineered friction that lasts.</p>
               </div>
 
               <div>
                 <p className="font-semibold text-tempo-carbon mb-1">TRUFOAM 4th Generation Core Technology</p>
-                <p>At the core of The Architect lies TRUFOAM, a fourth-generation polymer honeycomb engineered for maximum energy return and extended dwell time. Unlike traditional cores that degrade quickly under competitive play, TRUFOAM maintains its structural integrity and responsive feel thousands of rallies in. The uniform cell structure creates a larger sweet spot and more predictable ball response, giving you the confidence to place shots exactly where you intend them.</p>
+                <p>At the core of The Architect lies TRUFOAM, a fourth-generation polymer honeycomb engineered for maximum energy return and extended dwell time. Unlike traditional cores that degrade quickly under competitive play, TRUFOAM maintains its structural integrity and responsive feel thousands of rallies in. The uniform cell structure creates a larger sweet spot and more predictable ball response, giving you the confidence to place shots exactly where you intend them. With a certified 0.43 PBCoR rating, The Architect delivers the highest power level permitted in tournament play, ensuring you're never leaving performance on the table.</p>
               </div>
 
               <div>
@@ -53,12 +53,12 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
 
               <div>
                 <p className="font-semibold text-tempo-carbon mb-1">Perfectly Centered Balance</p>
-                <p>Through precise material placement and weight distribution, The Architect achieves a true center balance point. This creates consistent swing weight and paddle head speed across all shot types, from fast hands at the kitchen to full baseline drives. You won't need to adjust your mechanics; the paddle adjusts to you.</p>
+                <p>Through precise material placement and weight distribution, The Architect achieves a true centre balance point. This creates consistent swing weight and paddle head speed across all shot types, from fast hands at the kitchen to full baseline drives. You won't need to adjust your mechanics; the paddle adjusts to you.</p>
               </div>
 
               <div>
                 <p className="font-semibold text-tempo-carbon mb-1">Designed with Intention. Built for Performance.</p>
-                <p>Every detail of The Architect, from the matte finish to the minimalist aesthetic, reflects our philosophy: remove everything unnecessary, perfect everything essential. This paddle doesn't shout. It performs.</p>
+                <p>Every detail of The Architect, from the premium matte finish to the minimalist aesthetic, reflects our philosophy: remove everything unnecessary, perfect everything essential. We've selected only the highest-grade materials throughout the construction, because a paddle built for serious players demands serious engineering. This paddle doesn't shout. It performs.</p>
               </div>
 
               <p className="italic text-tempo-carbon/60">
