@@ -104,8 +104,8 @@ const TheArchitect = () => {
 
       {/* PART 1: THE SPLIT SECTION */}
       <section className="pt-24 lg:pt-28">
-        <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
             <div className="w-full lg:w-[60%]">
               <ProductGallery images={productImages} />
             </div>
