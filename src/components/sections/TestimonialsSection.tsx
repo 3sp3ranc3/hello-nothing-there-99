@@ -50,9 +50,9 @@ const TestimonialCard = ({ testimonial, index, linkable, isDark = false }: { tes
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`p-8 lg:p-10 rounded-lg transition-all duration-300 h-full ${
+      className={`p-8 lg:p-10 rounded-lg transition-all duration-300 h-full relative z-10 ${
         isDark
-          ? "bg-white/5 border border-white/10 hover:bg-white/10"
+          ? "bg-[#0f1b2d] border border-white/10 hover:bg-[#162337]"
           : "bg-white border border-tempo-carbon/5 shadow-sm hover:shadow-md"
       }`}
     >

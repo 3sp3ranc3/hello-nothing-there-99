@@ -210,6 +210,8 @@ const TheArchitect = () => {
 
       {/* DARK NAVY SECTION WITH TOPO BACKGROUND */}
       <div className="relative">
+        {/* Gradient fade from bone into navy */}
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-tempo-bone to-transparent z-[1]" />
         {/* Topo background image layer */}
         <div
           className="absolute inset-0"
@@ -220,12 +222,10 @@ const TheArchitect = () => {
             backgroundRepeat: 'no-repeat',
           }}
         />
-        {/* Semi-transparent navy overlay for text readability */}
-        <div className="absolute inset-0 bg-tempo-navy/80" />
 
         {/* Content layer */}
         <div className="relative z-10">
-          <section ref={techSectionRef} className="py-16 lg:py-24">
+          <section ref={techSectionRef} className="pt-32 lg:pt-40 pb-16 lg:pb-24">
             <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}

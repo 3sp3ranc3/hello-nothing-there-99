@@ -53,9 +53,9 @@ const TechSpecs = ({ headline, description, specs, variant = "full", theme = "li
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
             viewport={{ once: true }}
-            className={`aspect-square flex flex-col items-center justify-center p-6 text-center transition-colors duration-300 group cursor-default ${
+            className={`aspect-square flex flex-col items-center justify-center p-6 text-center transition-colors duration-300 group cursor-default relative z-10 ${
               isDark
-                ? "bg-white/5 hover:bg-white/10"
+                ? "bg-[#0f1b2d] hover:bg-[#162337]"
                 : "bg-tempo-mist hover:bg-[#E0E0E0]"
             }`}
           >
