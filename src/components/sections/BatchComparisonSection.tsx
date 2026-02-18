@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { ArrowRight, ArrowDown } from "lucide-react";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -24,7 +25,7 @@ const BatchComparisonSection = () => {
         </motion.div>
 
         {/* Comparison Grid */}
-        <div className="grid md:grid-cols-2 gap-0 md:divide-x divide-tempo-carbon/10">
+        <div className="grid md:grid-cols-[1fr_auto_1fr] gap-0">
           {/* Batch 001 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -49,6 +50,20 @@ const BatchComparisonSection = () => {
             <span className="inline-block px-5 py-2 rounded-full border border-tempo-crimson/20 text-xs uppercase tracking-widest font-medium text-tempo-crimson/50">
               Allocation Exhausted
             </span>
+          </motion.div>
+
+          {/* Arrow Divider */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center py-6 md:py-0"
+          >
+            <div className="w-10 h-10 rounded-full border border-tempo-carbon/15 flex items-center justify-center">
+              <ArrowDown className="w-4 h-4 text-tempo-carbon/40 md:hidden" />
+              <ArrowRight className="w-4 h-4 text-tempo-carbon/40 hidden md:block" />
+            </div>
           </motion.div>
 
           {/* Batch 002 */}
