@@ -13,12 +13,14 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 import FounderStoryModal from "@/components/ui/FounderStoryModal";
 import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogCancel } from
+"@/components/ui/alert-dialog";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
@@ -29,35 +31,35 @@ import img4 from "@/assets/architect-pair.webp";
 import topoBackground from "@/assets/topo-background.png";
 
 const productImages = [
-  { src: img1, alt: "The Architect — 45° angle view" },
-  { src: img2, alt: "The Architect — Surface detail" },
-  { src: img3, alt: "The Architect — Floating specs" },
-  { src: img4, alt: "The Architect — Great engineering" },
-];
+{ src: img1, alt: "The Architect — 45° angle view" },
+{ src: img2, alt: "The Architect — Surface detail" },
+{ src: img3, alt: "The Architect — Floating specs" },
+{ src: img4, alt: "The Architect — Great engineering" }];
+
 
 const features = [
-  "Thermoformed construction with TRUFOAM Core",
-  "T700 Carbon Fiber face with sandblasted finish",
-  "Frameless wide body design",
-  "130mm elongated grip handle",
-];
+"Thermoformed construction with TRUFOAM Core",
+"T700 Carbon Fiber face with sandblasted finish",
+"Frameless wide body design",
+"130mm elongated grip handle"];
+
 
 const specs = [
-  { label: "CORE", value: "TRUFOAM", description: "Black TRUFOAM Core Technology for optimal energy transfer and vibration dampening" },
-  { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
-  { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
-  { label: "BALANCE", value: "Central", description: "Neutral balance point for consistent swing dynamics" },
-  { label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
-  { label: "WARRANTY", value: "30-Day Play Test", description: "Full performance guarantee or your money back" },
-];
+{ label: "CORE", value: "TRUFOAM", description: "Black TRUFOAM Core Technology for optimal energy transfer and vibration dampening" },
+{ label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
+{ label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
+{ label: "BALANCE", value: "Central", description: "Neutral balance point for consistent swing dynamics" },
+{ label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
+{ label: "WARRANTY", value: "30-Day Play Test", description: "Full performance guarantee or your money back" }];
+
 
 const faqItems = [
-  { question: "What is the 30-day trial?", answer: "We believe in The Architect. If it doesn't improve your game within 30 days, return it for a full refund. No questions asked. We'll even cover return shipping." },
-  { question: "Why preorder only?", answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you." },
-  { question: "Is this paddle tournament approved?", answer: "Yes. The Architect is fully approved by the USA Pickleball Association (USAPA) for tournament play. Its specifications meet all regulatory requirements." },
-  { question: "What is the shipping time?", answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships." },
-  { question: "What grip size should I choose?", answer: "The Architect features a 130mm elongated grip, suitable for most hand sizes and enabling two-handed backhands. If you prefer a smaller grip, overgrips can be removed. For larger hands, consider adding an overgrip for additional circumference." },
-];
+{ question: "What is the 30-day trial?", answer: "We believe in The Architect. If it doesn't improve your game within 30 days, return it for a full refund. No questions asked. We'll even cover return shipping." },
+{ question: "Why preorder only?", answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you." },
+{ question: "Is this paddle tournament approved?", answer: "Yes. The Architect is fully approved by the USA Pickleball Association (USAPA) for tournament play. Its specifications meet all regulatory requirements." },
+{ question: "What is the shipping time?", answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships." },
+{ question: "What grip size should I choose?", answer: "The Architect features a 130mm elongated grip, suitable for most hand sizes and enabling two-handed backhands. If you prefer a smaller grip, overgrips can be removed. For larger hands, consider adding an overgrip for additional circumference." }];
+
 
 const TheArchitect = () => {
   const [isFounderModalOpen, setIsFounderModalOpen] = useState(false);
@@ -74,13 +76,13 @@ const TheArchitect = () => {
   const isLoading = useCartStore((s) => s.isLoading);
 
   useEffect(() => {
-    storefrontApiRequest(PRODUCT_QUERY, { handle: "the-architect-batch-002" })
-      .then((data) => {
-        if (data?.data?.product) {
-          setShopifyProduct({ node: data.data.product });
-        }
-      })
-      .catch(console.error);
+    storefrontApiRequest(PRODUCT_QUERY, { handle: "the-architect-batch-002" }).
+    then((data) => {
+      if (data?.data?.product) {
+        setShopifyProduct({ node: data.data.product });
+      }
+    }).
+    catch(console.error);
   }, []);
 
   const handleAddToCartWithQty = useCallback(async (qty: number) => {
@@ -94,12 +96,12 @@ const TheArchitect = () => {
       variantTitle: variant.title,
       price: variant.price,
       quantity: qty,
-      selectedOptions: variant.selectedOptions || [],
+      selectedOptions: variant.selectedOptions || []
     });
 
     toast.success(`Added ${qty} to cart`, {
       description: "The Architect — Batch 002",
-      position: "top-center",
+      position: "top-center"
     });
     setIsQtyDialogOpen(false);
   }, [shopifyProduct, addItem]);
@@ -136,7 +138,7 @@ const TheArchitect = () => {
               <div className="lg:sticky lg:top-28">
                 <div className="space-y-8">
                   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-                    <h1 className="tempo-headline text-4xl md:text-5xl lg:text-6xl mb-2">THE ARCHITECT</h1>
+                    <h1 className="tempo-headline text-4xl md:text-5xl lg:text-6xl mb-2">The tactician's instrument. Engineered for absolute placement, vibration control, and neutralising opponent power. Built with elite-grade materials trusted at the highest levels of competition.</h1>
                     <p className="text-lg text-tempo-carbon/50 font-light mb-4">Batch 002</p>
                     <p className="tempo-body text-muted-foreground leading-relaxed">
                       The tactician's instrument. Engineered for absolute placement, vibration control, and neutralizing opponent power. Built with elite-grade materials trusted at the highest levels of competition.
@@ -169,8 +171,8 @@ const TheArchitect = () => {
                             initial={{ width: 0 }}
                             animate={isProgressInView ? { width: "27%" } : {}}
                             transition={{ duration: 1.5, delay: 0.3 }}
-                            className="h-full bg-tempo-stock rounded-full"
-                          />
+                            className="h-full bg-tempo-stock rounded-full" />
+
                         </div>
                         <span className="text-sm font-semibold text-tempo-carbon">67/250</span>
                       </div>
@@ -185,25 +187,25 @@ const TheArchitect = () => {
                       onClick={handleAddToCartClick}
                       disabled={isLoading || !shopifyProduct}
                       className={`w-full py-4 px-8 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 ${
-                        isButtonHovered ? "bg-tempo-navy text-tempo-bone" : "bg-tempo-carbon text-tempo-bone"
-                      }`}
-                    >
-                      {isLoading ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                      ) : (
-                        <>
+                      isButtonHovered ? "bg-tempo-navy text-tempo-bone" : "bg-tempo-carbon text-tempo-bone"}`
+                      }>
+
+                      {isLoading ?
+                      <Loader2 className="w-4 h-4 animate-spin" /> :
+
+                      <>
                           <motion.span animate={{ x: isButtonHovered ? -8 : 0 }} transition={{ duration: 0.3 }}>
                             Add to Cart
                           </motion.span>
                           <motion.span
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: isButtonHovered ? 1 : 0, x: isButtonHovered ? 0 : -10 }}
-                            transition={{ duration: 0.3 }}
-                          >
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: isButtonHovered ? 1 : 0, x: isButtonHovered ? 0 : -10 }}
+                          transition={{ duration: 0.3 }}>
+
                             <ArrowRight className="w-4 h-4" />
                           </motion.span>
                         </>
-                      )}
+                      }
                     </motion.button>
 
                     {/* Limit notice + Why preorder link */}
@@ -211,8 +213,8 @@ const TheArchitect = () => {
                       <p className="text-xs text-tempo-carbon/50">Limit 2 per customer</p>
                       <button
                         onClick={scrollToFaqWhyPreorder}
-                        className="text-xs text-tempo-navy underline underline-offset-2 hover:text-tempo-navy/80 transition-colors cursor-pointer"
-                      >
+                        className="text-xs text-tempo-navy underline underline-offset-2 hover:text-tempo-navy/80 transition-colors cursor-pointer">
+
                         Why preorder only?
                       </button>
                     </div>
@@ -229,14 +231,11 @@ const TheArchitect = () => {
                     </div>
                   </div>
 
+                  {/* Product Description */}
+                  <ProductDescription onScrollToSpecs={scrollToSpecs} />
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Full-width Product Description below the split */}
-          <div className="mt-12 lg:mt-16 max-w-[900px] mx-auto">
-            <ProductDescription onScrollToSpecs={scrollToSpecs} />
           </div>
         </div>
       </section>
@@ -248,20 +247,20 @@ const TheArchitect = () => {
           preserveAspectRatio="none"
           className="w-full h-[60px] md:h-[90px] lg:h-[120px] block"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http://www.w3.org/2000/svg">
+
           <path
             d="M0,120 L0,80 C120,95 240,110 360,100 C480,90 600,50 720,35 C840,20 960,30 1080,50 C1200,70 1320,95 1440,90 L1440,120 Z"
-            className="fill-tempo-navy"
-          />
+            className="fill-tempo-navy" />
+
         </svg>
       </div>
 
       {/* DARK TOPO SECTION — Specs, Testimonials, FAQ, Bottom CTA */}
       <div
         className="relative bg-tempo-navy bg-cover bg-center"
-        style={{ backgroundImage: `url(${topoBackground})` }}
-      >
+        style={{ backgroundImage: `url(${topoBackground})` }}>
+
         <div className="absolute inset-0 bg-tempo-navy/80" />
 
         <div className="relative z-10">
@@ -273,8 +272,8 @@ const TheArchitect = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 viewport={{ once: true }}
-                className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-tempo-bone"
-              >
+                className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-tempo-bone">
+
                 Technical Specifications
               </motion.h2>
               <TechSpecs specs={specs} variant="grid-only" dark />
@@ -295,8 +294,8 @@ const TheArchitect = () => {
                 whileTap={{ scale: 0.98 }}
                 onClick={handleAddToCartClick}
                 disabled={isLoading || !shopifyProduct}
-                className="bg-tempo-bone text-tempo-carbon py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50"
-              >
+                className="bg-tempo-bone text-tempo-carbon py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50">
+
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
               </motion.button>
             </div>
@@ -305,49 +304,49 @@ const TheArchitect = () => {
       </div>
 
       {/* Quantity Picker Dialog */}
-      <Dialog open={isQtyDialogOpen} onOpenChange={(open) => {
-        if (!open) {
-          handleAddToCartWithQty(1);
-        }
-        setIsQtyDialogOpen(open);
-      }}>
-        <DialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-xs rounded-2xl p-6 [&>button]:hidden">
-          <DialogHeader>
-            <DialogTitle className="tempo-headline text-2xl text-center tracking-widest font-black">
-              SELECT QUANTITY
-            </DialogTitle>
-            <DialogDescription className="text-center text-tempo-carbon/60 text-xs uppercase tracking-wider font-semibold">
+      <AlertDialog open={isQtyDialogOpen} onOpenChange={setIsQtyDialogOpen}>
+        <AlertDialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-sm">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="tempo-headline text-xl text-center">
+              HOW MANY?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-center text-tempo-carbon/60 text-sm">
               Limited to 2 per customer
-            </DialogDescription>
-          </DialogHeader>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
           <div className="flex gap-4 py-4">
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(1)}
               disabled={isLoading}
-              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
-            >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1"}
+              className="flex-1 py-4 border-2 border-tempo-carbon rounded-lg text-tempo-carbon font-bold text-lg hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50">
+
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1 Paddle"}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(2)}
               disabled={isLoading}
-              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
-            >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2"}
+              className="flex-1 py-4 border-2 border-tempo-carbon rounded-lg text-tempo-carbon font-bold text-lg hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50">
+
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2 Paddles"}
             </motion.button>
           </div>
-        </DialogContent>
-      </Dialog>
+          <AlertDialogFooter className="justify-center">
+            <AlertDialogCancel className="border-tempo-carbon/20 text-tempo-carbon/60 rounded-full">
+              Cancel
+            </AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
       <StickyReserveButton onAddToCart={() => setIsQtyDialogOpen(true)} isLoading={isLoading} disabled={!shopifyProduct} />
       <FounderStoryModal isOpen={isFounderModalOpen} onClose={() => setIsFounderModalOpen(false)} />
-    </main>
-  );
+    </main>);
+
 };
 
 export default TheArchitect;
