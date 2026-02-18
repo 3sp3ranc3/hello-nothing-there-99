@@ -212,14 +212,15 @@ const TheArchitect = () => {
       <div className="relative">
         {/* Gradient fade from bone into navy */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-tempo-bone to-transparent z-[1]" />
-        {/* Topo background image layer */}
+        {/* Topo background image layer — tinted navy, smoothed */}
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-30"
           style={{
             backgroundImage: `url(${topoBg})`,
             backgroundSize: 'cover',
             backgroundPosition: 'top center',
             backgroundRepeat: 'no-repeat',
+            filter: 'blur(1.5px) brightness(0.6) saturate(1.5)',
           }}
         />
 
