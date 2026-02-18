@@ -45,9 +45,9 @@ const features = [
 const specs = [
   { label: "CORE", value: "TRUFOAM", description: "4th generation polymer core. The best available. Delivers maximum legal power (0.43 PBCoR) with optimal energy transfer and durability." },
   { label: "SURFACE", value: "T700 Carbon Fiber", description: "Sandblasted texture finish for the best spin generation" },
+  { label: "DIMENSIONS", value: "201.2mm x 272mm x 16mm", description: "The optimal paddle shape. Engineered for maximum sweet spot, surgical precision, and uncompromising control." },
   { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
-  { label: "DIMENSIONS", value: "201.2mm x 272mm x 16mm", description: "The optimal paddle shape. Engineered for maximum sweet spot, surgical precision, and uncompromising control." },
   { label: "WARRANTY", value: "12-Month Limited", description: "Coverage against manufacturer defects and workmanship flaws" },
 ];
 
