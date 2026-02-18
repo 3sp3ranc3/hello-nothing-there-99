@@ -15,7 +15,7 @@ const faqItems = [
   },
   {
     question: "Why preorder only?",
-    answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty, passing savings directly to you. It also means every paddle is made fresh, not sitting in a warehouse for months before reaching your hands.",
+    answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate warehousing costs and uncertainty, passing savings directly to you. It also means every paddle is made fresh, not sitting in a warehouse for months before reaching your hands.",
   },
   {
     question: "What is TRUFOAM?",
