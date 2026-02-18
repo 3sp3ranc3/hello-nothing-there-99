@@ -65,20 +65,12 @@ const BatchComparisonSection = () => {
             {/* Horizontal line on mobile */}
             <div className="md:hidden absolute inset-x-0 top-1/2 -translate-y-px h-px bg-tempo-carbon/10" />
 
-            <motion.div
-              animate={{ x: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone flex items-center justify-center md:block hidden"
-            >
+            <div className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone hidden md:flex items-center justify-center">
               <ArrowRight className="w-4 h-4 text-tempo-carbon/40" />
-            </motion.div>
-            <motion.div
-              animate={{ y: [0, 4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone flex items-center justify-center md:hidden"
-            >
+            </div>
+            <div className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone flex items-center justify-center md:hidden">
               <ArrowDown className="w-4 h-4 text-tempo-carbon/40" />
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Batch 002 */}
