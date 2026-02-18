@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 interface StickyReserveButtonProps {
-  onAddToCart: () => Promise<void>;
+  onAddToCart: () => void | Promise<void>;
   isLoading: boolean;
   disabled: boolean;
 }

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Accordion,
@@ -14,13 +15,21 @@ interface FAQItem {
 interface ProductFAQProps {
   items: FAQItem[];
   dark?: boolean;
+  defaultOpenValue?: string;
 }
 
-const ProductFAQ = ({ items, dark = false }: ProductFAQProps) => {
+const ProductFAQ = ({ items, dark = false, defaultOpenValue }: ProductFAQProps) => {
+  const [openValue, setOpenValue] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (defaultOpenValue) {
+      setOpenValue(defaultOpenValue);
+    }
+  }, [defaultOpenValue]);
+
   return (
     <section className={`py-24 lg:py-32 ${dark ? "border-t border-white/10" : "border-t border-border"}`}>
       <div className="max-w-2xl mx-auto">
-        {/* Headline */}
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,14 +40,13 @@ const ProductFAQ = ({ items, dark = false }: ProductFAQProps) => {
           QUESTIONS & ANSWERS
         </motion.h2>
 
-        {/* Accordion */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
           viewport={{ once: true }}
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full" value={openValue} onValueChange={setOpenValue}>
             {items.map((item, index) => (
               <AccordionItem 
                 key={index} 
