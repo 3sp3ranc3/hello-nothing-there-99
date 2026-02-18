@@ -52,7 +52,7 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
             viewport={{ once: true }}
-            className={`aspect-square flex flex-col items-center justify-center p-6 text-center transition-colors duration-300 group cursor-default ${
+            className={`aspect-[4/3] flex flex-col items-center justify-center p-5 text-center transition-colors duration-300 group cursor-default ${
               dark
                 ? "bg-[#1e3a5f] hover:bg-[#245080]"
                 : "bg-tempo-mist hover:bg-[#E0E0E0]"
