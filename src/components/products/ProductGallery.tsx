@@ -64,7 +64,7 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
         {/* Main Image */}
         <div
           ref={mainRef}
-          className="flex-1 relative aspect-[4/5] overflow-hidden cursor-zoom-in bg-tempo-mist"
+          className="flex-1 relative overflow-hidden cursor-zoom-in bg-tempo-mist"
           onMouseEnter={() => setIsZooming(true)}
           onMouseLeave={() => setIsZooming(false)}
           onMouseMove={handleMouseMove}
