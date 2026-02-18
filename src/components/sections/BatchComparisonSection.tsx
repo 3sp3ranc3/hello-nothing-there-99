@@ -52,18 +52,33 @@ const BatchComparisonSection = () => {
             </span>
           </motion.div>
 
-          {/* Arrow Divider */}
+          {/* Divider + Arrow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2, ease }}
             viewport={{ once: true }}
-            className="flex items-center justify-center py-6 md:py-0"
+            className="flex items-center justify-center py-6 md:py-0 relative"
           >
-            <div className="w-10 h-10 rounded-full border border-tempo-carbon/15 flex items-center justify-center">
-              <ArrowDown className="w-4 h-4 text-tempo-carbon/40 md:hidden" />
-              <ArrowRight className="w-4 h-4 text-tempo-carbon/40 hidden md:block" />
-            </div>
+            {/* Vertical line on desktop */}
+            <div className="hidden md:block absolute inset-y-0 left-1/2 -translate-x-px w-px bg-tempo-carbon/10" />
+            {/* Horizontal line on mobile */}
+            <div className="md:hidden absolute inset-x-0 top-1/2 -translate-y-px h-px bg-tempo-carbon/10" />
+
+            <motion.div
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone flex items-center justify-center md:block hidden"
+            >
+              <ArrowRight className="w-4 h-4 text-tempo-carbon/40" />
+            </motion.div>
+            <motion.div
+              animate={{ y: [0, 4, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="relative z-10 w-10 h-10 rounded-full border border-tempo-carbon/15 bg-tempo-bone flex items-center justify-center md:hidden"
+            >
+              <ArrowDown className="w-4 h-4 text-tempo-carbon/40" />
+            </motion.div>
           </motion.div>
 
           {/* Batch 002 */}
