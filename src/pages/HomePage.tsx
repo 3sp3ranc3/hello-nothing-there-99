@@ -21,7 +21,7 @@ const HomePage = () => {
       <TestimonialsSection linkable />
 
       {/* Discovery CTA Section */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-24 lg:py-32 overflow-hidden min-h-[60vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
@@ -29,32 +29,33 @@ const HomePage = () => {
             alt="The Architect paddle"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-tempo-carbon/60" />
+          <div className="absolute inset-0 bg-tempo-carbon/65" />
         </div>
 
-        <div className="relative max-w-[900px] mx-auto px-6 lg:px-12 text-center">
+        <div className="relative max-w-[1800px] w-full mx-auto px-6 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true }}
+            className="max-w-2xl"
           >
-            <Link to="/products/the-architect" className="group block">
-              <span className="inline-block text-xs uppercase tracking-widest font-medium text-tempo-bone/70 mb-4">
-                The Tactician's Instrument
-              </span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black uppercase tracking-wide text-tempo-bone mb-6" style={{ lineHeight: 1.1 }}>
-                Discover The Architect
-              </h2>
-              <p className="text-tempo-bone/60 max-w-md mx-auto mb-8">
-                Engineered for absolute placement, vibration control, and neutralizing opponent power.
-              </p>
+            <span className="inline-block text-xs uppercase tracking-widest font-medium text-tempo-bone/70 mb-5">
+              The Tactician's Instrument
+            </span>
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase tracking-tight text-tempo-bone mb-6" style={{ lineHeight: 0.95 }}>
+              Discover<br />The Architect
+            </h2>
+            <p className="text-tempo-bone/60 max-w-md mb-10">
+              Engineered for absolute placement, vibration control, and neutralizing opponent power.
+            </p>
+            <Link to="/products/the-architect">
               <motion.span
-                className="inline-flex items-center gap-3 px-8 py-4 bg-tempo-bone text-tempo-carbon rounded-full text-sm uppercase tracking-widest font-medium group-hover:gap-5 transition-all duration-300"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-3 px-10 py-4 bg-tempo-bone text-tempo-carbon rounded-full text-sm uppercase tracking-widest font-bold hover:gap-5 transition-all duration-300"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
               >
-                View Full Details
+                Explore Batch 002
                 <ArrowRight className="w-4 h-4" />
               </motion.span>
             </Link>
