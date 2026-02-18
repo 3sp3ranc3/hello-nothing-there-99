@@ -21,7 +21,7 @@ const legalContent: Record<string, { title: string; content: string[] }> = {
       "Welcome to Tempo Pickleball. These Terms of Service govern your use of our website and your purchase of products from us. By accessing our website or placing an order, you agree to be bound by these terms.",
       "All products displayed on our website are subject to availability. We reserve the right to discontinue any product at any time. Prices for our products are subject to change without notice. We shall not be liable to you or any third party for any modification, price change, suspension, or discontinuance of any product.",
       "When you place an order, you offer to buy the products selected. We may accept your offer by sending a confirmation email. The contract is formed when we dispatch your order. We reserve the right to refuse any order placed through our site.",
-      "We warrant that our products will be free from defects in materials and workmanship for a period of 30 days from the date of purchase. This warranty does not cover damage caused by misuse, negligence, or normal wear and tear.",
+      "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws. This warranty does not cover damage caused by misuse, negligence, or normal wear and tear.",
       "Our liability to you for any claim arising from your purchase shall not exceed the price you paid for the product. We shall not be liable for any indirect, incidental, special, or consequential damages.",
     ],
   },
@@ -36,13 +36,25 @@ const legalContent: Record<string, { title: string; content: string[] }> = {
     ],
   },
   returns: {
-    title: "Returns & Refunds",
+    title: "Warranty & Return Policy",
     content: [
-      "We want you to be completely satisfied with your Tempo purchase. That's why we offer a 30-day trial period on all our paddles. If you're not satisfied for any reason, you may return your paddle within 30 days of delivery for a full refund.",
-      "To initiate a return, please contact our customer service team. You will receive a prepaid return shipping label via email. Please ensure the product is in its original packaging and in resalable condition.",
-      "Refunds will be processed within 5-7 business days of receiving your returned item. The refund will be credited to your original payment method. Please note that it may take an additional 3-5 business days for the refund to appear on your statement.",
-      "Accessories and apparel must be unused and in original packaging to qualify for a return. Items marked as final sale are not eligible for return or exchange.",
-      "For defective products, please contact us immediately. We will arrange for a replacement or refund at no additional cost to you. Photos of the defect may be required.",
+      "At TEMPO, we are committed to engineering premium, high-performance pickleball paddles. We stand behind our craftsmanship, but due to the rigorous nature of the sport, we have strict guidelines regarding returns and warranties.",
+
+      "RETURN POLICY — To maintain the highest standard of quality for all our customers, we do not offer \"change of mind\" returns or \"try it out\" periods. All sales are final once the paddle has been used or packaging has been removed/tampered with.",
+
+      "Preorder Cancellations: If you have placed a preorder, you may change your mind and cancel for a full refund strictly before the official preorder cutoff date. Please email our support team at support@tempopickleball.store to process your cancellation.",
+
+      "Unopened Returns: If you change your mind before opening the packaging, we accept returns within 14 days of delivery strictly for paddles that are completely unopened, unused, and in their original packaging with the handle shrink-wrap perfectly intact. The customer is responsible for all return shipping costs, and a refund will only be issued after the paddle passes our physical inspection.",
+
+      "Damaged on Arrival: If your paddle arrives damaged from transit, you must contact us within 48 hours of delivery with photographic evidence before opening or using the paddle.",
+
+      "12-MONTH LIMITED WARRANTY — All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws, including issues with core materials, severe deformation, or delamination.",
+
+      "Warranty Conditions: The warranty is strictly non-transferable and applies only to the original purchaser. Valid proof of purchase (order number or receipt) is required for all claims. TEMPO reserves the right to evaluate, judge, and determine whether a paddle's damage is covered by our warranty, and whether to issue a replacement or a refund.",
+
+      "What is NOT Covered: Pickleball paddles naturally degrade with heavy use. This warranty protects against factory defects, not the physical toll of the game. The following are explicitly excluded: normal wear and tear (including fading of graphics, face texture wearing down, and standard grip degradation), impact damage (hitting the ground, net, other paddles, or any object other than a pickleball), edge wear, abuse and negligence, aftermarket modifications (including clamp-on weights, lead tape, or third-party weighting systems), extreme climate damage (below 5°C / 40°F), minor internal rattling that does not impact performance, and paddles bought from unauthorised resellers.",
+
+      "HOW TO FILE A WARRANTY CLAIM — Do not ship your paddle back to us before receiving approval. Email our support team at support@tempopickleball.store with the subject line \"Warranty Claim: [Your Order Number]\". Include a clear description of the defect and attach clear, well-lit photos showing the manufacturer defect. Our team will review your claim within 3–5 business days. If approved, we will provide you with the next steps for a replacement or refund.",
     ],
   },
   accessibility: {

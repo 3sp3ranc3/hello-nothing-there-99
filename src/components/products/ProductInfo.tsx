@@ -105,7 +105,7 @@ const ProductInfo = ({ title, description, price, retailPrice, features, onViewS
       <div className="flex flex-col sm:flex-row gap-4 text-sm text-muted-foreground">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4" />
-          <span>30-Day Play Test Guarantee</span>
+          <span>12-Month Warranty</span>
         </div>
         <div className="flex items-center gap-2">
           <Truck className="w-4 h-4" />
