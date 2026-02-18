@@ -73,7 +73,7 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
           <img
             src={images[activeIndex].src}
             alt={images[activeIndex].alt}
-            className="w-full h-full object-contain transition-transform duration-200 ease-out"
+            className="w-full h-full object-cover transition-transform duration-200 ease-out"
             style={{
               transformOrigin,
               transform: isZooming ? "scale(1.35)" : "scale(1)",
