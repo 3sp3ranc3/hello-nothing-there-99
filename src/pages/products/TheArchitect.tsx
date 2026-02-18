@@ -235,7 +235,7 @@ const TheArchitect = () => {
           </div>
 
           {/* Full-width Product Description below the split */}
-          <div className="mt-12 lg:mt-16 max-w-[900px]">
+          <div className="mt-12 lg:mt-16 max-w-[900px] mx-auto">
             <ProductDescription onScrollToSpecs={scrollToSpecs} />
           </div>
         </div>
