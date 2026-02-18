@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
-import FounderStoryModal from "@/components/ui/FounderStoryModal";
 import HeroSection from "@/components/sections/HeroSection";
 import BatchComparisonSection from "@/components/sections/BatchComparisonSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 
 const HomePage = () => {
-  const [isFounderModalOpen, setIsFounderModalOpen] = useState(false);
-
   return (
     <main className="bg-tempo-bone">
       <BatchNavbar />
@@ -36,7 +32,7 @@ const HomePage = () => {
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             viewport={{ once: true }}
             className="max-w-2xl"
           >
@@ -63,11 +59,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
-      <FounderStoryModal 
-        isOpen={isFounderModalOpen} 
-        onClose={() => setIsFounderModalOpen(false)} 
-      />
+      <MegaFooter />
     </main>
   );
 };
