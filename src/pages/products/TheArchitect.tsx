@@ -43,7 +43,7 @@ const features = [
 ];
 
 const specs = [
-  { label: "CORE", value: "TRUFOAM", description: "Black TRUFOAM Core Technology for optimal energy transfer and vibration dampening" },
+  { label: "CORE", value: "TRUFOAM", description: "4th generation polymer core delivering 0.43 PBCoR: the maximum tournament-legal power. Engineered for optimal energy transfer, consistent response, and extended durability." },
   { label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
   { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
