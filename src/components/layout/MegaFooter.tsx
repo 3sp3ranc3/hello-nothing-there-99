@@ -45,7 +45,7 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
 
   const supportLinks = [
     { name: "About Tempo", href: "/pages/about" },
-    { name: "Contact Concierge", href: "/pages/contact" },
+    { name: "Contact Us", href: "/pages/contact" },
     { name: "FAQ & Help Center", href: "/pages/faq" },
     { name: "Track Your Order", href: "/pages/track-order" },
     ...(onFounderStoryClick ? [{ name: "Founder Story", href: "#founder", onClick: onFounderStoryClick }] : []),
@@ -56,7 +56,7 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
     { name: "Terms of Service", href: "/pages/terms" },
     { name: "Shipping Information", href: "/pages/shipping" },
     { name: "Warranty & Return Policy", href: "/pages/returns" },
-    { name: "Accessibility Statement", href: "/pages/accessibility" },
+    
   ];
 
   const containerVariants = {

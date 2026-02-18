@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, MapPin } from "lucide-react";
+import { Send, Mail } from "lucide-react";
 import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import { toast } from "@/hooks/use-toast";
@@ -31,7 +31,7 @@ const ContactPage = () => {
     
     toast({
       title: "Message sent! 📨",
-      description: "Our concierge team will respond within 24 hours.",
+      description: "We'll get back to you as soon as possible.",
     });
     
     setFormData({ name: "", email: "", subject: "", message: "" });
@@ -44,11 +44,11 @@ const ContactPage = () => {
       
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-[900px] mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-sm uppercase tracking-widest text-tempo-carbon/60 mb-4 block"
+            className="text-xs uppercase tracking-[0.2em] text-tempo-carbon/50 mb-6 block"
           >
             Get in Touch
           </motion.span>
@@ -56,61 +56,65 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-wide uppercase mb-8 text-tempo-carbon"
+            className="text-4xl md:text-6xl lg:text-7xl font-black tracking-wide uppercase mb-8 text-tempo-carbon"
           >
-            CONTACT CONCIERGE
+            CONTACT US
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-tempo-carbon/70 max-w-2xl leading-relaxed"
+            className="text-lg md:text-xl text-tempo-carbon/70 max-w-[550px] leading-relaxed"
           >
-            Questions about your order? Need help finding the right paddle? Our team is here to help.
+            Questions about your order or need help? Reach us at{" "}
+            <a 
+              href="mailto:support@tempopickleball.store" 
+              className="text-tempo-navy underline underline-offset-4 hover:text-tempo-carbon transition-colors"
+            >
+              support@tempopickleball.store
+            </a>
           </motion.p>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="py-12 px-6">
-        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Form */}
+      {/* Form */}
+      <section className="py-12 pb-24 px-6">
+        <div className="max-w-[600px] mx-auto">
           <motion.form
             onSubmit={handleSubmit}
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="space-y-6"
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
-                           focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
-                  placeholder="Your name"
-                />
-              </div>
-              <div>
-                <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
-                           focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
-                  placeholder="your@email.com"
-                />
-              </div>
+            <div>
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
+                Name *
+              </label>
+              <input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
+                placeholder="Your name"
+              />
             </div>
-            
+
+            <div>
+              <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
+                Email *
+              </label>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="w-full border border-tempo-carbon/20 bg-white px-4 py-3 
+                         focus:border-tempo-carbon outline-none transition-colors text-tempo-carbon"
+                placeholder="your@email.com"
+              />
+            </div>
+
             <div>
               <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Subject
@@ -124,7 +128,7 @@ const ContactPage = () => {
                 placeholder="How can we help?"
               />
             </div>
-            
+
             <div>
               <label className="block text-sm uppercase tracking-widest font-medium mb-2 text-tempo-carbon">
                 Message *
@@ -138,72 +142,19 @@ const ContactPage = () => {
                 placeholder="Tell us more..."
               />
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmitting}
               className="inline-flex items-center gap-3 bg-tempo-carbon text-tempo-bone 
                        px-10 py-4 uppercase tracking-widest font-medium text-sm rounded-full
-                       hover:bg-tempo-navy transition-colors duration-300
+                       hover:scale-105 transition-all duration-300
                        disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
               <Send className="w-4 h-4" />
             </button>
           </motion.form>
-
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4 }}
-            className="lg:pl-12 space-y-12"
-          >
-            <div>
-              <h3 className="text-xl font-bold uppercase tracking-wide mb-6 text-tempo-carbon">
-                Other Ways to Reach Us
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Mail className="w-5 h-5 mt-1 text-tempo-carbon/60" />
-                  <div>
-                    <p className="font-medium text-tempo-carbon">Email</p>
-                    <a href="mailto:support@tempopickleball.com" className="text-tempo-carbon/60 hover:text-tempo-carbon transition-colors">
-                      support@tempopickleball.com
-                    </a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <Phone className="w-5 h-5 mt-1 text-tempo-carbon/60" />
-                  <div>
-                    <p className="font-medium text-tempo-carbon">Phone</p>
-                    <a href="tel:1-800-TEMPO-00" className="text-tempo-carbon/60 hover:text-tempo-carbon transition-colors">
-                      1-800-TEMPO-00
-                    </a>
-                    <p className="text-sm text-tempo-carbon/50">Mon-Fri, 9am-5pm PST</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-5 h-5 mt-1 text-tempo-carbon/60" />
-                  <div>
-                    <p className="font-medium text-tempo-carbon">Headquarters</p>
-                    <p className="text-tempo-carbon/60">
-                      Sydney, NSW<br />
-                      Australia
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 bg-white border border-tempo-carbon/10">
-              <h4 className="font-bold uppercase tracking-wide mb-3 text-tempo-carbon">Response Time</h4>
-              <p className="text-tempo-carbon/60 text-sm leading-relaxed">
-                Our concierge team typically responds within 2-4 hours during business hours. 
-                For urgent order issues, please call us directly.
-              </p>
-            </div>
-          </motion.div>
         </div>
       </section>
 
