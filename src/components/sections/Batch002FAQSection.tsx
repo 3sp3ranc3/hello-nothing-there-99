@@ -1,5 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import {
   Accordion,
   AccordionContent,
@@ -9,33 +10,41 @@ import {
 
 const faqItems = [
   {
+    question: "Who is Tempo Pickleball?",
+    answer: "We're an emerging brand based in Sydney, Australia, built by players who got tired of choosing between premium performance and reasonable prices. Our philosophy is simple: source the absolute best materials available—highest-grade carbon fiber, fourth-generation polymer cores, newest technologies—and cut out everything that inflates cost without improving your game. No flashy sponsorships, no retail markups, no compromises on quality. Just exceptional paddles at prices that make sense.",
+  },
+  {
     question: "Why preorder only?",
-    answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you. This is how we deliver a $195 paddle for $135.",
-    featured: true,
+    answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you. It also means every paddle is made fresh, not sitting in a warehouse for months before reaching your hands.",
   },
   {
-    question: "When will my paddle ship?",
-    answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships.",
+    question: "What is TRUFOAM?",
+    answer: "TRUFOAM is our fourth-generation polymer honeycomb core—a high-density foam blend engineered specifically for maximum energy return and consistency. Unlike traditional honeycomb cores that can crush or separate under heavy play, TRUFOAM maintains its structural integrity match after match. The uniform cell construction creates extended dwell time and a larger sweet spot, giving you predictable response and the confidence to place every shot exactly where you want it. It's the reason The Architect feels as good on rally 1,000 as it does fresh out of the cover.",
   },
   {
-    question: "What is your warranty policy?",
-    answer: "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws, including issues with core materials, severe deformation, or delamination. Email support@tempopickleball.store to file a claim.",
+    question: "Is this the most powerful pickleball paddle on the market?",
+    answer: "The Architect delivers maximum tournament-legal power with a certified 0.43 PBCoR rating—the highest allowed in competitive play. But here's what sets it apart: it's not just raw, uncontrollable pop. The TRUFOAM core and T700 carbon face work together to give you explosive power when you need it, without sacrificing the touch and precision that actually win points. You get all the force required to put balls away, strategically tuned so you're not just hitting harder—you're playing smarter.",
   },
   {
-    question: "How is this different from other paddles?",
-    answer: "The Architect features a 31% larger sweet spot than industry average (independently tested), T700 carbon fiber face, and 16mm polymer honeycomb core. Most importantly, we sell direct—cutting out the 40%+ markup you pay at retail.",
+    question: "Is The Architect USAPA approved?",
+    answer: "The Architect meets all technical specifications and guidelines for tournament play, but we haven't pursued official USAPA approval yet. As an emerging brand, the approval fees are prohibitively expensive—costs we'd rather invest in better materials and keeping prices fair for players. Rest assured, the paddle is built to spec and performs at the highest competitive level.",
   },
   {
-    question: "Is this paddle tournament approved?",
-    answer: "Yes. The Architect is fully approved by the USA Pickleball Association (USAPA) for tournament play. Its specifications meet all regulatory requirements.",
+    question: "What is the shipping time?",
+    answer: "Since we're currently in preorder phase, your paddle ships once allocation fills up or the preorder window closes—whichever comes first. From there, our manufacturer produces your batch (typically 2-3 weeks), then we ship directly to you. Standard delivery takes approximately 5 days within Australia, though timing may vary depending on your location. You'll receive email updates at every stage so you know exactly where your order stands.",
   },
   {
-    question: "What's the weight and dimensions?",
-    answer: "Weight: 8.10 oz (optimized for hand speed). Grip: 5.5 inches (elongated). Core: 16mm polypropylene. Surface: Raw T700 carbon fiber with 45° weave pattern.",
+    question: "How will I know my order has been shipped?",
+    answer: "We'll keep you informed every step of the way. You'll receive email notifications when your order is placed, when the preorder period closes and production begins, and when your paddle ships—complete with tracking number so you can follow it all the way to your door.",
   },
   {
-    question: "Do you ship internationally?",
-    answer: "Currently we ship to Australia and New Zealand. US and European shipping coming with Batch 003. Join the waitlist to be notified.",
+    question: "What payment methods does Tempo accept?",
+    answer: "We accept all major credit and debit cards (Visa, Mastercard, American Express), Apple Pay, Google Pay, and Shop Pay through our secure Shopify checkout.",
+  },
+  {
+    question: "Question about Warranty?",
+    answer: "For full details on our warranty coverage and returns policy, please visit our Warranty & Returns page.",
+    isWarrantyLink: true,
   },
 ];
 
@@ -58,7 +67,7 @@ const Batch002FAQSection = () => {
             Questions
           </h2>
           <p className="text-lg text-tempo-carbon/60">
-            Everything you need to know about Batch 002
+            Everything you need to know about Tempo and The Architect
           </p>
         </motion.div>
 
@@ -73,27 +82,42 @@ const Batch002FAQSection = () => {
             >
               <AccordionItem
                 value={`item-${index}`}
-                className={`border rounded-lg px-6 ${
-                  item.featured 
-                    ? "border-tempo-navy/30 bg-tempo-navy/5" 
-                    : "border-tempo-carbon/10"
-                }`}
+                className="border rounded-lg px-6 border-tempo-carbon/10"
               >
                 <AccordionTrigger className="text-left text-lg font-semibold text-tempo-carbon hover:no-underline py-6">
-                  {item.featured && (
-                    <span className="inline-block px-2 py-0.5 bg-tempo-navy text-white text-xs uppercase tracking-widest rounded mr-3">
-                      Key
-                    </span>
-                  )}
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-tempo-carbon/70 text-base leading-relaxed pb-6">
                   {item.answer}
+                  {item.isWarrantyLink && (
+                    <Link 
+                      to="/pages/returns" 
+                      className="inline-block mt-2 text-tempo-navy underline underline-offset-4 hover:text-tempo-carbon transition-colors"
+                    >
+                      View Warranty & Return Policy →
+                    </Link>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             </motion.div>
           ))}
         </Accordion>
+
+        {/* Contact CTA */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={isHeaderInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="text-center text-tempo-carbon/60 mt-12 text-base"
+        >
+          Any unanswered questions? Email us at{" "}
+          <a 
+            href="mailto:support@tempopickleball.store" 
+            className="text-tempo-navy underline underline-offset-4 hover:text-tempo-carbon transition-colors"
+          >
+            support@tempopickleball.store
+          </a>
+        </motion.p>
       </div>
     </section>
   );
