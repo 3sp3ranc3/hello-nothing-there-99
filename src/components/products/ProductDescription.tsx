@@ -10,7 +10,7 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 text-center">
       {/* Default visible description */}
       <p className="text-sm text-tempo-carbon/80 leading-relaxed">
         We designed The Architect for players who demand complete control over every element of their game. This isn't just another paddle; it's a meticulously engineered tool built on the principles of balance, precision, and intelligent design. Every specification, every material choice, every dimensional detail exists for one purpose: to give you the technical edge when it matters most.
@@ -26,10 +26,10 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="space-y-4 text-sm text-tempo-carbon/80 leading-relaxed pt-2 max-w-prose">
+            <div className="space-y-4 text-sm text-tempo-carbon/80 leading-relaxed pt-2 max-w-prose mx-auto text-center">
               <p className="font-semibold text-tempo-carbon">Why choose The Architect?</p>
 
-              <ul className="space-y-1.5 list-disc list-inside text-tempo-carbon/70">
+              <ul className="space-y-1.5 text-tempo-carbon/70 list-none">
                 <li>Engineered for players who think strategically and execute precisely</li>
                 <li>Delivers exceptional spin generation with tournament-grade durability</li>
                 <li>Built with next-generation core technology for optimal energy transfer</li>
