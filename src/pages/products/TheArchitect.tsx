@@ -307,10 +307,10 @@ const TheArchitect = () => {
       <AlertDialog open={isQtyDialogOpen} onOpenChange={setIsQtyDialogOpen}>
         <AlertDialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-sm">
           <AlertDialogHeader>
-            <AlertDialogTitle className="tempo-headline text-xl text-center">
-              HOW MANY?
+            <AlertDialogTitle className="tempo-headline text-xl text-center tracking-widest">
+              SELECT QUANTITY
             </AlertDialogTitle>
-            <AlertDialogDescription className="text-center text-tempo-carbon/60 text-sm">
+            <AlertDialogDescription className="text-center text-tempo-carbon/50 text-xs uppercase tracking-wider">
               Limited to 2 per customer
             </AlertDialogDescription>
           </AlertDialogHeader>
@@ -320,18 +320,18 @@ const TheArchitect = () => {
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(1)}
               disabled={isLoading}
-              className="flex-1 py-4 border-2 border-tempo-carbon rounded-lg text-tempo-carbon font-bold text-lg hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
+              className="flex-1 py-5 border border-tempo-carbon/20 rounded-full text-tempo-carbon font-semibold text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
             >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1 Paddle"}
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1"}
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={() => handleAddToCartWithQty(2)}
               disabled={isLoading}
-              className="flex-1 py-4 border-2 border-tempo-carbon rounded-lg text-tempo-carbon font-bold text-lg hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
+              className="flex-1 py-5 border border-tempo-carbon/20 rounded-full text-tempo-carbon font-semibold text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
             >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2 Paddles"}
+              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2"}
             </motion.button>
           </div>
           <AlertDialogFooter className="justify-center">
