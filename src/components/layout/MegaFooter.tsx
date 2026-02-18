@@ -42,6 +42,8 @@ const MegaFooter = () => {
   const supportLinks = [
     { name: "About Tempo", href: "/pages/about" },
     { name: "Contact Us", href: "/pages/contact" },
+    { name: "FAQ & Help Center", href: "/pages/faq" },
+    { name: "Track Your Order", href: "/pages/track-order" },
   ];
 
   const legalLinks = [
