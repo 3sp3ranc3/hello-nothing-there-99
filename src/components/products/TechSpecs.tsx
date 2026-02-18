@@ -11,9 +11,11 @@ interface TechSpecsProps {
   description?: string;
   specs: Spec[];
   variant?: "full" | "grid-only";
+  theme?: "light" | "dark";
 }
 
-const TechSpecs = ({ headline, description, specs, variant = "full" }: TechSpecsProps) => {
+const TechSpecs = ({ headline, description, specs, variant = "full", theme = "light" }: TechSpecsProps) => {
+  const isDark = theme === "dark";
   return (
     <section id="tech-specs" className={variant === "full" ? "py-24 lg:py-32" : "py-0"}>
       {/* Banner Headline - Only show in full variant */}
@@ -51,16 +53,32 @@ const TechSpecs = ({ headline, description, specs, variant = "full" }: TechSpecs
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
             viewport={{ once: true }}
-            className="aspect-square flex flex-col items-center justify-center p-6 text-center bg-tempo-mist transition-colors duration-300 hover:bg-[#E0E0E0] group cursor-default"
+            className={`aspect-square flex flex-col items-center justify-center p-6 text-center transition-colors duration-300 group cursor-default ${
+              isDark
+                ? "bg-white/5 hover:bg-white/10"
+                : "bg-tempo-mist hover:bg-[#E0E0E0]"
+            }`}
           >
-            <span className="tempo-spec text-muted-foreground block mb-3 transition-colors duration-300 group-hover:text-tempo-navy">
+            <span className={`tempo-spec block mb-3 transition-colors duration-300 ${
+              isDark
+                ? "text-tempo-bone/50 group-hover:text-tempo-bone"
+                : "text-muted-foreground group-hover:text-tempo-navy"
+            }`}>
               {spec.label}
             </span>
-            <span className="text-xl lg:text-2xl font-medium block transition-colors duration-300 group-hover:text-tempo-navy">
+            <span className={`text-xl lg:text-2xl font-medium block transition-colors duration-300 ${
+              isDark
+                ? "text-tempo-bone group-hover:text-tempo-bone"
+                : "group-hover:text-tempo-navy"
+            }`}>
               {spec.value}
             </span>
             {spec.description && (
-              <span className="text-sm text-muted-foreground mt-2 max-w-[200px] transition-colors duration-300 group-hover:text-tempo-navy/70">
+              <span className={`text-sm mt-2 max-w-[200px] transition-colors duration-300 ${
+                isDark
+                  ? "text-tempo-bone/40 group-hover:text-tempo-bone/60"
+                  : "text-muted-foreground group-hover:text-tempo-navy/70"
+              }`}>
                 {spec.description}
               </span>
             )}

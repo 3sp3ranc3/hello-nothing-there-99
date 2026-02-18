@@ -145,6 +145,17 @@
   .parallax-slow {
     will-change: transform;
   }
+
+  /* Topographic wave drift animation */
+  @keyframes topoDrift {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-30px); }
+    100% { transform: translateX(0); }
+  }
+
+  .animate-topo-drift {
+    animation: topoDrift 10s ease-in-out infinite;
+  }
   
   /* Text bleeding effect */
   .text-bleed-right {
