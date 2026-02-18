@@ -291,20 +291,18 @@ const TheArchitect = () => {
             <ProductFAQ items={faqItems} dark defaultOpenValue={faqDefaultOpen} />
           </div>
 
-          {/* Bottom CTA */}
-          <section className="py-16 lg:py-24">
-            <div className="max-w-[1100px] mx-auto px-6 lg:px-12 text-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleAddToCartClick}
-                disabled={isLoading || !shopifyProduct}
-                className="bg-tempo-bone text-tempo-carbon py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50"
-              >
-                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
-              </motion.button>
-            </div>
-          </section>
+          {/* Back to Top */}
+          <div className="py-12 flex justify-center">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center gap-2 text-tempo-bone/50 hover:text-tempo-bone text-xs uppercase tracking-widest transition-colors duration-300"
+            >
+              <ArrowRight className="w-3 h-3 -rotate-90" />
+              Back to top
+            </motion.button>
+          </div>
         </div>
       </div>
 
