@@ -4,11 +4,7 @@ import { Instagram, Youtube, CreditCard, Wallet, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
-interface MegaFooterProps {
-  onFounderStoryClick?: () => void;
-}
-
-const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
+const MegaFooter = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -46,9 +42,6 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
   const supportLinks = [
     { name: "About Tempo", href: "/pages/about" },
     { name: "Contact Us", href: "/pages/contact" },
-    { name: "FAQ & Help Center", href: "/pages/faq" },
-    { name: "Track Your Order", href: "/pages/track-order" },
-    ...(onFounderStoryClick ? [{ name: "Founder Story", href: "#founder", onClick: onFounderStoryClick }] : []),
   ];
 
   const legalLinks = [
@@ -215,25 +208,14 @@ const MegaFooter = ({ onFounderStoryClick }: MegaFooterProps) => {
             <ul className="space-y-3">
               {supportLinks.map((link) => (
                 <li key={link.href}>
-                  {'onClick' in link && link.onClick ? (
-                    <button
-                      onClick={link.onClick}
-                      className="text-sm md:text-base font-light text-tempo-bone/60 
-                               hover:text-tempo-bone hover:underline underline-offset-4
-                               transition-all duration-200"
-                    >
-                      {link.name}
-                    </button>
-                  ) : (
-                    <Link
-                      to={link.href}
-                      className="text-sm md:text-base font-light text-tempo-bone/60 
-                               hover:text-tempo-bone hover:underline underline-offset-4
-                               transition-all duration-200"
-                    >
-                      {link.name}
-                    </Link>
-                  )}
+                  <Link
+                    to={link.href}
+                    className="text-sm md:text-base font-light text-tempo-bone/60 
+                             hover:text-tempo-bone hover:underline underline-offset-4
+                             transition-all duration-200"
+                  >
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>

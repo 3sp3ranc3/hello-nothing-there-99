@@ -11,7 +11,7 @@ import ProductFAQ from "@/components/products/ProductFAQ";
 import ProductDescription from "@/components/products/ProductDescription";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
-import FounderStoryModal from "@/components/ui/FounderStoryModal";
+
 import {
   Dialog,
   DialogContent,
@@ -64,7 +64,7 @@ const faqItems = [
 ];
 
 const TheArchitect = () => {
-  const [isFounderModalOpen, setIsFounderModalOpen] = useState(false);
+  
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [shopifyProduct, setShopifyProduct] = useState<ShopifyProduct | null>(null);
   const [isQtyDialogOpen, setIsQtyDialogOpen] = useState(false);
@@ -345,9 +345,8 @@ const TheArchitect = () => {
         </DialogContent>
       </Dialog>
 
-      <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
+      <MegaFooter />
       <StickyReserveButton onAddToCart={() => setIsQtyDialogOpen(true)} isLoading={isLoading} disabled={!shopifyProduct} />
-      <FounderStoryModal isOpen={isFounderModalOpen} onClose={() => setIsFounderModalOpen(false)} />
     </main>
   );
 };
