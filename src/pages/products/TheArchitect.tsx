@@ -44,10 +44,10 @@ const features = [
 
 const specs = [
   { label: "CORE", value: "TRUFOAM", description: "Black TRUFOAM Core Technology for optimal energy transfer and vibration dampening" },
+  { label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
   { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control" },
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility" },
   { label: "BALANCE", value: "Central", description: "Neutral balance point for consistent swing dynamics" },
-  { label: "SURFACE", value: "T700 Carbon Fiber", description: "Full UV print with sandblasted texture for spin generation" },
   { label: "WARRANTY", value: "12-Month Limited", description: "Coverage against manufacturer defects and workmanship flaws" },
 ];
 
