@@ -55,7 +55,7 @@ const TechSpecs = ({ headline, description, specs, variant = "full", theme = "li
             viewport={{ once: true }}
             className={`aspect-square flex flex-col items-center justify-center p-6 text-center transition-colors duration-300 group cursor-default relative z-10 ${
               isDark
-                ? "bg-[#0f1b2d] hover:bg-[#162337]"
+                ? "bg-[#06213f] hover:bg-[#0a2d52]"
                 : "bg-tempo-mist hover:bg-[#E0E0E0]"
             }`}
           >
