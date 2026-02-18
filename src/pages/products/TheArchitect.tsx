@@ -52,11 +52,11 @@ const specs = [
 ];
 
 const faqItems = [
-  { question: "What is your warranty policy?", answer: "All TEMPO paddles come with a 12-month limited warranty against manufacturer defects and workmanship flaws. Email support@tempopickleball.store with photos and your order number to file a claim." },
-  { question: "Why preorder only?", answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you." },
-  { question: "Is this paddle tournament approved?", answer: "Yes. The Architect is fully approved by the USA Pickleball Association (USAPA) for tournament play. Its specifications meet all regulatory requirements." },
-  { question: "What is the shipping time?", answer: "Batch 002 paddles begin shipping March 15th, 2026. Orders are fulfilled in the sequence they were placed. You'll receive tracking information via email once your paddle ships." },
-  { question: "What grip size should I choose?", answer: "The Architect features a 130mm elongated grip, suitable for most hand sizes and enabling two-handed backhands. If you prefer a smaller grip, overgrips can be removed. For larger hands, consider adding an overgrip for additional circumference." },
+  { question: "Who is Tempo Pickleball?", answer: "We're an emerging brand based in Sydney, Australia, built by players who got tired of choosing between premium performance and reasonable prices. Our philosophy is simple: source the absolute best materials available—highest-grade carbon fiber, fourth-generation polymer cores, newest technologies—and cut out everything that inflates cost without improving your game." },
+  { question: "Why preorder only?", answer: "We manufacture in controlled batches to maintain quality standards. By taking preorders, we eliminate retail markup, warehousing costs, and uncertainty—passing savings directly to you. It also means every paddle is made fresh, not sitting in a warehouse for months before reaching your hands." },
+  { question: "What is TRUFOAM?", answer: "TRUFOAM is our fourth-generation polymer honeycomb core—a high-density foam blend engineered specifically for maximum energy return and consistency. Unlike traditional honeycomb cores that can crush or separate under heavy play, TRUFOAM maintains its structural integrity match after match." },
+  { question: "Is The Architect USAPA approved?", answer: "The Architect meets all technical specifications and guidelines for tournament play, but we haven't pursued official USAPA approval yet. As an emerging brand, the approval fees are prohibitively expensive—costs we'd rather invest in better materials and keeping prices fair for players." },
+  { question: "What is the shipping time?", answer: "Since we're currently in preorder phase, your paddle ships once allocation fills up or the preorder window closes—whichever comes first. Standard delivery takes approximately 5 days within Australia. You'll receive email updates at every stage." },
 ];
 
 const TheArchitect = () => {
