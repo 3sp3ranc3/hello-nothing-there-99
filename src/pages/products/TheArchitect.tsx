@@ -104,7 +104,7 @@ const TheArchitect = () => {
 
       {/* PART 1: THE SPLIT SECTION */}
       <section className="pt-24 lg:pt-28">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
             <div className="w-full lg:w-[60%]">
               <ProductGallery images={productImages} />
@@ -235,7 +235,7 @@ const TheArchitect = () => {
         <div className="relative z-10">
           {/* PART 2: SPECS */}
           <section ref={techSectionRef} className="py-16 lg:py-24">
-            <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
+            <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -251,13 +251,13 @@ const TheArchitect = () => {
 
           <TestimonialsSection dark />
 
-          <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
+          <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
             <ProductFAQ items={faqItems} dark />
           </div>
 
           {/* Bottom CTA */}
           <section className="py-16 lg:py-24">
-            <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
+            <div className="max-w-[1100px] mx-auto px-6 lg:px-12 text-center">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
