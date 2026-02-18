@@ -156,7 +156,7 @@ const TheArchitect = () => {
                         <span className="text-3xl font-black text-tempo-navy">$135.00</span>
                       </div>
                     </div>
-                    <p className="text-sm text-tempo-carbon/70">Our best paddle at our lowest price yet</p>
+                    
 
                     {/* Stock Progress */}
                     <div ref={progressRef} className="pt-4 border-t border-tempo-carbon/10">
