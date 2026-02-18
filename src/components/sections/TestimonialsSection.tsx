@@ -17,7 +17,7 @@ const testimonials: Testimonial[] = [
   },
   {
     tag: "Spin",
-    quote: "I bought this as a backup for my $300 tournament paddle but ended up making it the only one I reach for. The amount of spin you can get with this is crazy, the face bites so hard it feels like you have a whole extra second to place the ball. It just gives you that locked-in confidence that usually takes weeks to build with a new paddle.",
+    quote: "I bought this as a backup for my $300 tournament paddle but ended up making it the only one I reach for. The amount of spin you can get with this is crazy, the face bites so hard it feels like you have a whole extra second to place the ball.",
     name: "Lachlan",
   },
   {
