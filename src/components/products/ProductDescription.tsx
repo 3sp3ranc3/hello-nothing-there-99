@@ -12,7 +12,7 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
   return (
     <div className="space-y-4 text-center">
       {/* Default visible description */}
-      <p className="text-sm text-tempo-carbon/80 leading-relaxed">
+      <p className="text-base text-tempo-carbon/80 leading-relaxed">
         We designed The Architect for players who demand complete control over every element of their game. This isn't just another paddle; it's a meticulously engineered tool built on the principles of balance, precision, and intelligent design. Every specification, every material choice, every dimensional detail exists for one purpose: to give you the technical edge when it matters most.
       </p>
 
@@ -26,7 +26,7 @@ const ProductDescription = ({ onScrollToSpecs }: ProductDescriptionProps) => {
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="space-y-4 text-sm text-tempo-carbon/80 leading-relaxed pt-2 max-w-prose mx-auto text-center">
+            <div className="space-y-5 text-base text-tempo-carbon/80 leading-relaxed pt-2 text-center">
               <p className="font-semibold text-tempo-carbon">Why choose The Architect?</p>
 
               <ul className="space-y-1.5 text-tempo-carbon/70 list-none">
