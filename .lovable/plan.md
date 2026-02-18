@@ -1,78 +1,95 @@
 
+# Shopify Integration for Tempo
 
-# Topographic Wave Divider into Dark Navy Specs Section
+## Overview
+Wire up the existing Tempo site with real Shopify cart and checkout functionality. The "Add to Cart" and "Reserve Now" buttons on The Architect product page will create real Shopify carts via the Storefront API, with a cart drawer accessible from the navbar.
 
-## What We're Building
-A CRBN-inspired animated topographic contour line pattern that serves as a visual transition from the light Tempo Bone background into a dark navy (`#0f1b2d`) lower half of the page. The specs section, testimonials, FAQ, and bottom CTA will all sit on this dark navy background.
+---
 
-## No Files Needed
-Everything will be built with **inline SVG paths** and CSS. The topographic lines will be multiple wavy `path` elements at varying opacities, creating a layered contour-map effect. A subtle CSS animation will give them a slow horizontal drift.
+## What Gets Built
 
-## Implementation
+1. **Storefront API client** - A shared utility to talk to Shopify's GraphQL API
+2. **Zustand cart store** - Persistent cart state synced with Shopify in real-time
+3. **Cart sync hook** - Automatically clears the cart after checkout completes
+4. **Cart drawer** - Slide-out panel styled to match the Tempo design system, triggered from the navbar
+5. **Button wiring** - All "Add to Cart", "Reserve Now", and sticky CTA buttons on The Architect page will add the real Shopify product to the cart
 
-### 1. Create `TopoWaveDivider` Component
-**New file:** `src/components/ui/TopoWaveDivider.tsx`
+---
 
-- Contains 5-7 wavy SVG path lines with decreasing opacity (from bone color to navy)
-- Each line has a slightly different wave shape to simulate topographic contours
-- A subtle CSS `@keyframes` animation shifts the paths slowly left-to-right for a living, breathing feel
-- The SVG is full-width, roughly 150-200px tall, with `preserveAspectRatio="none"` so it stretches across all screen sizes
-- Bottom of the SVG fills with the navy color to seamlessly blend into the section below
+## New Files
 
-### 2. Update `TheArchitect.tsx` Page Layout
-- Wrap the specs section, testimonials, FAQ, and bottom CTA in a dark navy container (`bg-tempo-navy`)
-- Place the `TopoWaveDivider` component between the product split section and the dark navy container
-- Update text colors within the dark sections to use `text-tempo-bone` and `text-tempo-bone/60` for contrast
-- Remove the existing `border-t` divider on the specs section since the wave replaces it
+| File | Purpose |
+|------|---------|
+| `src/lib/shopify.ts` | Storefront API constants, `storefrontApiRequest` helper, cart mutations (create, add, update, remove), and `ShopifyProduct` types |
+| `src/stores/cartStore.ts` | Zustand store with `persist` middleware for cart items, cartId, checkoutUrl, and all cart operations |
+| `src/hooks/useCartSync.ts` | Hook that syncs cart on page load and when user returns from checkout tab |
+| `src/components/ui/CartDrawer.tsx` | Sheet-based cart drawer styled with Tempo colors (bone/carbon/navy), pill buttons, uppercase tracking |
 
-### 3. Update `TechSpecs.tsx` for Dark Mode
-- Add an optional `theme` prop (`"light" | "dark"`) to control text/box colors
-- When `dark`, spec boxes use `bg-white/5` instead of `bg-tempo-mist`, with light text colors
-- Hover state becomes `bg-white/10` with `text-tempo-bone`
+---
 
-### 4. Update `ProductFAQ.tsx` for Dark Mode
-- Add optional `theme` prop for dark background compatibility
-- Adjust text, border, and accordion trigger colors for contrast on navy
+## Modified Files
 
-### 5. Update `TestimonialsSection.tsx` for Dark Mode
-- Add optional `theme` prop
-- Adjust card backgrounds and text colors
-
-### 6. Add Wave Animation Keyframes
-**Edit:** `src/index.css`
-- Add a `@keyframes topoShift` animation for the slow horizontal drift of the SVG paths
+| File | Change |
+|------|--------|
+| `src/App.tsx` | Add `useCartSync` hook call inside a wrapper component |
+| `src/components/layout/BatchNavbar.tsx` | Add cart icon + item count badge to the right side (replacing the empty spacer div), open CartDrawer on click |
+| `src/pages/products/TheArchitect.tsx` | Wire "Add to Cart" button, "Reserve Now" bottom CTA, and StickyReserveButton to call `addItem` from the cart store with the real Shopify variant |
+| `src/components/ui/StickyReserveButton.tsx` | Wire the mobile sticky button to add the product to cart |
 
 ---
 
 ## Technical Details
 
-**SVG Structure (simplified):**
+### Shopify API Config
+- Store domain: `tempopickleball-97521.myshopify.com`
+- Storefront token: `57b7175e5cc2d576df3f1a0f7f01047d`
+- API version: `2025-07`
+- Product: "The Architect - Batch 002" (ID: `10118554779924`, Variant ID: `gid://shopify/ProductVariant/51966639833364`)
+
+### Dependencies
+- Install `zustand` for cart state management
+
+### Cart Drawer Design (Tempo-styled)
+- Background: `bg-tempo-bone`
+- Text: `text-tempo-carbon`
+- Checkout button: `bg-tempo-carbon text-tempo-bone rounded-full uppercase tracking-widest`
+- Quantity controls: pill-shaped, matching existing button styles
+- Checkout opens in a new tab via `window.open(checkoutUrl, '_blank')`
+- Checkout URL always includes `channel=online_store` parameter
+
+### Navbar Cart Icon
+- Replaces the empty spacer `<div>` on the right side of BatchNavbar
+- Shows item count badge when cart has items
+- Styled minimally: just the cart icon text "CART (0)" or similar, matching Tempo's uppercase tracking style
+
+### Product Page Wiring
+- The product page will fetch "The Architect" from the Storefront API on mount to get the real GraphQL variant ID
+- All CTA buttons call `cartStore.addItem()` with the fetched product data
+- Loading state shown on buttons during cart operations
+- Toast notification (top-center, not bottom-right) confirms item added
+
+### Purchase Flow
 ```text
-+--------------------------------------------------+
-|  Tempo Bone background                            |
-|                                                   |
-|  ~~~~~~~~~~~~ line 1 (opacity 0.08) ~~~~~~~~~~~~  |
-|   ~~~~~~~~~~~ line 2 (opacity 0.12) ~~~~~~~~~~~   |
-|    ~~~~~~~~~~ line 3 (opacity 0.18) ~~~~~~~~~~    |
-|     ~~~~~~~~~ line 4 (opacity 0.25) ~~~~~~~~~     |
-|      ~~~~~~~~ line 5 (opacity 0.35) ~~~~~~~~      |
-|       ~~~~~~~ line 6 (opacity 0.50) ~~~~~~~       |
-+==================================================+
-|                                                   |
-|           DARK NAVY (#0f1b2d) SECTION             |
-|         Specs / Testimonials / FAQ / CTA          |
-|                                                   |
-+--------------------------------------------------+
+User clicks "Add to Cart" or "Reserve Now"
+  --> Storefront API: cartCreate (first item) or cartLinesAdd (subsequent)
+  --> Cart state updates with lineId from Shopify
+  --> Toast confirms addition
+  --> User opens cart drawer from navbar
+  --> Clicks "Checkout"
+  --> window.open(checkoutUrl, '_blank') to Shopify checkout
+  --> On return, useCartSync clears completed cart
 ```
 
-**Animation:** Each path has a slightly offset animation delay so the lines ripple independently, creating an organic topographic feel. The animation is slow (8-12s cycle) and subtle.
+---
 
-**Files to create:**
-- `src/components/ui/TopoWaveDivider.tsx`
+## Implementation Order
 
-**Files to edit:**
-- `src/pages/products/TheArchitect.tsx`
-- `src/components/products/TechSpecs.tsx`
-- `src/components/products/ProductFAQ.tsx`
-- `src/components/sections/TestimonialsSection.tsx`
-- `src/index.css`
+1. Install `zustand`
+2. Create `src/lib/shopify.ts` (API client + types + cart mutations)
+3. Create `src/stores/cartStore.ts` (Zustand persistent store)
+4. Create `src/hooks/useCartSync.ts`
+5. Create `src/components/ui/CartDrawer.tsx` (Tempo-styled)
+6. Update `src/components/layout/BatchNavbar.tsx` (add cart trigger)
+7. Update `src/pages/products/TheArchitect.tsx` (wire all buttons)
+8. Update `src/components/ui/StickyReserveButton.tsx` (wire mobile CTA)
+9. Update `src/App.tsx` (add useCartSync)

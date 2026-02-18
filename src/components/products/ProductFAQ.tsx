@@ -13,13 +13,11 @@ interface FAQItem {
 
 interface ProductFAQProps {
   items: FAQItem[];
-  theme?: "light" | "dark";
 }
 
-const ProductFAQ = ({ items, theme = "light" }: ProductFAQProps) => {
-  const isDark = theme === "dark";
+const ProductFAQ = ({ items }: ProductFAQProps) => {
   return (
-    <section className={`py-24 lg:py-32 ${isDark ? "border-t border-white/10" : "border-t border-border"}`}>
+    <section className="py-24 lg:py-32 border-t border-border">
       <div className="max-w-2xl mx-auto">
         {/* Headline */}
         <motion.h2
@@ -27,7 +25,7 @@ const ProductFAQ = ({ items, theme = "light" }: ProductFAQProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className={`tempo-headline text-3xl md:text-4xl text-center mb-12 ${isDark ? "text-tempo-bone" : ""}`}
+          className="tempo-headline text-3xl md:text-4xl text-center mb-12"
         >
           QUESTIONS & ANSWERS
         </motion.h2>
@@ -41,19 +39,15 @@ const ProductFAQ = ({ items, theme = "light" }: ProductFAQProps) => {
         >
           <Accordion type="single" collapsible className="w-full">
             {items.map((item, index) => (
-              <AccordionItem
-                key={index}
+              <AccordionItem 
+                key={index} 
                 value={`item-${index}`}
-                className={isDark ? "border-white/10" : "border-border"}
+                className="border-border"
               >
-                <AccordionTrigger className={`text-left tempo-body font-medium hover:no-underline transition-colors duration-300 ${
-                  isDark
-                    ? "text-tempo-bone hover:text-tempo-bone/80"
-                    : "hover:text-tempo-navy"
-                }`}>
+                <AccordionTrigger className="text-left tempo-body font-medium hover:text-tempo-navy hover:no-underline transition-colors duration-300">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className={isDark ? "text-tempo-bone/60" : "text-muted-foreground tempo-body"}>
+                <AccordionContent className="text-muted-foreground tempo-body">
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>

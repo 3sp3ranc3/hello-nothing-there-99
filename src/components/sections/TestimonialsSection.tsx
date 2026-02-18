@@ -32,15 +32,15 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const StarRating = ({ isDark = false }: { isDark?: boolean }) => (
+const StarRating = () => (
   <div className="flex items-center gap-0.5 mb-4">
     {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} className={`w-4 h-4 ${isDark ? "fill-tempo-bone text-tempo-bone" : "fill-tempo-carbon text-tempo-carbon"}`} />
+      <Star key={i} className="w-4 h-4 fill-tempo-carbon text-tempo-carbon" />
     ))}
   </div>
 );
 
-const TestimonialCard = ({ testimonial, index, linkable, isDark = false }: { testimonial: Testimonial; index: number; linkable: boolean; isDark?: boolean }) => {
+const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testimonial; index: number; linkable: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -50,36 +50,24 @@ const TestimonialCard = ({ testimonial, index, linkable, isDark = false }: { tes
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className={`p-8 lg:p-10 rounded-lg transition-all duration-300 h-full relative z-10 ${
-        isDark
-          ? "bg-[#06213f] border border-white/10 hover:bg-[#0a2d52]"
-          : "bg-white border border-tempo-carbon/5 shadow-sm hover:shadow-md"
-      }`}
+      className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-all duration-300 h-full"
     >
-      <span className={`inline-block px-3 py-1 text-xs uppercase tracking-widest font-medium rounded-full mb-6 ${
-        isDark
-          ? "bg-tempo-bone/10 text-tempo-bone/80"
-          : "bg-tempo-navy/10 text-tempo-navy"
-      }`}>
+      <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
         {testimonial.tag}
       </span>
 
-      <StarRating isDark={isDark} />
+      <StarRating />
 
-      <blockquote className={`text-lg lg:text-xl leading-relaxed mb-6 ${
-        isDark ? "text-tempo-bone" : "text-tempo-carbon"
-      }`}>
+      <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
         "{testimonial.quote}"
       </blockquote>
 
       <div className="flex items-center justify-between">
-        <p className={`font-medium ${isDark ? "text-tempo-bone/60" : "text-tempo-carbon/70"}`}>
+        <p className="text-tempo-carbon/70 font-medium">
           — {testimonial.name}
         </p>
         {linkable && (
-          <ArrowRight className={`w-4 h-4 group-hover:translate-x-1 transition-all duration-300 ${
-            isDark ? "text-tempo-bone/30 group-hover:text-tempo-bone" : "text-tempo-carbon/30 group-hover:text-tempo-navy"
-          }`} />
+          <ArrowRight className="w-4 h-4 text-tempo-carbon/30 group-hover:text-tempo-navy group-hover:translate-x-1 transition-all duration-300" />
         )}
       </div>
     </motion.div>
@@ -98,16 +86,14 @@ const TestimonialCard = ({ testimonial, index, linkable, isDark = false }: { tes
 
 interface TestimonialsSectionProps {
   linkable?: boolean;
-  theme?: "light" | "dark";
 }
 
-const TestimonialsSection = ({ linkable = false, theme = "light" }: TestimonialsSectionProps) => {
-  const isDark = theme === "dark";
+const TestimonialsSection = ({ linkable = false }: TestimonialsSectionProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   return (
-    <section className={`py-20 lg:py-32 ${isDark ? "" : "bg-tempo-bone"}`}>
+    <section className="py-20 lg:py-32 bg-tempo-bone">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -117,14 +103,10 @@ const TestimonialsSection = ({ linkable = false, theme = "light" }: Testimonials
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-12 lg:mb-16"
         >
-          <span className={`text-xs uppercase tracking-widest mb-4 block ${
-            isDark ? "text-tempo-bone/40" : "text-tempo-carbon/60"
-          }`}>
+          <span className="text-xs uppercase tracking-widest text-tempo-carbon/60 mb-4 block">
             From Our Batch 001 Players
           </span>
-          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide ${
-            isDark ? "text-tempo-bone" : "text-tempo-carbon"
-          }`}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide text-tempo-carbon">
             What Players Said
           </h2>
         </motion.div>
@@ -132,7 +114,7 @@ const TestimonialsSection = ({ linkable = false, theme = "light" }: Testimonials
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
-            <TestimonialCard key={index} testimonial={testimonial} index={index} linkable={linkable} isDark={isDark} />
+            <TestimonialCard key={index} testimonial={testimonial} index={index} linkable={linkable} />
           ))}
         </div>
       </div>
