@@ -208,9 +208,25 @@ const TheArchitect = () => {
         </div>
       </section>
 
+      {/* Wave transition from bone to navy */}
+      <div className="relative -mb-px mt-16">
+        <svg
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          className="w-full h-[60px] md:h-[90px] lg:h-[120px] block"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,120 L0,80 C120,95 240,110 360,100 C480,90 600,50 720,35 C840,20 960,30 1080,50 C1200,70 1320,95 1440,90 L1440,120 Z"
+            className="fill-tempo-navy"
+          />
+        </svg>
+      </div>
+
       {/* DARK TOPO SECTION — Specs, Testimonials, FAQ, Bottom CTA */}
       <div
-        className="relative bg-tempo-navy bg-cover bg-center mt-16"
+        className="relative bg-tempo-navy bg-cover bg-center"
         style={{ backgroundImage: `url(${topoBackground})` }}
       >
         {/* Semi-transparent overlay for readability */}
