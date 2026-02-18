@@ -209,49 +209,58 @@ const TheArchitect = () => {
       </section>
 
       {/* DARK NAVY SECTION WITH TOPO BACKGROUND */}
-      <div
-        style={{
-          backgroundImage: `url(${topoBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'top center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        <section ref={techSectionRef} className="py-16 lg:py-24">
+      <div className="relative">
+        {/* Topo background image layer */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${topoBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'top center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        {/* Semi-transparent navy overlay for text readability */}
+        <div className="absolute inset-0 bg-tempo-navy/80" />
+
+        {/* Content layer */}
+        <div className="relative z-10">
+          <section ref={techSectionRef} className="py-16 lg:py-24">
+            <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
+              <motion.h2
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true }}
+                className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-tempo-bone"
+              >
+                Technical Specifications
+              </motion.h2>
+              <TechSpecs specs={specs} variant="grid-only" theme="dark" />
+            </div>
+          </section>
+
+          <TestimonialsSection theme="dark" />
+
           <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="tempo-headline text-3xl md:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-tempo-bone"
-            >
-              Technical Specifications
-            </motion.h2>
-            <TechSpecs specs={specs} variant="grid-only" theme="dark" />
+            <ProductFAQ items={faqItems} theme="dark" />
           </div>
-        </section>
 
-        <TestimonialsSection theme="dark" />
-
-        <div className="max-w-[1400px] mx-auto px-4 lg:px-8">
-          <ProductFAQ items={faqItems} theme="dark" />
+          {/* Bottom CTA */}
+          <section className="py-16 lg:py-24 border-t border-white/10">
+            <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAddToCart}
+                disabled={isLoading || !shopifyProduct}
+                className="bg-tempo-bone text-tempo-navy py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50"
+              >
+                {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
+              </motion.button>
+            </div>
+          </section>
         </div>
-
-        {/* Bottom CTA */}
-        <section className="py-16 lg:py-24 border-t border-white/10">
-          <div className="max-w-[1400px] mx-auto px-4 lg:px-8 text-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={handleAddToCart}
-              disabled={isLoading || !shopifyProduct}
-              className="bg-tempo-bone text-tempo-navy py-4 px-12 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-white transition-colors duration-300 disabled:opacity-50"
-            >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $135.00"}
-            </motion.button>
-          </div>
-        </section>
       </div>
 
       <MegaFooter onFounderStoryClick={() => setIsFounderModalOpen(true)} />
