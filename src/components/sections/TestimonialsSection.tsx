@@ -35,7 +35,7 @@ const testimonials: Testimonial[] = [
 const StarRating = () => (
   <div className="flex items-center gap-0.5 mb-4">
     {Array.from({ length: 5 }).map((_, i) => (
-      <Star key={i} className="w-4 h-4 fill-tempo-carbon text-tempo-carbon" />
+      <Star key={i} className="w-4 h-4 fill-tempo-bone text-tempo-bone" />
     ))}
   </div>
 );
@@ -50,20 +50,20 @@ const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testim
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-white p-8 lg:p-10 rounded-lg border border-tempo-carbon/5 shadow-sm hover:shadow-md transition-all duration-300 h-full"
+      className="bg-white/10 backdrop-blur-sm p-8 lg:p-10 rounded-lg border border-white/10 hover:bg-white/15 transition-all duration-300 h-full"
     >
-      <span className="inline-block px-3 py-1 bg-tempo-navy/10 text-tempo-navy text-xs uppercase tracking-widest font-medium rounded-full mb-6">
+      <span className="inline-block px-3 py-1 bg-tempo-bone/20 text-tempo-bone text-xs uppercase tracking-widest font-medium rounded-full mb-6">
         {testimonial.tag}
       </span>
 
       <StarRating />
 
-      <blockquote className="text-lg lg:text-xl text-tempo-carbon leading-relaxed mb-6">
+      <blockquote className="text-lg lg:text-xl text-tempo-bone/90 leading-relaxed mb-6">
         "{testimonial.quote}"
       </blockquote>
 
       <div className="flex items-center justify-between">
-        <p className="text-tempo-carbon/70 font-medium">
+        <p className="text-tempo-bone/60 font-medium">
           — {testimonial.name}
         </p>
         {linkable && (
@@ -86,14 +86,15 @@ const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testim
 
 interface TestimonialsSectionProps {
   linkable?: boolean;
+  dark?: boolean;
 }
 
-const TestimonialsSection = ({ linkable = false }: TestimonialsSectionProps) => {
+const TestimonialsSection = ({ linkable = false, dark = false }: TestimonialsSectionProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 lg:py-32 bg-tempo-bone">
+    <section className={`py-20 lg:py-32 ${dark ? "" : "bg-tempo-bone"}`}>
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div
@@ -103,10 +104,10 @@ const TestimonialsSection = ({ linkable = false }: TestimonialsSectionProps) => 
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-center mb-12 lg:mb-16"
         >
-          <span className="text-xs uppercase tracking-widest text-tempo-carbon/60 mb-4 block">
+          <span className={`text-xs uppercase tracking-widest mb-4 block ${dark ? "text-tempo-bone/60" : "text-tempo-carbon/60"}`}>
             From Our Batch 001 Players
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide text-tempo-carbon">
+          <h2 className={`text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
             What Players Said
           </h2>
         </motion.div>
