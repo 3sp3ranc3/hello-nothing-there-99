@@ -22,7 +22,7 @@ const testimonials: Testimonial[] = [
   },
   {
     tag: "Dinks",
-    quote: "I'm so glad my partner put me onto Tempo. Honestly feels like a hidden gem that hasn't blown up yet. I used to tense up every time I had to dink because I'd always pop it up and eat a smash, but the touch on this feels surgical. It really lets me neutralise the pace and keep my dinks unattackable.",
+    quote: "My partner got me onto Tempo and I'm so happy with it. The biggest thing for me is the control at the net - I used to pop up my dinks all the time and just get punished, but this paddle makes it so much easier to keep the ball low and consistent. Way more confidence in those exchanges now.",
     name: "Rachel",
   },
   {
