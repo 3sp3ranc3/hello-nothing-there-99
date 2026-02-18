@@ -229,11 +229,14 @@ const TheArchitect = () => {
                     </div>
                   </div>
 
-                  {/* Product Description */}
-                  <ProductDescription onScrollToSpecs={scrollToSpecs} />
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Full-width Product Description below the split */}
+          <div className="mt-12 lg:mt-16 max-w-[900px]">
+            <ProductDescription onScrollToSpecs={scrollToSpecs} />
           </div>
         </div>
       </section>
