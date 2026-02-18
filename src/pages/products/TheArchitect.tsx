@@ -15,16 +15,16 @@ import FounderStoryModal from "@/components/ui/FounderStoryModal";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
-import img1 from "@/assets/architect-batch002-1.webp";
-import img2 from "@/assets/architect-batch002-2.webp";
-import img3 from "@/assets/architect-batch002-3.webp";
-import img4 from "@/assets/architect-batch002-4.webp";
+import img1 from "@/assets/architect-45deg.webp";
+import img2 from "@/assets/architect-detail.webp";
+import img3 from "@/assets/architect-specs.webp";
+import img4 from "@/assets/architect-pair.webp";
 
 const productImages = [
   { src: img1, alt: "The Architect — 45° angle view" },
   { src: img2, alt: "The Architect — Surface detail" },
-  { src: img3, alt: "The Architect — Augmented reality specs" },
-  { src: img4, alt: "The Architect — Tournament rotation" },
+  { src: img3, alt: "The Architect — Floating specs" },
+  { src: img4, alt: "The Architect — Great engineering" },
 ];
 
 const features = [
