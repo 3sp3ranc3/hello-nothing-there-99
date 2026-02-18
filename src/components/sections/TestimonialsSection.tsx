@@ -50,7 +50,7 @@ const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testim
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-white/10 backdrop-blur-sm p-8 lg:p-10 rounded-lg border border-white/10 hover:bg-white/15 transition-all duration-300 h-full"
+      className="bg-[#1e3a5f] p-8 lg:p-10 rounded-lg border border-white/10 hover:bg-[#245080] transition-all duration-300 h-full"
     >
       <span className="inline-block px-3 py-1 bg-tempo-bone/20 text-tempo-bone text-xs uppercase tracking-widest font-medium rounded-full mb-6">
         {testimonial.tag}
