@@ -105,7 +105,7 @@ const TestimonialsSection = ({ linkable = false, dark = false }: TestimonialsSec
           className="text-center mb-12 lg:mb-16"
         >
           <span className={`text-xs uppercase tracking-widest mb-4 block ${dark ? "text-tempo-bone/60" : "text-tempo-carbon/60"}`}>
-            From Our Batch 001 Players
+            From Our Batch 001 Reviews
           </span>
           <h2 className={`text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-wide ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
             What Players Said
