@@ -89,7 +89,7 @@ const SpecCard = ({
     }
   }, [forceFlip]);
 
-  // Hover flips the card the first time (non-first cards only)
+  // Hover flips the card the first time (non-first cards only, desktop only)
   const handleMouseEnter = () => {
     if (!isFirst && !hasFlippedOnce) {
       setFlipped(true);
@@ -97,7 +97,18 @@ const SpecCard = ({
     }
   };
 
-  // Click always flips back to the icon side (toggle)
+  // Touch: first tap flips to reveal, subsequent taps toggle
+  const handleTouch = (e: React.TouchEvent) => {
+    e.preventDefault();
+    if (!hasFlippedOnce) {
+      setFlipped(true);
+      setHasFlippedOnce(true);
+    } else {
+      setFlipped((f) => !f);
+    }
+  };
+
+  // Click always toggles (desktop)
   const handleClick = () => setFlipped((f) => !f);
 
   const bgFront = dark ? "rgba(30, 58, 95, 0.45)" : "rgba(238, 236, 234, 0.55)";
@@ -110,7 +121,8 @@ const SpecCard = ({
       style={{ perspective: "1200px" }}
       onMouseEnter={handleMouseEnter}
       onClick={handleClick}
-      title={flipped ? "Click to see icon" : "Hover to reveal"}
+      onTouchStart={handleTouch}
+      title={flipped ? "Tap to see icon" : "Tap to reveal"}
     >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}

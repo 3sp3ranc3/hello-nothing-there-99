@@ -37,8 +37,8 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
   return (
     <>
       {/* Gallery Layout */}
-      <div className="flex gap-3 lg:gap-4">
-        {/* Thumbnails Column */}
+      <div className="flex flex-row-reverse lg:flex-row gap-3 lg:gap-4">
+        {/* Thumbnails Column — right on mobile, left on desktop */}
         <div className="flex flex-col gap-2 lg:gap-3 w-16 lg:w-20 shrink-0">
           {images.map((image, index) => (
             <button
