@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, LayoutGrid } from "lucide-react";
 
 import iconHoneycomb from "@/assets/icon-honeycomb.png";
 import iconSurface from "@/assets/icon-surface.png";
@@ -52,23 +52,47 @@ interface TechSpecsProps {
   dark?: boolean;
 }
 
-const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: boolean }) => {
+// Individual card — index 0 auto-flips on scroll; rest are click-to-flip
+const SpecCard = ({
+  spec,
+  isFirst,
+  dark,
+  forceFlip,
+}: {
+  spec: Spec;
+  isFirst: boolean;
+  dark: boolean;
+  forceFlip: boolean;
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [flipped, setFlipped] = useState(false);
 
+  // First card: auto-flip after a pause so the user can register the icon
   useEffect(() => {
-    if (!isInView) return;
-    // Long initial pause so user can register the icon, then stagger each card
-    const t = setTimeout(() => setFlipped(true), 1800 + index * 200);
+    if (!isFirst || !isInView) return;
+    const t = setTimeout(() => setFlipped(true), 1600);
     return () => clearTimeout(t);
-  }, [isInView, index]);
+  }, [isFirst, isInView]);
+
+  // "Reveal All" override
+  useEffect(() => {
+    if (forceFlip) setFlipped(true);
+  }, [forceFlip]);
+
+  const handleClick = () => setFlipped((f) => !f);
 
   const bgFront = dark ? "#1e3a5f" : "#EEECEA";
   const bgBack  = dark ? "#245080" : "#E3E1DE";
 
   return (
-    <div ref={ref} className="min-h-[300px]" style={{ perspective: "1200px" }}>
+    <div
+      ref={ref}
+      className="min-h-[300px] cursor-pointer select-none"
+      style={{ perspective: "1200px" }}
+      onClick={handleClick}
+      title={flipped ? "Click to flip back" : "Click to reveal"}
+    >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
         transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
@@ -79,7 +103,6 @@ const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: bool
           className="absolute inset-0 flex flex-col items-center justify-center p-8 rounded-2xl overflow-hidden"
           style={{ backgroundColor: bgFront, backfaceVisibility: "hidden" }}
         >
-          {/* Subtle radial glow behind icon */}
           <div
             className="absolute inset-0 opacity-20 pointer-events-none"
             style={{
@@ -102,7 +125,6 @@ const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: bool
             transform: "rotateY(180deg)",
           }}
         >
-          {/* Subtle top accent line */}
           <div
             className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-px opacity-30"
             style={{ backgroundColor: dark ? "#fff" : "#1A1A1A" }}
@@ -130,6 +152,8 @@ const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: bool
 };
 
 const TechSpecs = ({ headline, description, specs, variant = "full", dark = false }: TechSpecsProps) => {
+  const [revealAll, setRevealAll] = useState(false);
+
   return (
     <section id="tech-specs" className={variant === "full" ? "py-24 lg:py-32" : "py-0"}>
       {variant === "full" && headline && (
@@ -138,10 +162,29 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="tempo-headline text-4xl md:text-5xl lg:text-7xl text-center mb-8"
+          className="tempo-headline text-4xl md:text-5xl lg:text-7xl text-center mb-6"
         >
           {headline}
         </motion.h2>
+      )}
+
+      {/* Reveal All button */}
+      {variant === "full" && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex justify-center mb-10"
+        >
+          <button
+            onClick={() => setRevealAll((v) => !v)}
+            className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-foreground/60 transition-all duration-300 hover:border-foreground/50 hover:text-foreground"
+          >
+            <LayoutGrid className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+            {revealAll ? "Reset Cards" : "Reveal All"}
+          </button>
+        </motion.div>
       )}
 
       {variant === "full" && description && (
@@ -159,7 +202,13 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
       {/* 2 rows × 3 columns */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
         {specs.map((spec, index) => (
-          <SpecCard key={spec.label} spec={spec} index={index} dark={dark} />
+          <SpecCard
+            key={spec.label}
+            spec={spec}
+            isFirst={index === 0}
+            dark={dark}
+            forceFlip={revealAll}
+          />
         ))}
       </div>
     </section>
