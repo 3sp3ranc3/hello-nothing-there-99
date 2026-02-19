@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 interface ProductGalleryProps {
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; priority?: boolean }[];
 }
 
 const ProductGallery = ({ images }: ProductGalleryProps) => {
@@ -74,6 +74,8 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
             src={images[activeIndex].src}
             alt={images[activeIndex].alt}
             className="w-full h-full object-cover transition-transform duration-200 ease-out"
+            loading={images[activeIndex].priority ? "eager" : "lazy"}
+            fetchPriority={images[activeIndex].priority ? "high" : "auto"}
             style={{
               transformOrigin,
               transform: isZooming ? "scale(1.35)" : "scale(1)",

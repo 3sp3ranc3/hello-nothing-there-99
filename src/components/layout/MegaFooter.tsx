@@ -1,10 +1,11 @@
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Instagram, Youtube, CreditCard, Wallet, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
-const MegaFooter = () => {
+const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -71,7 +72,7 @@ const MegaFooter = () => {
   };
 
   return (
-    <footer className="bg-tempo-carbon text-tempo-bone">
+    <footer ref={ref} className="bg-tempo-carbon text-tempo-bone">
       {/* Newsletter Section */}
       <motion.div
         initial="hidden"
@@ -284,6 +285,8 @@ const MegaFooter = () => {
       </motion.div>
     </footer>
   );
-};
+});
+
+MegaFooter.displayName = "MegaFooter";
 
 export default MegaFooter;
