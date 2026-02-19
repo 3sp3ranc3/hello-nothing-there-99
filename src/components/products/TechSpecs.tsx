@@ -54,65 +54,72 @@ interface TechSpecsProps {
 
 const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-160px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [flipped, setFlipped] = useState(false);
 
   useEffect(() => {
     if (!isInView) return;
-    const t = setTimeout(() => setFlipped(true), index * 120);
+    // Long initial pause so user can register the icon, then stagger each card
+    const t = setTimeout(() => setFlipped(true), 1800 + index * 200);
     return () => clearTimeout(t);
   }, [isInView, index]);
 
-  const bgFront = dark ? "#1e3a5f" : "#EBEBEA";
-  const bgBack = dark ? "#245080" : "#E0E0E0";
+  const bgFront = dark ? "#1e3a5f" : "#EEECEA";
+  const bgBack  = dark ? "#245080" : "#E3E1DE";
 
   return (
-    <div ref={ref} className="min-h-[260px]" style={{ perspective: "1200px" }}>
+    <div ref={ref} className="min-h-[300px]" style={{ perspective: "1200px" }}>
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
         style={{ transformStyle: "preserve-3d", width: "100%", height: "100%", position: "relative" }}
       >
-        {/* FRONT — icon + label + value */}
+        {/* FRONT — icon only */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center"
+          className="absolute inset-0 flex flex-col items-center justify-center p-8 rounded-2xl overflow-hidden"
           style={{ backgroundColor: bgFront, backfaceVisibility: "hidden" }}
         >
+          {/* Subtle radial glow behind icon */}
+          <div
+            className="absolute inset-0 opacity-20 pointer-events-none"
+            style={{
+              background: "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.6) 0%, transparent 70%)",
+            }}
+          />
           {spec.icon && (
-            <div className={dark ? "text-tempo-bone" : "text-tempo-carbon"}>
+            <div className={`relative z-10 ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
               {iconMap[spec.icon].large}
             </div>
           )}
-          <span className={`tempo-spec block text-xs tracking-widest ${dark ? "text-tempo-bone/50" : "text-muted-foreground"}`}>
-            {spec.label}
-          </span>
-          <span className={`text-xl lg:text-2xl font-medium block ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
-            {spec.value}
-          </span>
         </div>
 
         {/* BACK — small icon + label + value + description */}
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 p-6 text-center rounded-2xl overflow-hidden"
           style={{
             backgroundColor: bgBack,
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
+          {/* Subtle top accent line */}
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-px opacity-30"
+            style={{ backgroundColor: dark ? "#fff" : "#1A1A1A" }}
+          />
           {spec.icon && (
-            <div className={`mb-1 ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
+            <div className={`mb-0.5 ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
               {iconMap[spec.icon].small}
             </div>
           )}
-          <span className={`tempo-spec block text-xs tracking-widest ${dark ? "text-tempo-bone/60" : "text-muted-foreground"}`}>
+          <span className={`tempo-spec block text-[10px] tracking-widest ${dark ? "text-tempo-bone/60" : "text-muted-foreground"}`}>
             {spec.label}
           </span>
-          <span className={`text-base lg:text-lg font-semibold block ${dark ? "text-white" : "text-tempo-navy"}`}>
+          <span className={`text-base lg:text-lg font-semibold block leading-tight ${dark ? "text-white" : "text-tempo-carbon"}`}>
             {spec.value}
           </span>
           {spec.description && (
-            <span className={`text-xs leading-relaxed max-w-[200px] mt-1 ${dark ? "text-tempo-bone/55" : "text-tempo-carbon/60"}`}>
+            <span className={`text-xs leading-relaxed max-w-[180px] mt-1 ${dark ? "text-tempo-bone/55" : "text-tempo-carbon/55"}`}>
               {spec.description}
             </span>
           )}
@@ -149,8 +156,8 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
         </motion.p>
       )}
 
-      {/* 3 columns × 2 rows */}
-      <div className="grid grid-cols-2 gap-4 lg:gap-5">
+      {/* 2 rows × 3 columns */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
         {specs.map((spec, index) => (
           <SpecCard key={spec.label} spec={spec} index={index} dark={dark} />
         ))}
