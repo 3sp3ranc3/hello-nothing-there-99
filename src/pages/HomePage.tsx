@@ -51,7 +51,7 @@ const HomePage = () => {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                Explore Batch 002
+                PREORDER BATCH 002
                 <ArrowRight className="w-4 h-4" />
               </motion.span>
             </Link>
