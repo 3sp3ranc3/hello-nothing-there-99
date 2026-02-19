@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ShieldCheck } from "lucide-react";
 
 import iconHoneycomb from "@/assets/icon-honeycomb.png";
@@ -10,16 +10,34 @@ import iconPaddle from "@/assets/icon-paddle.png";
 
 export type SpecIconKey = "honeycomb" | "surface" | "tape-measure" | "balance" | "paddle" | "warranty";
 
-const iconMap: Record<SpecIconKey, React.ReactNode> = {
-  honeycomb: <img src={iconHoneycomb} alt="Core" className="w-10 h-10 object-contain invert opacity-70" />,
-  surface: <img src={iconSurface} alt="Surface" className="w-10 h-10 object-contain invert opacity-70" />,
-  "tape-measure": <img src={iconTapeMeasure} alt="Dimensions" className="w-10 h-10 object-contain invert opacity-70" />,
-  balance: <img src={iconBalance} alt="Weight" className="w-10 h-10 object-contain invert opacity-70" />,
-  paddle: <img src={iconPaddle} alt="Grip" className="w-10 h-10 object-contain invert opacity-70" />,
-  warranty: <ShieldCheck className="w-10 h-10 opacity-70" strokeWidth={1.5} />,
+const iconMap: Record<SpecIconKey, { large: React.ReactNode; small: React.ReactNode }> = {
+  honeycomb: {
+    large: <img src={iconHoneycomb} alt="Core" className="w-14 h-14 object-contain invert opacity-60" />,
+    small: <img src={iconHoneycomb} alt="Core" className="w-7 h-7 object-contain invert opacity-50" />,
+  },
+  surface: {
+    large: <img src={iconSurface} alt="Surface" className="w-14 h-14 object-contain invert opacity-60" />,
+    small: <img src={iconSurface} alt="Surface" className="w-7 h-7 object-contain invert opacity-50" />,
+  },
+  "tape-measure": {
+    large: <img src={iconTapeMeasure} alt="Dimensions" className="w-14 h-14 object-contain invert opacity-60" />,
+    small: <img src={iconTapeMeasure} alt="Dimensions" className="w-7 h-7 object-contain invert opacity-50" />,
+  },
+  balance: {
+    large: <img src={iconBalance} alt="Weight" className="w-14 h-14 object-contain invert opacity-60" />,
+    small: <img src={iconBalance} alt="Weight" className="w-7 h-7 object-contain invert opacity-50" />,
+  },
+  paddle: {
+    large: <img src={iconPaddle} alt="Grip" className="w-14 h-14 object-contain invert opacity-60" />,
+    small: <img src={iconPaddle} alt="Grip" className="w-7 h-7 object-contain invert opacity-50" />,
+  },
+  warranty: {
+    large: <ShieldCheck className="w-14 h-14 opacity-60" strokeWidth={1.2} />,
+    small: <ShieldCheck className="w-7 h-7 opacity-50" strokeWidth={1.2} />,
+  },
 };
 
-interface Spec {
+export interface Spec {
   label: string;
   value: string;
   description?: string;
@@ -35,76 +53,72 @@ interface TechSpecsProps {
 }
 
 const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: boolean }) => {
-  const [revealed, setRevealed] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [flipped, setFlipped] = useState(false);
 
-  const isRevealed = revealed;
+  useEffect(() => {
+    if (!isInView) return;
+    const t = setTimeout(() => setFlipped(true), index * 120);
+    return () => clearTimeout(t);
+  }, [isInView, index]);
+
+  const bgFront = dark ? "#1e3a5f" : "#EBEBEA";
+  const bgBack = dark ? "#245080" : "#E0E0E0";
 
   return (
-    <motion.div
-      key={spec.label}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      viewport={{ once: true }}
-      onMouseEnter={() => setRevealed(true)}
-      className={`aspect-[4/3] flex flex-col items-center justify-center p-6 text-center transition-colors duration-400 cursor-default relative overflow-hidden ${
-        dark
-          ? isRevealed
-            ? "bg-[#245080]"
-            : "bg-[#1e3a5f]"
-          : isRevealed
-          ? "bg-[#E0E0E0]"
-          : "bg-tempo-mist"
-      }`}
-    >
-      <AnimatePresence mode="wait">
-        {!isRevealed ? (
-          /* DEFAULT STATE: icon + label + value */
-          <motion.div
-            key="default"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="flex flex-col items-center gap-3"
-          >
-            {spec.icon && (
-              <div className={dark ? "text-tempo-bone/70" : "text-tempo-carbon/60"}>
-                {iconMap[spec.icon]}
-              </div>
-            )}
-            <span className={`tempo-spec block text-xs ${dark ? "text-tempo-bone/60" : "text-muted-foreground"}`}>
-              {spec.label}
+    <div ref={ref} className="min-h-[260px]" style={{ perspective: "1200px" }}>
+      <motion.div
+        animate={{ rotateY: flipped ? 180 : 0 }}
+        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        style={{ transformStyle: "preserve-3d", width: "100%", height: "100%", position: "relative" }}
+      >
+        {/* FRONT — icon + label + value */}
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center"
+          style={{ backgroundColor: bgFront, backfaceVisibility: "hidden" }}
+        >
+          {spec.icon && (
+            <div className={dark ? "text-tempo-bone" : "text-tempo-carbon"}>
+              {iconMap[spec.icon].large}
+            </div>
+          )}
+          <span className={`tempo-spec block text-xs tracking-widest ${dark ? "text-tempo-bone/50" : "text-muted-foreground"}`}>
+            {spec.label}
+          </span>
+          <span className={`text-xl lg:text-2xl font-medium block ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
+            {spec.value}
+          </span>
+        </div>
+
+        {/* BACK — small icon + label + value + description */}
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center gap-2 p-6 text-center"
+          style={{
+            backgroundColor: bgBack,
+            backfaceVisibility: "hidden",
+            transform: "rotateY(180deg)",
+          }}
+        >
+          {spec.icon && (
+            <div className={`mb-1 ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
+              {iconMap[spec.icon].small}
+            </div>
+          )}
+          <span className={`tempo-spec block text-xs tracking-widest ${dark ? "text-tempo-bone/60" : "text-muted-foreground"}`}>
+            {spec.label}
+          </span>
+          <span className={`text-base lg:text-lg font-semibold block ${dark ? "text-white" : "text-tempo-navy"}`}>
+            {spec.value}
+          </span>
+          {spec.description && (
+            <span className={`text-xs leading-relaxed max-w-[200px] mt-1 ${dark ? "text-tempo-bone/55" : "text-tempo-carbon/60"}`}>
+              {spec.description}
             </span>
-            <span className={`text-xl lg:text-2xl font-medium block ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
-              {spec.value}
-            </span>
-          </motion.div>
-        ) : (
-          /* REVEALED STATE: label + value + description */
-          <motion.div
-            key="revealed"
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className={`tempo-spec block text-xs ${dark ? "text-tempo-bone/70" : "text-muted-foreground"}`}>
-              {spec.label}
-            </span>
-            <span className={`text-lg lg:text-xl font-semibold block ${dark ? "text-white" : "text-tempo-navy"}`}>
-              {spec.value}
-            </span>
-            {spec.description && (
-              <span className={`text-xs mt-1 leading-relaxed max-w-[200px] ${dark ? "text-tempo-bone/60" : "text-tempo-carbon/60"}`}>
-                {spec.description}
-              </span>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+          )}
+        </div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -135,7 +149,8 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
         </motion.p>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* 3 columns × 2 rows */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
         {specs.map((spec, index) => (
           <SpecCard key={spec.label} spec={spec} index={index} dark={dark} />
         ))}
