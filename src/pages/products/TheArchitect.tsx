@@ -23,16 +23,17 @@ import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 
 import img1 from "@/assets/architect-45deg.webp";
-import img2 from "@/assets/architect-detail.webp";
-import img3 from "@/assets/architect-specs.webp";
-import img4 from "@/assets/architect-pair.webp";
-import topoBackground from "@/assets/topo-background.png";
+
+const img2 = new URL("@/assets/architect-detail.webp", import.meta.url).href;
+const img3 = new URL("@/assets/architect-specs.webp", import.meta.url).href;
+const img4 = new URL("@/assets/architect-pair.webp", import.meta.url).href;
+const topoBackground = new URL("@/assets/topo-background.png", import.meta.url).href;
 
 const productImages = [
-  { src: img1, alt: "The Architect — 45° angle view" },
-  { src: img2, alt: "The Architect — Surface detail" },
-  { src: img3, alt: "The Architect — Floating specs" },
-  { src: img4, alt: "The Architect — Great engineering" },
+  { src: img1, alt: "The Architect — 45° angle view", priority: true },
+  { src: img2, alt: "The Architect — Surface detail", priority: false },
+  { src: img3, alt: "The Architect — Floating specs", priority: false },
+  { src: img4, alt: "The Architect — Great engineering", priority: false },
 ];
 
 const features = [

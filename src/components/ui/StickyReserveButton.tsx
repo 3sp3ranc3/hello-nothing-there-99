@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
@@ -8,7 +9,7 @@ interface StickyReserveButtonProps {
   disabled: boolean;
 }
 
-const StickyReserveButton = ({ onAddToCart, isLoading, disabled }: StickyReserveButtonProps) => {
+const StickyReserveButton = forwardRef<HTMLDivElement, StickyReserveButtonProps>(({ onAddToCart, isLoading, disabled }, ref) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -23,6 +24,7 @@ const StickyReserveButton = ({ onAddToCart, isLoading, disabled }: StickyReserve
     <AnimatePresence>
       {isVisible && (
         <motion.div
+          ref={ref}
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
@@ -41,6 +43,8 @@ const StickyReserveButton = ({ onAddToCart, isLoading, disabled }: StickyReserve
       )}
     </AnimatePresence>
   );
-};
+});
+
+StickyReserveButton.displayName = "StickyReserveButton";
 
 export default StickyReserveButton;
