@@ -50,6 +50,7 @@ interface TechSpecsProps {
   specs: Spec[];
   variant?: "full" | "grid-only";
   dark?: boolean;
+  revealAll?: boolean;
 }
 
 // Individual card — first card auto-flips on scroll; all others flip on hover (first time), click to flip back
@@ -169,8 +170,12 @@ const SpecCard = ({
   );
 };
 
-const TechSpecs = ({ headline, description, specs, variant = "full", dark = false }: TechSpecsProps) => {
-  const [revealAll, setRevealAll] = useState(false);
+const TechSpecs = ({ headline, description, specs, variant = "full", dark = false, revealAll: revealAllProp = false }: TechSpecsProps) => {
+  const [revealAll, setRevealAll] = useState(revealAllProp);
+
+  useEffect(() => {
+    if (revealAllProp) setRevealAll(true);
+  }, [revealAllProp]);
 
   return (
     <section id="tech-specs" className={variant === "full" ? "py-24 lg:py-32" : "py-0"}>
