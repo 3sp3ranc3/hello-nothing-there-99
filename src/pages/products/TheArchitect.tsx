@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ShieldCheck, Truck, Loader2 } from "lucide-react";
-import { toast } from "sonner";
+
 
 import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
@@ -12,15 +12,9 @@ import ProductDescription from "@/components/products/ProductDescription";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { useCartStore } from "@/stores/cartStore";
 import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
+import { openCartDrawer } from "@/components/ui/CartDrawer";
 
 import img1 from "@/assets/architect-45deg.webp";
 
@@ -68,7 +62,6 @@ const TheArchitect = () => {
   const [revealAll, setRevealAll] = useState(false);
   const [isButtonHovered, setIsButtonHovered] = useState(false);
   const [shopifyProduct, setShopifyProduct] = useState<ShopifyProduct | null>(null);
-  const [isQtyDialogOpen, setIsQtyDialogOpen] = useState(false);
   const [faqDefaultOpen, setFaqDefaultOpen] = useState<string | undefined>(undefined);
   const techSectionRef = useRef<HTMLElement>(null);
   const faqSectionRef = useRef<HTMLDivElement>(null);
@@ -88,7 +81,7 @@ const TheArchitect = () => {
       .catch(console.error);
   }, []);
 
-  const handleAddToCartWithQty = useCallback(async (qty: number) => {
+  const handleAddToCartClick = useCallback(async () => {
     if (!shopifyProduct) return;
     const variant = shopifyProduct.node.variants.edges[0]?.node;
     if (!variant) return;
@@ -98,20 +91,12 @@ const TheArchitect = () => {
       variantId: variant.id,
       variantTitle: variant.title,
       price: variant.price,
-      quantity: qty,
+      quantity: 1,
       selectedOptions: variant.selectedOptions || [],
     });
 
-    toast.success(`Added ${qty} to cart`, {
-      description: "The Architect — Batch 002",
-      position: "top-center",
-    });
-    setIsQtyDialogOpen(false);
+    openCartDrawer();
   }, [shopifyProduct, addItem]);
-
-  const handleAddToCartClick = useCallback(() => {
-    setIsQtyDialogOpen(true);
-  }, []);
 
   const scrollToSpecs = () => {
     techSectionRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -340,47 +325,8 @@ const TheArchitect = () => {
         </div>
       </div>
 
-      {/* Quantity Picker Dialog */}
-      <Dialog open={isQtyDialogOpen} onOpenChange={(open) => {
-        if (!open) {
-          handleAddToCartWithQty(1);
-        }
-        setIsQtyDialogOpen(open);
-      }}>
-        <DialogContent className="bg-tempo-bone border-tempo-carbon/10 max-w-xs rounded-2xl p-6 [&>button]:hidden">
-          <DialogHeader>
-            <DialogTitle className="tempo-headline text-2xl text-center tracking-widest font-black">
-              SELECT QUANTITY
-            </DialogTitle>
-            <DialogDescription className="text-center text-tempo-carbon/60 text-xs uppercase tracking-wider font-semibold">
-              Limited to 2 per customer
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex gap-4 py-4">
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => handleAddToCartWithQty(1)}
-              disabled={isLoading}
-              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
-            >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "1"}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => handleAddToCartWithQty(2)}
-              disabled={isLoading}
-              className="flex-1 py-5 border-2 border-tempo-carbon rounded-full text-tempo-carbon font-black text-2xl hover:bg-tempo-carbon hover:text-tempo-bone transition-colors disabled:opacity-50"
-            >
-              {isLoading ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "2"}
-            </motion.button>
-          </div>
-        </DialogContent>
-      </Dialog>
-
       <MegaFooter />
-      <StickyReserveButton onAddToCart={() => setIsQtyDialogOpen(true)} isLoading={isLoading} disabled={!shopifyProduct} />
+      <StickyReserveButton onAddToCart={handleAddToCartClick} isLoading={isLoading} disabled={!shopifyProduct} />
     </main>
   );
 };

@@ -3,6 +3,10 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Minus, Plus, Trash2, ExternalLink, Loader2, ShoppingBag } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 
+// Simple event bus to open the cart drawer from anywhere
+const CART_OPEN_EVENT = "tempo:open-cart";
+export const openCartDrawer = () => window.dispatchEvent(new Event(CART_OPEN_EVENT));
+
 export const CartDrawer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { items, isLoading, isSyncing, updateQuantity, removeItem, getCheckoutUrl, syncCart } = useCartStore();
@@ -12,6 +16,13 @@ export const CartDrawer = () => {
   useEffect(() => {
     if (isOpen) syncCart();
   }, [isOpen, syncCart]);
+
+  // Listen for programmatic open events (e.g. from preorder button)
+  useEffect(() => {
+    const handler = () => setIsOpen(true);
+    window.addEventListener(CART_OPEN_EVENT, handler);
+    return () => window.removeEventListener(CART_OPEN_EVENT, handler);
+  }, []);
 
   const handleCheckout = () => {
     const checkoutUrl = getCheckoutUrl();
@@ -64,17 +75,19 @@ export const CartDrawer = () => {
                       <p className="text-sm font-bold text-tempo-navy mt-2">
                         ${parseFloat(item.price.amount).toFixed(2)}
                       </p>
-                      <div className="flex items-center gap-3 mt-3">
+
+                      {/* Quantity controls — inviting, prominent */}
+                      <div className="flex items-center gap-3 mt-4">
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity - 1)}
-                          className="w-7 h-7 rounded-full border border-tempo-carbon/20 flex items-center justify-center hover:border-tempo-carbon transition-colors"
+                          className="w-8 h-8 rounded-full border border-tempo-carbon/20 flex items-center justify-center hover:border-tempo-carbon hover:bg-tempo-carbon hover:text-tempo-bone transition-all duration-200"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
+                        <span className="text-base font-black text-tempo-carbon w-6 text-center">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.variantId, item.quantity + 1)}
-                          className="w-7 h-7 rounded-full border border-tempo-carbon/20 flex items-center justify-center hover:border-tempo-carbon transition-colors"
+                          className="w-8 h-8 rounded-full border border-tempo-carbon/20 flex items-center justify-center hover:border-tempo-carbon hover:bg-tempo-carbon hover:text-tempo-bone transition-all duration-200"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -85,6 +98,16 @@ export const CartDrawer = () => {
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
+
+                      {/* Subtle upsell nudge */}
+                      {item.quantity === 1 && (
+                        <button
+                          onClick={() => updateQuantity(item.variantId, 2)}
+                          className="mt-2 text-[11px] text-tempo-navy/70 hover:text-tempo-navy underline underline-offset-2 transition-colors"
+                        >
+                          + Add a second paddle — save on shipping
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
