@@ -187,24 +187,16 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
       )}
 
       {/* Reveal All button */}
-      {variant === "full" && (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true }}
-          className="flex justify-center mb-10"
-        >
-          {!revealAll && (
-            <button
-              onClick={() => setRevealAll(true)}
-              className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-foreground/60 transition-all duration-300 hover:border-foreground/50 hover:text-foreground"
-            >
-              <LayoutGrid className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-              Reveal All
-            </button>
-          )}
-        </motion.div>
+      {variant === "full" && !revealAll && (
+        <div className="flex justify-center mb-10">
+          <button
+            onClick={() => setRevealAll(true)}
+            className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-foreground/60 transition-all duration-300 hover:border-foreground/50 hover:text-foreground"
+          >
+            <LayoutGrid className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+            Reveal All
+          </button>
+        </div>
       )}
 
       {variant === "full" && description && (
