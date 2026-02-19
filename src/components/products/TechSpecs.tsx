@@ -100,8 +100,8 @@ const SpecCard = ({
   // Click always flips back to the icon side (toggle)
   const handleClick = () => setFlipped((f) => !f);
 
-  const bgFront = dark ? "#1e3a5f" : "#EEECEA";
-  const bgBack  = dark ? "#245080" : "#E3E1DE";
+  const bgFront = dark ? "rgba(30, 58, 95, 0.45)" : "rgba(238, 236, 234, 0.55)";
+  const bgBack  = dark ? "rgba(36, 80, 128, 0.45)" : "rgba(227, 225, 222, 0.55)";
 
   return (
     <div
@@ -120,7 +120,7 @@ const SpecCard = ({
         {/* FRONT — icon only */}
         <div
           className="absolute inset-0 flex flex-col items-center justify-center p-8 rounded-2xl overflow-hidden"
-          style={{ backgroundColor: bgFront, backfaceVisibility: "hidden" }}
+          style={{ backgroundColor: bgFront, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)", backfaceVisibility: "hidden" }}
         >
           <div
             className="absolute inset-0 opacity-20 pointer-events-none"
@@ -140,14 +140,12 @@ const SpecCard = ({
           className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 p-6 text-center rounded-2xl overflow-hidden"
           style={{
             backgroundColor: bgBack,
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
           }}
         >
-          <div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-px opacity-30"
-            style={{ backgroundColor: dark ? "#fff" : "#1A1A1A" }}
-          />
           {spec.icon && (
             <div className={`mb-0.5 ${dark ? "text-tempo-bone" : "text-tempo-carbon"}`}>
               {iconMap[spec.icon].small}
