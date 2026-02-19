@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ArrowRight, ShieldCheck, Truck, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -281,17 +281,25 @@ const TheArchitect = () => {
               >
                 Technical Specifications
               </motion.h2>
-              {!revealAll && (
-                <div className="flex justify-center mb-10">
-                  <button
-                    onClick={() => setRevealAll(true)}
-                    className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-white/50 transition-all duration-300 hover:border-white/50 hover:text-white"
+              <AnimatePresence>
+                {!revealAll && (
+                  <motion.div
+                    className="flex justify-center mb-10"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60 group-hover:opacity-100 transition-opacity duration-300"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-                    Reveal All
-                  </button>
-                </div>
-              )}
+                    <button
+                      onClick={() => setRevealAll(true)}
+                      className="group inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-white/50 transition-all duration-300 hover:border-white/50 hover:text-white"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-60 group-hover:opacity-100 transition-opacity duration-300"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+                      Reveal All
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <TechSpecs specs={specs} variant="grid-only" dark revealAll={revealAll} />
             </div>
           </section>
