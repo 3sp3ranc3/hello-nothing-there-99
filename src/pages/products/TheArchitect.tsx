@@ -160,8 +160,8 @@ const TheArchitect = () => {
                         <span className="text-sm text-tempo-carbon font-medium">Preorder Price:</span>
                         <span className="text-3xl font-black text-tempo-navy">$135.00</span>
                       </div>
+                      <p className="text-xs text-tempo-carbon/50 pt-1">Elite materials. Honest pricing.</p>
                     </div>
-                    
 
                     {/* Stock Progress */}
                     <div ref={progressRef} className="pt-4 border-t border-tempo-carbon/10">
@@ -179,7 +179,6 @@ const TheArchitect = () => {
                         </div>
                         <span className="text-sm font-semibold text-tempo-carbon">67/250</span>
                       </div>
-                      <p className="text-xs text-tempo-carbon/50 mt-2">Closes February 28th or when allocation sells out</p>
                     </div>
 
                     {/* Primary CTA */}
@@ -189,12 +188,14 @@ const TheArchitect = () => {
                       whileTap={{ scale: 0.98 }}
                       onClick={handleAddToCartClick}
                       disabled={isLoading || !shopifyProduct}
-                      className={`w-full py-4 px-8 rounded-full text-sm uppercase tracking-widest font-medium transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 ${
-                        isButtonHovered ? "bg-tempo-navy text-tempo-bone" : "bg-tempo-carbon text-tempo-bone"
+                      className={`w-full py-5 px-8 rounded-full text-base uppercase tracking-widest font-black transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 shadow-lg ${
+                        isButtonHovered
+                          ? "bg-tempo-navy text-tempo-bone shadow-tempo-navy/30"
+                          : "bg-tempo-carbon text-tempo-bone shadow-tempo-carbon/20"
                       }`}
                     >
                       {isLoading ? (
-                        <Loader2 className="w-4 h-4 animate-spin" />
+                        <Loader2 className="w-5 h-5 animate-spin" />
                       ) : (
                         <>
                           <motion.span animate={{ x: isButtonHovered ? -8 : 0 }} transition={{ duration: 0.3 }}>
@@ -205,18 +206,20 @@ const TheArchitect = () => {
                             animate={{ opacity: isButtonHovered ? 1 : 0, x: isButtonHovered ? 0 : -10 }}
                             transition={{ duration: 0.3 }}
                           >
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-5 h-5" />
                           </motion.span>
                         </>
                       )}
                     </motion.button>
 
-                    {/* Limit notice + Why preorder link */}
-                    <div className="text-center space-y-1 pt-1">
-                      <p className="text-xs text-tempo-carbon/50">Limit 2 per customer</p>
+                    {/* Dispatch + Why preorder link */}
+                    <div className="flex items-center justify-between pt-1">
+                      <p className="text-xs uppercase tracking-widest text-tempo-carbon/60 font-medium">
+                        Estimated Dispatch: Late March 2026
+                      </p>
                       <button
                         onClick={scrollToFaqWhyPreorder}
-                        className="text-xs text-tempo-navy underline underline-offset-2 hover:text-tempo-navy/80 transition-colors cursor-pointer"
+                        className="text-xs text-tempo-navy underline underline-offset-2 hover:text-tempo-navy/80 transition-colors cursor-pointer whitespace-nowrap ml-4"
                       >
                         Why preorder only?
                       </button>
