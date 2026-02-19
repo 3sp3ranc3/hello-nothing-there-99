@@ -198,7 +198,7 @@ const TheArchitect = () => {
                       ) : (
                         <>
                           <motion.span animate={{ x: isButtonHovered ? -8 : 0 }} transition={{ duration: 0.3 }}>
-                            Add to Cart
+                            PREORDER THE ARCHITECT
                           </motion.span>
                           <motion.span
                             initial={{ opacity: 0, x: -10 }}
