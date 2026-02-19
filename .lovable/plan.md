@@ -1,95 +1,61 @@
 
-# Shopify Integration for Tempo
+## Performance Analysis: Slow Load on The Architect Page
 
-## Overview
-Wire up the existing Tempo site with real Shopify cart and checkout functionality. The "Add to Cart" and "Reserve Now" buttons on The Architect product page will create real Shopify carts via the Storefront API, with a cart drawer accessible from the navbar.
-
----
-
-## What Gets Built
-
-1. **Storefront API client** - A shared utility to talk to Shopify's GraphQL API
-2. **Zustand cart store** - Persistent cart state synced with Shopify in real-time
-3. **Cart sync hook** - Automatically clears the cart after checkout completes
-4. **Cart drawer** - Slide-out panel styled to match the Tempo design system, triggered from the navbar
-5. **Button wiring** - All "Add to Cart", "Reserve Now", and sticky CTA buttons on The Architect page will add the real Shopify product to the cart
+There are three distinct causes of the slow page transition, ranked by impact.
 
 ---
 
-## New Files
+### Root Cause 1 — Heavy images loaded all at once (biggest impact)
 
-| File | Purpose |
-|------|---------|
-| `src/lib/shopify.ts` | Storefront API constants, `storefrontApiRequest` helper, cart mutations (create, add, update, remove), and `ShopifyProduct` types |
-| `src/stores/cartStore.ts` | Zustand store with `persist` middleware for cart items, cartId, checkoutUrl, and all cart operations |
-| `src/hooks/useCartSync.ts` | Hook that syncs cart on page load and when user returns from checkout tab |
-| `src/components/ui/CartDrawer.tsx` | Sheet-based cart drawer styled with Tempo colors (bone/carbon/navy), pill buttons, uppercase tracking |
+The page imports 4 large product images plus the topo background PNG directly at the top of the file as static imports. This means the browser must download all of them before the page can render, even though only the first image is visible above the fold.
 
----
+- `architect-45deg.webp` — hero image (needs to load instantly)
+- `architect-detail.webp`, `architect-specs.webp`, `architect-pair.webp` — gallery images below the fold
+- `topo-background.png` — only used at the very bottom of the page (dark navy section)
 
-## Modified Files
-
-| File | Change |
-|------|--------|
-| `src/App.tsx` | Add `useCartSync` hook call inside a wrapper component |
-| `src/components/layout/BatchNavbar.tsx` | Add cart icon + item count badge to the right side (replacing the empty spacer div), open CartDrawer on click |
-| `src/pages/products/TheArchitect.tsx` | Wire "Add to Cart" button, "Reserve Now" bottom CTA, and StickyReserveButton to call `addItem` from the cart store with the real Shopify variant |
-| `src/components/ui/StickyReserveButton.tsx` | Wire the mobile sticky button to add the product to cart |
+**Fix:** Keep `img1` (the hero) as an eager static import. Convert the remaining 3 gallery images and the `topoBackground` to use the HTML `loading="lazy"` attribute and/or only pass their paths as strings so the browser defers them. The main image in `ProductGallery` should get `loading="eager"` while thumbnails already have `loading="lazy"` — this is correct.
 
 ---
 
-## Technical Details
+### Root Cause 2 — No preloading hint for the critical hero image
 
-### Shopify API Config
-- Store domain: `tempopickleball-97521.myshopify.com`
-- Storefront token: `57b7175e5cc2d576df3f1a0f7f01047d`
-- API version: `2025-07`
-- Product: "The Architect - Batch 002" (ID: `10118554779924`, Variant ID: `gid://shopify/ProductVariant/51966639833364`)
+The browser has no early signal to start downloading `architect-45deg.webp` — it only discovers it once React renders. This delays the Largest Contentful Paint (LCP).
 
-### Dependencies
-- Install `zustand` for cart state management
-
-### Cart Drawer Design (Tempo-styled)
-- Background: `bg-tempo-bone`
-- Text: `text-tempo-carbon`
-- Checkout button: `bg-tempo-carbon text-tempo-bone rounded-full uppercase tracking-widest`
-- Quantity controls: pill-shaped, matching existing button styles
-- Checkout opens in a new tab via `window.open(checkoutUrl, '_blank')`
-- Checkout URL always includes `channel=online_store` parameter
-
-### Navbar Cart Icon
-- Replaces the empty spacer `<div>` on the right side of BatchNavbar
-- Shows item count badge when cart has items
-- Styled minimally: just the cart icon text "CART (0)" or similar, matching Tempo's uppercase tracking style
-
-### Product Page Wiring
-- The product page will fetch "The Architect" from the Storefront API on mount to get the real GraphQL variant ID
-- All CTA buttons call `cartStore.addItem()` with the fetched product data
-- Loading state shown on buttons during cart operations
-- Toast notification (top-center, not bottom-right) confirms item added
-
-### Purchase Flow
-```text
-User clicks "Add to Cart" or "Reserve Now"
-  --> Storefront API: cartCreate (first item) or cartLinesAdd (subsequent)
-  --> Cart state updates with lineId from Shopify
-  --> Toast confirms addition
-  --> User opens cart drawer from navbar
-  --> Clicks "Checkout"
-  --> window.open(checkoutUrl, '_blank') to Shopify checkout
-  --> On return, useCartSync clears completed cart
-```
+**Fix:** Add a `<link rel="preload">` tag in `index.html` for the hero image so the browser starts fetching it in parallel with the JS bundle.
 
 ---
 
-## Implementation Order
+### Root Cause 3 — `MegaFooter` and `StickyReserveButton` ref warnings (minor, but causes extra render work)
 
-1. Install `zustand`
-2. Create `src/lib/shopify.ts` (API client + types + cart mutations)
-3. Create `src/stores/cartStore.ts` (Zustand persistent store)
-4. Create `src/hooks/useCartSync.ts`
-5. Create `src/components/ui/CartDrawer.tsx` (Tempo-styled)
-6. Update `src/components/layout/BatchNavbar.tsx` (add cart trigger)
-7. Update `src/pages/products/TheArchitect.tsx` (wire all buttons)
-8. Update `src/components/ui/StickyReserveButton.tsx` (wire mobile CTA)
-9. Update `src/App.tsx` (add useCartSync)
+The console warnings confirm both components receive refs but are not wrapped in `React.forwardRef`. While this is a React warning and not a crash, it causes additional reconciliation work on first render.
+
+**Fix:** Wrap both components in `React.forwardRef`.
+
+---
+
+### Implementation Plan
+
+**File 1: `index.html`**
+- Add `<link rel="preload" as="image" href="/src/assets/architect-45deg.webp">` in `<head>` so the browser begins fetching the hero immediately.
+
+**File 2: `src/pages/products/TheArchitect.tsx`**
+- Change the 3 non-hero gallery images (`img2`, `img3`, `img4`) and `topoBackground` from static imports to string paths using `new URL(..., import.meta.url).href` — this is Vite's recommended pattern for deferred asset loading.
+- Pass the hero image `img1` as `loading="eager"` and the rest as `loading="lazy"` via a prop to `ProductGallery`.
+
+**File 3: `src/components/products/ProductGallery.tsx`**
+- Accept a `priority?: boolean` field per image object.
+- Apply `loading="eager"` to the active/priority image and `loading="lazy"` to thumbnails (already done for thumbnails, needs to apply to the main image slot conditionally).
+
+**File 4: `src/components/layout/MegaFooter.tsx`**
+- Wrap in `React.forwardRef` to fix the console warning and eliminate the extra render reconciliation.
+
+**File 5: `src/components/ui/StickyReserveButton.tsx`**
+- Wrap in `React.forwardRef` to fix the console warning.
+
+---
+
+### Technical Notes
+
+- The Shopify API call (network request visible in logs) resolves in ~200ms and is non-blocking — it does not cause the visual slowness, just the "Add to Cart" button being initially disabled.
+- The `topo-background.png` is a PNG (not WebP) applied as a CSS `background-image` at the bottom of the page. Deferring it is safe since the user has to scroll past the entire hero + description + specs before reaching it.
+- The framer-motion animations are scroll-triggered (`whileInView`) so they do not block the initial paint.
