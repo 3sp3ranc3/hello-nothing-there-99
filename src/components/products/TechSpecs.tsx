@@ -52,7 +52,7 @@ interface TechSpecsProps {
   dark?: boolean;
 }
 
-// Individual card — index 0 auto-flips on scroll; rest are click-to-flip
+// Individual card — first card auto-flips on scroll; all others flip on hover (first time), click to flip back
 const SpecCard = ({
   spec,
   isFirst,
@@ -67,19 +67,36 @@ const SpecCard = ({
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   const [flipped, setFlipped] = useState(false);
+  // Track whether the card has been flipped at least once (hover no longer triggers after first flip)
+  const [hasFlippedOnce, setHasFlippedOnce] = useState(false);
 
   // First card: auto-flip after a pause so the user can register the icon
   useEffect(() => {
     if (!isFirst || !isInView) return;
-    const t = setTimeout(() => setFlipped(true), 1600);
+    const t = setTimeout(() => {
+      setFlipped(true);
+      setHasFlippedOnce(true);
+    }, 1600);
     return () => clearTimeout(t);
   }, [isFirst, isInView]);
 
   // "Reveal All" override
   useEffect(() => {
-    if (forceFlip) setFlipped(true);
+    if (forceFlip) {
+      setFlipped(true);
+      setHasFlippedOnce(true);
+    }
   }, [forceFlip]);
 
+  // Hover flips the card the first time (non-first cards only)
+  const handleMouseEnter = () => {
+    if (!isFirst && !hasFlippedOnce) {
+      setFlipped(true);
+      setHasFlippedOnce(true);
+    }
+  };
+
+  // Click always flips back to the icon side (toggle)
   const handleClick = () => setFlipped((f) => !f);
 
   const bgFront = dark ? "#1e3a5f" : "#EEECEA";
@@ -90,8 +107,9 @@ const SpecCard = ({
       ref={ref}
       className="min-h-[300px] cursor-pointer select-none"
       style={{ perspective: "1200px" }}
+      onMouseEnter={handleMouseEnter}
       onClick={handleClick}
-      title={flipped ? "Click to flip back" : "Click to reveal"}
+      title={flipped ? "Click to see icon" : "Hover to reveal"}
     >
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
@@ -177,13 +195,15 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
           viewport={{ once: true }}
           className="flex justify-center mb-10"
         >
-          <button
-            onClick={() => setRevealAll((v) => !v)}
-            className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-foreground/60 transition-all duration-300 hover:border-foreground/50 hover:text-foreground"
-          >
-            <LayoutGrid className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-            {revealAll ? "Reset Cards" : "Reveal All"}
-          </button>
+          {!revealAll && (
+            <button
+              onClick={() => setRevealAll(true)}
+              className="group inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-transparent px-5 py-2 text-xs uppercase tracking-widest font-medium text-foreground/60 transition-all duration-300 hover:border-foreground/50 hover:text-foreground"
+            >
+              <LayoutGrid className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+              Reveal All
+            </button>
+          )}
         </motion.div>
       )}
 
