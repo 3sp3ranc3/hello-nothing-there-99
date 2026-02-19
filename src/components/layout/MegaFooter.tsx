@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Instagram, Youtube, CreditCard, Wallet, Mail } from "lucide-react";
+import { Instagram, CreditCard, Wallet, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
@@ -147,37 +147,14 @@ const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/tempo.pickleball/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Follow us on Instagram"
-                className="text-tempo-bone/60 hover:text-tempo-bone hover:scale-110 
-                         transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(249,249,247,0.3)]"
+                className="text-tempo-bone/70 hover:text-tempo-bone hover:scale-110 
+                         transition-all duration-300 hover:drop-shadow-[0_0_10px_rgba(249,249,247,0.4)]"
               >
-                <Instagram className="w-6 h-6" />
-              </a>
-              <a
-                href="https://tiktok.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow us on TikTok"
-                className="text-tempo-bone/60 hover:text-tempo-bone hover:scale-110 
-                         transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(249,249,247,0.3)]"
-              >
-                {/* TikTok SVG since Lucide doesn't have it */}
-                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                </svg>
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe on YouTube"
-                className="text-tempo-bone/60 hover:text-tempo-bone hover:scale-110 
-                         transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(249,249,247,0.3)]"
-              >
-                <Youtube className="w-6 h-6" />
+                <Instagram className="w-7 h-7" />
               </a>
             </div>
           </motion.div>
