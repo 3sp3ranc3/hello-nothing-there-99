@@ -54,7 +54,7 @@ interface TechSpecsProps {
 
 const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: boolean }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "-160px" });
   const [flipped, setFlipped] = useState(false);
 
   useEffect(() => {
@@ -70,7 +70,7 @@ const SpecCard = ({ spec, index, dark }: { spec: Spec; index: number; dark: bool
     <div ref={ref} className="min-h-[260px]" style={{ perspective: "1200px" }}>
       <motion.div
         animate={{ rotateY: flipped ? 180 : 0 }}
-        transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
         style={{ transformStyle: "preserve-3d", width: "100%", height: "100%", position: "relative" }}
       >
         {/* FRONT — icon + label + value */}
@@ -150,7 +150,7 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
       )}
 
       {/* 3 columns × 2 rows */}
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-5">
+      <div className="grid grid-cols-2 gap-4 lg:gap-5">
         {specs.map((spec, index) => (
           <SpecCard key={spec.label} spec={spec} index={index} dark={dark} />
         ))}
