@@ -148,38 +148,47 @@ const TheArchitect = () => {
                     </p>
                   </motion.div>
 
-                  {/* Pricing Card */}
-                  <div className="bg-tempo-navy/5 border border-tempo-navy/10 rounded-lg p-6 space-y-4">
-                    <span className="text-xs uppercase tracking-widest text-tempo-navy font-semibold">Batch 002 Preorder</span>
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-muted-foreground">Batch 001 Price:</span>
-                        <span className="text-sm line-through text-muted-foreground">$245</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-sm text-tempo-carbon font-medium">Preorder Price:</span>
-                        <span className="text-3xl font-black text-tempo-navy">$135.00</span>
-                      </div>
-                      <p className="text-xs text-tempo-carbon/50 pt-1">Elite materials. Honest pricing.</p>
+                  {/* ── Price Block ── */}
+                  <div className="space-y-6 pt-2">
+
+                    {/* Batch label */}
+                    <div className="flex items-center gap-3">
+                      <span className="inline-flex items-center gap-1.5 bg-tempo-navy text-tempo-bone text-[10px] uppercase tracking-[0.18em] font-bold px-3 py-1 rounded-full">
+                        <span className="w-1.5 h-1.5 rounded-full bg-tempo-stock animate-pulse" />
+                        Batch 002 — Open Now
+                      </span>
                     </div>
 
-                    {/* Stock Progress */}
-                    <div ref={progressRef} className="pt-4 border-t border-tempo-carbon/10">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-sm text-tempo-carbon/60">Limited to 250 units</span>
-                      </div>
+                    {/* Pricing */}
+                    <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <div className="flex-1 h-2 bg-tempo-carbon/10 rounded-full overflow-hidden">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={isProgressInView ? { width: "27%" } : {}}
-                            transition={{ duration: 1.5, delay: 0.3 }}
-                            className="h-full bg-tempo-stock rounded-full"
-                          />
-                        </div>
-                        <span className="text-sm font-semibold text-tempo-carbon">67/250</span>
+                        <span className="text-sm text-tempo-carbon/40 line-through">Batch 001: $245</span>
+                      </div>
+                      <div className="flex items-baseline gap-3">
+                        <span className="text-5xl font-black text-tempo-carbon tracking-tight">$135</span>
+                        <span className="text-sm font-medium text-tempo-carbon/50 uppercase tracking-widest">Preorder</span>
+                      </div>
+                      <p className="text-xs text-tempo-carbon/40 uppercase tracking-widest pt-0.5">Elite materials. Honest pricing.</p>
+                    </div>
+
+                    {/* Stock Bar */}
+                    <div ref={progressRef} className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs uppercase tracking-widest text-tempo-carbon/50 font-medium">Limited to 250 units</span>
+                        <span className="text-xs font-bold text-tempo-carbon">67 / 250</span>
+                      </div>
+                      <div className="h-[3px] w-full bg-tempo-carbon/10 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={isProgressInView ? { width: "27%" } : {}}
+                          transition={{ duration: 1.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="h-full bg-tempo-stock rounded-full"
+                        />
                       </div>
                     </div>
+
+                    {/* Swiss divider */}
+                    <div className="border-t border-tempo-carbon/10" />
 
                     {/* Primary CTA */}
                     <motion.button
@@ -188,10 +197,10 @@ const TheArchitect = () => {
                       whileTap={{ scale: 0.98 }}
                       onClick={handleAddToCartClick}
                       disabled={isLoading || !shopifyProduct}
-                      className={`w-full py-5 px-8 rounded-full text-base uppercase tracking-widest font-black transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 shadow-lg ${
+                      className={`w-full py-5 px-8 rounded-full text-base uppercase tracking-[0.12em] font-black transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl ${
                         isButtonHovered
-                          ? "bg-tempo-navy text-tempo-bone shadow-tempo-navy/30"
-                          : "bg-tempo-carbon text-tempo-bone shadow-tempo-carbon/20"
+                          ? "bg-tempo-navy text-tempo-bone shadow-tempo-navy/25"
+                          : "bg-tempo-carbon text-tempo-bone shadow-tempo-carbon/15"
                       }`}
                     >
                       {isLoading ? (
@@ -212,29 +221,31 @@ const TheArchitect = () => {
                       )}
                     </motion.button>
 
-                    {/* Dispatch + Why preorder link */}
-                    <div className="flex items-center justify-between pt-1">
-                      <p className="text-xs uppercase tracking-widest text-tempo-carbon/60 font-medium">
-                        Estimated Dispatch: Late March 2026
+                    {/* Dispatch + Why Preorder */}
+                    <div className="flex items-center justify-between">
+                      <p className="text-[11px] uppercase tracking-widest text-tempo-carbon/50 font-medium">
+                        Est. Dispatch: Late March 2026
                       </p>
                       <button
                         onClick={scrollToFaqWhyPreorder}
-                        className="text-xs text-tempo-navy underline underline-offset-2 hover:text-tempo-navy/80 transition-colors cursor-pointer whitespace-nowrap ml-4"
+                        className="text-[11px] uppercase tracking-widest text-tempo-navy font-semibold underline underline-offset-4 hover:text-tempo-navy/70 transition-colors cursor-pointer whitespace-nowrap"
                       >
                         Why preorder only?
                       </button>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-3 text-xs text-muted-foreground pt-2">
+                    {/* Trust signals */}
+                    <div className="flex items-center gap-6 text-xs text-tempo-carbon/50 pt-1 border-t border-tempo-carbon/10">
                       <div className="flex items-center gap-2">
-                        <ShieldCheck className="w-4 h-4" />
+                        <ShieldCheck className="w-3.5 h-3.5" />
                         <span>12-Month Warranty</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Truck className="w-4 h-4" />
+                        <Truck className="w-3.5 h-3.5" />
                         <span>Free Premium Shipping</span>
                       </div>
                     </div>
+
                   </div>
 
                 </div>
