@@ -105,7 +105,7 @@ export const CartDrawer = () => {
                           onClick={() => updateQuantity(item.variantId, 2)}
                           className="mt-2 text-[11px] text-tempo-navy/70 hover:text-tempo-navy underline underline-offset-2 transition-colors"
                         >
-                          + Add a second paddle — save on shipping
+                          + Add a second paddle
                         </button>
                       )}
                     </div>
