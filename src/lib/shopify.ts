@@ -146,6 +146,7 @@ export const PRODUCT_QUERY = `
 function formatCheckoutUrl(checkoutUrl: string): string {
   try {
     const url = new URL(checkoutUrl);
+    url.hostname = "tempo-pickleball.myshopify.com";
     url.searchParams.set("channel", "online_store");
     return url.toString();
   } catch {
