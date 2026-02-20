@@ -6,8 +6,6 @@ const SHOPIFY_API_VERSION = "2025-07";
 const SHOPIFY_STOREFRONT_TOKEN = "1b6f18a5161dfe421119e9d3a09c75c8";
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 
-// Checkout always goes through the permanent .myshopify.com domain
-const CHECKOUT_DOMAIN = "tempo-pickleball.myshopify.com";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 export interface ShopifyProduct {
@@ -79,7 +77,6 @@ export async function storefrontFetch(query: string, variables: Record<string, u
 export function buildCheckoutUrl(raw: string): string {
   try {
     const url = new URL(raw);
-    url.hostname = CHECKOUT_DOMAIN;
     url.searchParams.set("channel", "online_store");
     return url.toString();
   } catch {
