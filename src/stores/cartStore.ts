@@ -143,7 +143,7 @@ export const useCartStore = create<CartStore>()(
           })
           .join(",");
 
-        return `https://kgb1q6-ky.myshopify.com/cart/${lineItems}?channel=online_store`;
+        return `https://kgb1q6-ky.myshopify.com/cart/${lineItems}?checkout_url=1&channel=online_store`;
       },
 
       syncCart: async () => {
