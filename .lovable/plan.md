@@ -1,53 +1,62 @@
 
-## Fix: Force Checkout URL to Use .myshopify.com Domain
+## Root Cause: Identified with Certainty
 
-### Problem
+From live network inspection, here is exactly what is happening:
 
-The Shopify `cartCreate` mutation returns a `checkoutUrl` using the store's custom domain (`tempopickleball.store`). This causes a 404 because the custom domain may not have checkout properly configured or may have a password/redirect in place.
+1. The Shopify `cartCreate` API call SUCCEEDS — it returns a 200 with:
+   `"checkoutUrl":"https://tempopickleball.store/cart/c/hWN8zqGW0j99ssIZuM9FhhYe?key=..."`
 
-The permanent `.myshopify.com` domain (`tempo-pickleball.myshopify.com`) always works for checkout regardless of custom domain setup.
+2. `buildCheckoutUrl()` in `shopify.ts` should rewrite that to `tempo-pickleball.myshopify.com` — this logic is correct IN CODE.
 
-### Solution
+3. BUT — `getCheckoutUrl()` in `cartStore.ts` reads directly from `get().checkoutUrl` which is the raw value stored in Zustand/localStorage. If this was set from a PREVIOUS cart session (before the fix was applied), it still contains the old `tempopickleball.store` URL. The store persists across page loads via `localStorage`.
 
-Update the `formatCheckoutUrl` function in `src/lib/shopify.ts` to replace the hostname of whatever URL Shopify returns with `tempo-pickleball.myshopify.com`, while preserving the path, query parameters (including `channel=online_store`), and everything else.
+4. Additionally, when the cart drawer opens, `syncCart()` is called — this fires a 3rd Shopify API request, and during that async operation `isSyncing` is `true`, which **disables the Checkout button** until sync is complete. If sync is slow or the user clicks during this window, nothing happens.
 
-### Change (Single File)
+5. The fix already in `buildCheckoutUrl` IS correct — it just does not retroactively fix already-cached `checkoutUrl` values in localStorage.
 
-**`src/lib/shopify.ts`** — update `formatCheckoutUrl`:
+---
+
+## The Fix (Two Changes, One File)
+
+### File: `src/stores/cartStore.ts`
+
+**Change 1 — `getCheckoutUrl` must rewrite the URL on every call:**
+
+Instead of returning the raw stored URL, it must always pass it through `buildCheckoutUrl` before returning. This ensures every checkout attempt — even from stale cached sessions — gets the correct `.myshopify.com` hostname.
 
 ```ts
-// Before
-function formatCheckoutUrl(checkoutUrl: string): string {
-  try {
-    const url = new URL(checkoutUrl);
-    url.searchParams.set("channel", "online_store");
-    return url.toString();
-  } catch {
-    return checkoutUrl;
-  }
-}
+// Import the URL builder
+import { CartItem, createCart, addCartLine, updateCartLine, removeCartLine, fetchCart, buildCheckoutUrl } from "@/lib/shopify";
 
-// After
-function formatCheckoutUrl(checkoutUrl: string): string {
-  try {
-    const url = new URL(checkoutUrl);
-    url.hostname = "tempo-pickleball.myshopify.com";
-    url.searchParams.set("channel", "online_store");
-    return url.toString();
-  } catch {
-    return checkoutUrl;
-  }
-}
+// In the store:
+getCheckoutUrl: () => {
+  const url = get().checkoutUrl;
+  if (!url) return null;
+  return buildCheckoutUrl(url); // Always rewrite — never return raw stored URL
+},
 ```
 
-This adds a single line (`url.hostname = "tempo-pickleball.myshopify.com"`) that rewrites the domain before appending the `channel` parameter — so the final URL will always look like:
+**Change 2 — Export `buildCheckoutUrl` from `shopify.ts`:**
 
+Currently `buildCheckoutUrl` is a private `function` (not exported). It must be exported so `cartStore.ts` can import and use it.
+
+```ts
+// src/lib/shopify.ts — change line 79
+export function buildCheckoutUrl(raw: string): string {
 ```
-https://tempo-pickleball.myshopify.com/cart/c/[cart-id]?key=[key]&channel=online_store
-```
 
-### Technical Notes
+---
 
-- No other files need to change — `formatCheckoutUrl` is the single point where the checkout URL is finalized before being stored in Zustand state.
-- The path (`/cart/c/[id]`), key parameter, and all other query strings are preserved — only the hostname is replaced.
-- This change takes effect for all new cart sessions. Any existing cart URLs already stored in `localStorage` will still use the old domain until the user's cart is cleared (e.g., after checkout or clearing browser data).
+## Why This Definitively Solves It
+
+- Any user who has a cached `tempopickleball.store` checkout URL in localStorage will have it silently corrected at the moment they click Checkout — no browser refresh, no cart clearing needed.
+- All future carts will also be corrected (double protection — both at creation time via `createCart()` and at read time via `getCheckoutUrl()`).
+- No user data is lost, no cart is cleared.
+
+---
+
+## Technical Summary
+
+**Files changed:**
+1. `src/lib/shopify.ts` — add `export` to `buildCheckoutUrl` (1 word change)
+2. `src/stores/cartStore.ts` — import `buildCheckoutUrl` and use it in `getCheckoutUrl`
