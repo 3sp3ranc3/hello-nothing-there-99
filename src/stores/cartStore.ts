@@ -2,12 +2,11 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import {
   CartItem,
-  createShopifyCart,
-  addLineToShopifyCart,
-  updateShopifyCartLine,
-  removeLineFromShopifyCart,
-  fetchShopifyCart,
-  formatCheckoutUrl,
+  createCart,
+  addCartLine,
+  updateCartLine,
+  removeCartLine,
+  fetchCart,
 } from "@/lib/shopify";
 
 interface CartStore {
@@ -35,12 +34,13 @@ export const useCartStore = create<CartStore>()(
 
       addItem: async (item) => {
         const { items, cartId, clearCart } = get();
-        const existingItem = items.find((i) => i.variantId === item.variantId);
+        const existing = items.find((i) => i.variantId === item.variantId);
 
         set({ isLoading: true });
         try {
           if (!cartId) {
-            const result = await createShopifyCart({ ...item, lineId: null });
+            // No cart yet — create one
+            const result = await createCart({ ...item, lineId: null });
             if (result) {
               set({
                 cartId: result.cartId,
@@ -48,27 +48,31 @@ export const useCartStore = create<CartStore>()(
                 items: [{ ...item, lineId: result.lineId }],
               });
             }
-          } else if (existingItem) {
-            const newQuantity = existingItem.quantity + item.quantity;
-            if (!existingItem.lineId) return;
-            const result = await updateShopifyCartLine(cartId, existingItem.lineId, newQuantity);
+          } else if (existing) {
+            // Item already in cart — bump quantity
+            if (!existing.lineId) return;
+            const newQty = existing.quantity + item.quantity;
+            const result = await updateCartLine(cartId, existing.lineId, newQty);
             if (result.success) {
-              const currentItems = get().items;
-              set({ items: currentItems.map((i) => (i.variantId === item.variantId ? { ...i, quantity: newQuantity } : i)) });
-            } else if (result.cartNotFound) {
+              set({
+                items: get().items.map((i) =>
+                  i.variantId === item.variantId ? { ...i, quantity: newQty } : i
+                ),
+              });
+            } else if (result.cartGone) {
               clearCart();
             }
           } else {
-            const result = await addLineToShopifyCart(cartId, { ...item, lineId: null });
+            // Add new line to existing cart
+            const result = await addCartLine(cartId, { ...item, lineId: null });
             if (result.success) {
-              const currentItems = get().items;
-              set({ items: [...currentItems, { ...item, lineId: result.lineId ?? null }] });
-            } else if (result.cartNotFound) {
+              set({ items: [...get().items, { ...item, lineId: result.lineId ?? null }] });
+            } else if (result.cartGone) {
               clearCart();
             }
           }
-        } catch (error) {
-          console.error("Failed to add item:", error);
+        } catch (err) {
+          console.error("addItem failed:", err);
         } finally {
           set({ isLoading: false });
         }
@@ -85,15 +89,18 @@ export const useCartStore = create<CartStore>()(
 
         set({ isLoading: true });
         try {
-          const result = await updateShopifyCartLine(cartId, item.lineId, quantity);
+          const result = await updateCartLine(cartId, item.lineId, quantity);
           if (result.success) {
-            const currentItems = get().items;
-            set({ items: currentItems.map((i) => (i.variantId === variantId ? { ...i, quantity } : i)) });
-          } else if (result.cartNotFound) {
+            set({
+              items: get().items.map((i) =>
+                i.variantId === variantId ? { ...i, quantity } : i
+              ),
+            });
+          } else if (result.cartGone) {
             clearCart();
           }
-        } catch (error) {
-          console.error("Failed to update quantity:", error);
+        } catch (err) {
+          console.error("updateQuantity failed:", err);
         } finally {
           set({ isLoading: false });
         }
@@ -106,26 +113,23 @@ export const useCartStore = create<CartStore>()(
 
         set({ isLoading: true });
         try {
-          const result = await removeLineFromShopifyCart(cartId, item.lineId);
+          const result = await removeCartLine(cartId, item.lineId);
           if (result.success) {
-            const currentItems = get().items;
-            const newItems = currentItems.filter((i) => i.variantId !== variantId);
-            newItems.length === 0 ? clearCart() : set({ items: newItems });
-          } else if (result.cartNotFound) {
+            const remaining = get().items.filter((i) => i.variantId !== variantId);
+            remaining.length === 0 ? clearCart() : set({ items: remaining });
+          } else if (result.cartGone) {
             clearCart();
           }
-        } catch (error) {
-          console.error("Failed to remove item:", error);
+        } catch (err) {
+          console.error("removeItem failed:", err);
         } finally {
           set({ isLoading: false });
         }
       },
 
       clearCart: () => set({ items: [], cartId: null, checkoutUrl: null }),
-      getCheckoutUrl: () => {
-        const url = get().checkoutUrl;
-        return url ? formatCheckoutUrl(url) : null;
-      },
+
+      getCheckoutUrl: () => get().checkoutUrl,
 
       syncCart: async () => {
         const { cartId, isSyncing, clearCart } = get();
@@ -133,19 +137,15 @@ export const useCartStore = create<CartStore>()(
 
         set({ isSyncing: true });
         try {
-          const data = await fetchShopifyCart(cartId);
-          // If API call failed (e.g. network error, token issue), preserve cart — don't clear
+          const data = await fetchCart(cartId);
+          // If API fails entirely, preserve local cart — don't clear
           if (!data) return;
           const cart = data?.data?.cart;
-          // Only clear if Shopify explicitly says cart is gone/empty
-          // If cart is null, it means the cart ID no longer exists on Shopify
-          if (cart === null) {
-            clearCart();
-          }
-          // Do NOT clear if totalQuantity === 0 to avoid wiping active carts on API glitches
-        } catch (error) {
-          // On error, preserve local cart state so user doesn't lose checkout URL
-          console.error("Failed to sync cart:", error);
+          // Only clear if Shopify says the cart truly doesn't exist
+          if (cart === null) clearCart();
+        } catch (err) {
+          // Preserve cart on network/auth errors
+          console.error("syncCart failed:", err);
         } finally {
           set({ isSyncing: false });
         }
@@ -154,7 +154,11 @@ export const useCartStore = create<CartStore>()(
     {
       name: "shopify-cart",
       storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({ items: state.items, cartId: state.cartId, checkoutUrl: state.checkoutUrl }),
+      partialize: (state) => ({
+        items: state.items,
+        cartId: state.cartId,
+        checkoutUrl: state.checkoutUrl,
+      }),
     }
   )
 );

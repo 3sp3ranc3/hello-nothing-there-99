@@ -13,7 +13,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import StickyReserveButton from "@/components/ui/StickyReserveButton";
 
 import { useCartStore } from "@/stores/cartStore";
-import { storefrontApiRequest, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
+import { storefrontFetch, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { openCartDrawer } from "@/components/ui/CartDrawer";
 
 import img1 from "@/assets/architect-45deg.webp";
@@ -72,7 +72,7 @@ const TheArchitect = () => {
   const isLoading = useCartStore((s) => s.isLoading);
 
   useEffect(() => {
-    storefrontApiRequest(PRODUCT_QUERY, { handle: "the-architect-batch-002" })
+    storefrontFetch(PRODUCT_QUERY, { handle: "the-architect-batch-002" })
       .then((data) => {
         if (data?.data?.product) {
           setShopifyProduct({ node: data.data.product });
