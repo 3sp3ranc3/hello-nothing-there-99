@@ -143,7 +143,7 @@ export const useCartStore = create<CartStore>()(
           })
           .join(",");
 
-        return `https://tempo-pickleball.myshopify.com/cart/${lineItems}?channel=online_store`;
+        return `https://kgb1q6-ky.myshopify.com/cart/${lineItems}?channel=online_store`;
       },
 
       syncCart: async () => {
