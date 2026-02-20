@@ -131,9 +131,19 @@ export const useCartStore = create<CartStore>()(
       clearCart: () => set({ items: [], cartId: null, checkoutUrl: null }),
 
       getCheckoutUrl: () => {
-        const url = get().checkoutUrl;
-        if (!url) return null;
-        return buildCheckoutUrl(url);
+        const { items } = get();
+        if (items.length === 0) return null;
+
+        // Build standard Shopify cart permalink from items
+        // GraphQL IDs are like "gid://shopify/ProductVariant/12345" — extract the numeric part
+        const lineItems = items
+          .map((item) => {
+            const numericId = item.variantId.split("/").pop();
+            return `${numericId}:${item.quantity}`;
+          })
+          .join(",");
+
+        return `https://tempo-pickleball.myshopify.com/cart/${lineItems}?channel=online_store`;
       },
 
       syncCart: async () => {
