@@ -143,7 +143,7 @@ export const PRODUCT_QUERY = `
 `;
 
 // Helpers
-function formatCheckoutUrl(checkoutUrl: string): string {
+export function formatCheckoutUrl(checkoutUrl: string): string {
   try {
     const url = new URL(checkoutUrl);
     url.hostname = "tempo-pickleball.myshopify.com";
