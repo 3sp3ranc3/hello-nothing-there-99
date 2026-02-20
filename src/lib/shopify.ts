@@ -76,7 +76,7 @@ export async function storefrontFetch(query: string, variables: Record<string, u
 }
 
 // ─── URL helper ───────────────────────────────────────────────────────────────
-function buildCheckoutUrl(raw: string): string {
+export function buildCheckoutUrl(raw: string): string {
   try {
     const url = new URL(raw);
     url.hostname = CHECKOUT_DOMAIN;
