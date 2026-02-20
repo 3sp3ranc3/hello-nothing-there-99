@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 
 // ─── Config ───────────────────────────────────────────────────────────────────
-const SHOPIFY_STORE_DOMAIN = "kgb1q6-ky.myshopify.com";
+const SHOPIFY_STORE_DOMAIN = "tempo-pickleball.myshopify.com";
 const SHOPIFY_API_VERSION = "2025-07";
 const SHOPIFY_STOREFRONT_TOKEN = "1b6f18a5161dfe421119e9d3a09c75c8";
 const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
