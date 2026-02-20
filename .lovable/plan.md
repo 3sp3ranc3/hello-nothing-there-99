@@ -1,61 +1,53 @@
 
-## Performance Analysis: Slow Load on The Architect Page
+## Fix: Force Checkout URL to Use .myshopify.com Domain
 
-There are three distinct causes of the slow page transition, ranked by impact.
+### Problem
 
----
+The Shopify `cartCreate` mutation returns a `checkoutUrl` using the store's custom domain (`tempopickleball.store`). This causes a 404 because the custom domain may not have checkout properly configured or may have a password/redirect in place.
 
-### Root Cause 1 — Heavy images loaded all at once (biggest impact)
+The permanent `.myshopify.com` domain (`tempo-pickleball.myshopify.com`) always works for checkout regardless of custom domain setup.
 
-The page imports 4 large product images plus the topo background PNG directly at the top of the file as static imports. This means the browser must download all of them before the page can render, even though only the first image is visible above the fold.
+### Solution
 
-- `architect-45deg.webp` — hero image (needs to load instantly)
-- `architect-detail.webp`, `architect-specs.webp`, `architect-pair.webp` — gallery images below the fold
-- `topo-background.png` — only used at the very bottom of the page (dark navy section)
+Update the `formatCheckoutUrl` function in `src/lib/shopify.ts` to replace the hostname of whatever URL Shopify returns with `tempo-pickleball.myshopify.com`, while preserving the path, query parameters (including `channel=online_store`), and everything else.
 
-**Fix:** Keep `img1` (the hero) as an eager static import. Convert the remaining 3 gallery images and the `topoBackground` to use the HTML `loading="lazy"` attribute and/or only pass their paths as strings so the browser defers them. The main image in `ProductGallery` should get `loading="eager"` while thumbnails already have `loading="lazy"` — this is correct.
+### Change (Single File)
 
----
+**`src/lib/shopify.ts`** — update `formatCheckoutUrl`:
 
-### Root Cause 2 — No preloading hint for the critical hero image
+```ts
+// Before
+function formatCheckoutUrl(checkoutUrl: string): string {
+  try {
+    const url = new URL(checkoutUrl);
+    url.searchParams.set("channel", "online_store");
+    return url.toString();
+  } catch {
+    return checkoutUrl;
+  }
+}
 
-The browser has no early signal to start downloading `architect-45deg.webp` — it only discovers it once React renders. This delays the Largest Contentful Paint (LCP).
+// After
+function formatCheckoutUrl(checkoutUrl: string): string {
+  try {
+    const url = new URL(checkoutUrl);
+    url.hostname = "tempo-pickleball.myshopify.com";
+    url.searchParams.set("channel", "online_store");
+    return url.toString();
+  } catch {
+    return checkoutUrl;
+  }
+}
+```
 
-**Fix:** Add a `<link rel="preload">` tag in `index.html` for the hero image so the browser starts fetching it in parallel with the JS bundle.
+This adds a single line (`url.hostname = "tempo-pickleball.myshopify.com"`) that rewrites the domain before appending the `channel` parameter — so the final URL will always look like:
 
----
-
-### Root Cause 3 — `MegaFooter` and `StickyReserveButton` ref warnings (minor, but causes extra render work)
-
-The console warnings confirm both components receive refs but are not wrapped in `React.forwardRef`. While this is a React warning and not a crash, it causes additional reconciliation work on first render.
-
-**Fix:** Wrap both components in `React.forwardRef`.
-
----
-
-### Implementation Plan
-
-**File 1: `index.html`**
-- Add `<link rel="preload" as="image" href="/src/assets/architect-45deg.webp">` in `<head>` so the browser begins fetching the hero immediately.
-
-**File 2: `src/pages/products/TheArchitect.tsx`**
-- Change the 3 non-hero gallery images (`img2`, `img3`, `img4`) and `topoBackground` from static imports to string paths using `new URL(..., import.meta.url).href` — this is Vite's recommended pattern for deferred asset loading.
-- Pass the hero image `img1` as `loading="eager"` and the rest as `loading="lazy"` via a prop to `ProductGallery`.
-
-**File 3: `src/components/products/ProductGallery.tsx`**
-- Accept a `priority?: boolean` field per image object.
-- Apply `loading="eager"` to the active/priority image and `loading="lazy"` to thumbnails (already done for thumbnails, needs to apply to the main image slot conditionally).
-
-**File 4: `src/components/layout/MegaFooter.tsx`**
-- Wrap in `React.forwardRef` to fix the console warning and eliminate the extra render reconciliation.
-
-**File 5: `src/components/ui/StickyReserveButton.tsx`**
-- Wrap in `React.forwardRef` to fix the console warning.
-
----
+```
+https://tempo-pickleball.myshopify.com/cart/c/[cart-id]?key=[key]&channel=online_store
+```
 
 ### Technical Notes
 
-- The Shopify API call (network request visible in logs) resolves in ~200ms and is non-blocking — it does not cause the visual slowness, just the "Add to Cart" button being initially disabled.
-- The `topo-background.png` is a PNG (not WebP) applied as a CSS `background-image` at the bottom of the page. Deferring it is safe since the user has to scroll past the entire hero + description + specs before reaching it.
-- The framer-motion animations are scroll-triggered (`whileInView`) so they do not block the initial paint.
+- No other files need to change — `formatCheckoutUrl` is the single point where the checkout URL is finalized before being stored in Zustand state.
+- The path (`/cart/c/[id]`), key parameter, and all other query strings are preserved — only the hostname is replaced.
+- This change takes effect for all new cart sessions. Any existing cart URLs already stored in `localStorage` will still use the old domain until the user's cart is cleared (e.g., after checkout or clearing browser data).
