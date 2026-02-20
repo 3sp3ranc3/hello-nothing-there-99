@@ -134,10 +134,17 @@ export const useCartStore = create<CartStore>()(
         set({ isSyncing: true });
         try {
           const data = await fetchShopifyCart(cartId);
+          // If API call failed (e.g. network error, token issue), preserve cart — don't clear
           if (!data) return;
           const cart = data?.data?.cart;
-          if (!cart || cart.totalQuantity === 0) clearCart();
+          // Only clear if Shopify explicitly says cart is gone/empty
+          // If cart is null, it means the cart ID no longer exists on Shopify
+          if (cart === null) {
+            clearCart();
+          }
+          // Do NOT clear if totalQuantity === 0 to avoid wiping active carts on API glitches
         } catch (error) {
+          // On error, preserve local cart state so user doesn't lose checkout URL
           console.error("Failed to sync cart:", error);
         } finally {
           set({ isSyncing: false });
