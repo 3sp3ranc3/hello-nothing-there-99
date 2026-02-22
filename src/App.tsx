@@ -42,7 +42,7 @@ const AppContent = () => {
   useShopifyPageAnalytics();
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <Suspense fallback={<PageLoader />}>
         <Routes>
@@ -61,7 +61,7 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </>
   );
 };
 
@@ -70,7 +70,9 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <AppContent />
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
 );
