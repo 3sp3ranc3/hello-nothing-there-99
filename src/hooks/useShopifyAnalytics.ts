@@ -10,7 +10,7 @@ import { trackPageView } from "@/lib/shopify-analytics";
  */
 export function useShopifyPageAnalytics() {
   // Sets _shopify_y (unique token) and _shopify_s (session token) cookies
-  useShopifyCookies({ hasUserConsent: true });
+  useShopifyCookies({ hasUserConsent: true, domain: "tempopickleball.store" });
 
   const location = useLocation();
 

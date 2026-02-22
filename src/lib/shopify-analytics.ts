@@ -9,6 +9,7 @@ import {
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 const SHOPIFY_STORE_DOMAIN = "checkout.tempopickleball.store";
+const SHOPIFY_STOREFRONT_ID = "156470";
 
 // We need the shop's GID for analytics. Query it once and cache.
 let cachedShopId: string | null = null;
@@ -29,7 +30,7 @@ function buildBasePayload(shopId: string): Omit<ShopifyPageViewPayload, "hasUser
     ...getClientBrowserParameters(),
     shopId,
     shopifySalesChannel: ShopifySalesChannel.headless,
-    storefrontId: undefined,
+    storefrontId: SHOPIFY_STOREFRONT_ID,
     currency: "AUD",
   } as Omit<ShopifyPageViewPayload, "hasUserConsent">;
 }
