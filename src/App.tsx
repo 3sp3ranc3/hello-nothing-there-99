@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import ScrollToTop from "@/components/layout/ScrollToTop";
 import { useCartSync } from "@/hooks/useCartSync";
+import { useShopifyPageAnalytics } from "@/hooks/useShopifyAnalytics";
 
 // Eager load main pages
 import Index from "./pages/Index";
@@ -38,6 +39,7 @@ const PageLoader = () => (
 
 const AppContent = () => {
   useCartSync();
+  useShopifyPageAnalytics();
 
   return (
     <BrowserRouter>
