@@ -77,7 +77,7 @@ const SpecCard = ({
     const t = setTimeout(() => {
       setFlipped(true);
       setHasFlippedOnce(true);
-    }, 1600);
+    }, 600);
     return () => clearTimeout(t);
   }, [isFirst, isInView]);
 

@@ -73,7 +73,7 @@ const ProductGallery = ({ images }: ProductGalleryProps) => {
           <img
             src={images[activeIndex].src}
             alt={images[activeIndex].alt}
-            className="w-full h-full object-cover transition-transform duration-200 ease-out"
+            className="w-full h-full object-cover transition-transform duration-200 ease-out pointer-events-none"
             loading={images[activeIndex].priority ? "eager" : "lazy"}
             fetchPriority={images[activeIndex].priority ? "high" : "auto"}
             style={{
