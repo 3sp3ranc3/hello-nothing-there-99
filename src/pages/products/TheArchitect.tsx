@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
+import { trackProductView, trackAddToCart } from "@/lib/shopify-analytics";
 import { ArrowRight, ShieldCheck, Truck, Loader2 } from "lucide-react";
 
 
@@ -75,7 +76,22 @@ const TheArchitect = () => {
     storefrontFetch(PRODUCT_QUERY, { handle: "the-architect-batch-002" })
       .then((data) => {
         if (data?.data?.product) {
-          setShopifyProduct({ node: data.data.product });
+          const product = { node: data.data.product };
+          setShopifyProduct(product);
+
+          // Track product view for Shopify analytics
+          const variant = product.node.variants.edges[0]?.node;
+          if (variant) {
+            trackProductView({
+              productGid: product.node.id,
+              variantGid: variant.id,
+              name: product.node.title,
+              variantName: variant.title,
+              brand: "Tempo Pickleball",
+              price: variant.price.amount,
+              category: "Pickleball Paddles",
+            });
+          }
         }
       })
       .catch(console.error);
@@ -94,6 +110,22 @@ const TheArchitect = () => {
       quantity: 1,
       selectedOptions: variant.selectedOptions || [],
     });
+
+    // Track add-to-cart for Shopify analytics
+    const cartId = useCartStore.getState().cartId;
+    if (cartId) {
+      trackAddToCart({
+        cartId,
+        productGid: shopifyProduct.node.id,
+        variantGid: variant.id,
+        name: shopifyProduct.node.title,
+        variantName: variant.title,
+        brand: "Tempo Pickleball",
+        price: variant.price.amount,
+        quantity: 1,
+        category: "Pickleball Paddles",
+      });
+    }
 
     openCartDrawer();
   }, [shopifyProduct, addItem]);
