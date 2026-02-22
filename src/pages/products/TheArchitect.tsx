@@ -41,7 +41,7 @@ const specs = [
   { label: "CORE", value: "TRUFOAM", description: "4th generation polymer core. The best available. Delivers maximum legal power (0.43 PBCoR) with optimal energy transfer and durability.", icon: "honeycomb" as const },
   { label: "SURFACE", value: "T700 Carbon Fiber", description: "Sandblasted texture finish for the best spin generation.", icon: "surface" as const },
   { label: "DIMENSIONS", value: "201.2mm x 272mm x 16mm", description: "The optimal paddle shape. Engineered for maximum sweet spot, surgical precision, and uncompromising control.", icon: "tape-measure" as const },
-  { label: "WEIGHT", value: "8.2 oz", description: "Balanced weight optimized for both power and control.", icon: "balance" as const },
+  { label: "WEIGHT", value: "225g", description: "Balanced weight optimised for both power and control.", icon: "balance" as const },
   { label: "GRIP", value: "130mm", description: "Elongated handle for two-handed backhand versatility.", icon: "paddle" as const },
   { label: "WARRANTY", value: "12-Month Limited", description: "Coverage against manufacturer defects and workmanship flaws.", icon: "warranty" as const },
 ];
@@ -129,7 +129,7 @@ const TheArchitect = () => {
                     <h1 className="tempo-headline text-4xl md:text-5xl lg:text-6xl mb-2">THE ARCHITECT</h1>
                     <p className="text-lg text-tempo-carbon/50 font-light mb-4">Batch 002</p>
                     <p className="tempo-body text-muted-foreground leading-relaxed">
-                      The tactician's instrument. Engineered for absolute placement, vibration control, and neutralizing opponent power. Built with elite-grade materials trusted at the highest levels of competition.
+                      The tactician's instrument. Engineered for absolute placement, vibration control, and neutralising opponent power. Built with elite-grade materials trusted at the highest levels of competition.
                     </p>
                   </motion.div>
 

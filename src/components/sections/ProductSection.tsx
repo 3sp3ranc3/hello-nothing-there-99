@@ -35,7 +35,7 @@ const ProductSection = () => {
           </h2>
           <p className="text-lg text-tempo-carbon/60 max-w-2xl mx-auto">
             The tactician's instrument. Engineered for absolute placement, vibration control, 
-            and neutralizing opponent power.
+            and neutralising opponent power.
           </p>
         </motion.div>
 

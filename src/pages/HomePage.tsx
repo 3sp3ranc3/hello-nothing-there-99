@@ -43,7 +43,7 @@ const HomePage = () => {
               Discover<br />The Architect
             </h2>
             <p className="text-tempo-bone/60 max-w-md mb-10">
-              Engineered for absolute placement, vibration control, and neutralizing opponent power.
+              Engineered for absolute placement, vibration control, and neutralising opponent power.
             </p>
             <Link to="/products/the-architect">
               <motion.span
