@@ -17,18 +17,20 @@ import { useCartStore } from "@/stores/cartStore";
 import { storefrontFetch, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { openCartDrawer } from "@/components/ui/CartDrawer";
 
-import img1 from "@/assets/architect-45deg.webp";
+import img1 from "@/assets/architect-45deg-white.webp";
+import img2 from "@/assets/architect-front-white.webp";
 
-const img2 = new URL("@/assets/architect-detail.webp", import.meta.url).href;
-const img3 = new URL("@/assets/architect-specs.webp", import.meta.url).href;
-const img4 = new URL("@/assets/architect-pair.webp", import.meta.url).href;
+const img3 = new URL("@/assets/architect-detail.webp", import.meta.url).href;
+const img4 = new URL("@/assets/architect-specs.webp", import.meta.url).href;
+const img5 = new URL("@/assets/architect-pair.webp", import.meta.url).href;
 const topoBackground = new URL("@/assets/topo-background.png", import.meta.url).href;
 
 const productImages = [
   { src: img1, alt: "The Architect — 45° angle view", priority: true },
-  { src: img2, alt: "The Architect — Surface detail", priority: false },
-  { src: img3, alt: "The Architect — Floating specs", priority: false },
-  { src: img4, alt: "The Architect — Great engineering", priority: false },
+  { src: img2, alt: "The Architect — Front view", priority: true },
+  { src: img3, alt: "The Architect — Surface detail", priority: false },
+  { src: img4, alt: "The Architect — Floating specs", priority: false },
+  { src: img5, alt: "The Architect — Great engineering", priority: false },
 ];
 
 const features = [
