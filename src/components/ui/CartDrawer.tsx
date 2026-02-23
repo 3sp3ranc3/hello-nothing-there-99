@@ -69,9 +69,11 @@ export const CartDrawer = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h4 className="text-sm font-semibold text-tempo-carbon truncate">{item.product.node.title}</h4>
-                      <p className="text-xs text-tempo-carbon/50 mt-1">
-                        {item.selectedOptions.map((o) => o.value).join(" · ")}
-                      </p>
+                      {item.selectedOptions.filter((o) => o.value !== "Default Title").length > 0 && (
+                        <p className="text-xs text-tempo-carbon/50 mt-1">
+                          {item.selectedOptions.filter((o) => o.value !== "Default Title").map((o) => o.value).join(" · ")}
+                        </p>
+                      )}
                       <p className="text-sm font-bold text-tempo-navy mt-2">
                         ${parseFloat(item.price.amount).toFixed(2)}
                       </p>
