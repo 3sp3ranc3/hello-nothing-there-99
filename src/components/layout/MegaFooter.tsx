@@ -26,9 +26,9 @@ const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
     
     const { error } = await supabase
       .from("newsletter_subscribers")
-      .upsert({ email: email.trim().toLowerCase(), source: "footer" }, { onConflict: "email" });
+      .insert({ email: email.trim().toLowerCase(), source: "footer" });
 
-    if (error) {
+    if (error && error.code !== "23505") {
       toast({
         title: "Something went wrong",
         description: "Please try again later.",
