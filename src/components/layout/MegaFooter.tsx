@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Instagram, CreditCard, Wallet, Mail } from "lucide-react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
   const [email, setEmail] = useState("");
@@ -23,15 +24,24 @@ const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const { error } = await supabase
+      .from("newsletter_subscribers")
+      .upsert({ email: email.trim().toLowerCase(), source: "footer" }, { onConflict: "email" });
+
+    if (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Welcome to the Locker Room! 🏆",
+        description: "You're now on the list for exclusive drops and insider access.",
+      });
+      setEmail("");
+    }
     
-    toast({
-      title: "Welcome to the Locker Room! 🏆",
-      description: "You're now on the list for exclusive drops and insider access.",
-    });
-    
-    setEmail("");
     setIsSubmitting(false);
   };
 
