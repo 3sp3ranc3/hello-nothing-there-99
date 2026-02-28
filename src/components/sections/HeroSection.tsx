@@ -89,9 +89,12 @@ const HeroSection = () => {
             transition={{ duration: 1.2, delay: 2.6 }}
             className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-6 px-10 lg:px-20 xl:px-28"
           >
-            <div className="grid grid-cols-4 gap-x-8">
+            <div className="flex items-start justify-between">
               <div>
-                <p className="text-[13px] font-medium text-white tracking-wide">★★★★★ Rated</p>
+                <p className="text-[13px] font-medium text-white tracking-wide flex items-center gap-1.5">
+                  <span className="text-[#C9A84C] drop-shadow-[0_0_4px_rgba(201,168,76,0.4)]">★★★★★</span>
+                  Rated
+                </p>
                 <p className="text-[13px] text-white/50 mt-1">Batch 001 · Sold out in Sydney</p>
               </div>
               <div>
