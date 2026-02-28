@@ -28,7 +28,7 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25, ease }}
+              transition={{ duration: 1, delay: 0.4, ease }}
               className="text-xs uppercase tracking-[0.3em] font-medium text-white/60 mb-4"
             >
               Batch 002
@@ -37,7 +37,7 @@ const HeroSection = () => {
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.35, ease }}
+              transition={{ duration: 1, delay: 0.7, ease }}
               className="text-6xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight"
               style={{ lineHeight: 0.9 }}
             >
@@ -47,7 +47,7 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.45, ease }}
+              transition={{ duration: 1, delay: 1.0, ease }}
               className="text-lg lg:text-2xl font-medium uppercase tracking-[0.15em] mt-3 text-white/90"
             >
               The Architect
@@ -56,7 +56,7 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.55, ease }}
+              transition={{ duration: 1, delay: 1.3, ease }}
               className="text-xs uppercase tracking-[0.25em] mt-5 text-white/50"
             >
               T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
@@ -65,7 +65,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.65, ease }}
+              transition={{ duration: 1, delay: 1.6, ease }}
               className="mt-8"
             >
               <Link
@@ -79,28 +79,17 @@ const HeroSection = () => {
           </div>
         )}
 
-        {/* Trust Bar */}
+        {/* Engineered in Sydney - delayed */}
         {imageLoaded && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="absolute bottom-0 left-0 right-0 z-10"
+            transition={{ duration: 1.2, delay: 2.2 }}
+            className="absolute bottom-6 left-0 right-0 z-10"
           >
-            <div className="py-4">
-              <p className="text-center text-xs uppercase tracking-[0.25em] font-medium text-white/50">
-                Engineered in Sydney
-              </p>
-            </div>
-            <div className="flex justify-center pb-5">
-              <motion.div
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-                className="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center pt-1.5"
-              >
-                <div className="w-1 h-1.5 rounded-full bg-white/50" />
-              </motion.div>
-            </div>
+            <p className="text-center text-xs uppercase tracking-[0.25em] font-medium text-white/50">
+              Engineered in Sydney
+            </p>
           </motion.div>
         )}
       </div>
@@ -120,7 +109,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 1.2, delay: 2.0 }}
             className="absolute bottom-0 left-0 right-0 py-3"
           >
             <p className="text-center text-[10px] uppercase tracking-[0.25em] font-medium text-white/50">
@@ -133,7 +122,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease }}
+            transition={{ duration: 1, delay: 0.4, ease }}
             className="text-xs uppercase tracking-[0.3em] font-medium text-tempo-carbon/50 mb-3"
           >
             Batch 002
@@ -142,7 +131,7 @@ const HeroSection = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease }}
+            transition={{ duration: 1, delay: 0.7, ease }}
             className="text-4xl font-black uppercase tracking-[0.15em] text-tempo-carbon"
             style={{ lineHeight: 0.9 }}
           >
@@ -152,7 +141,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease }}
+            transition={{ duration: 1, delay: 1.0, ease }}
             className="text-base font-medium uppercase tracking-[0.2em] mt-3 text-tempo-carbon/80"
           >
             The Architect
@@ -161,7 +150,7 @@ const HeroSection = () => {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.55, ease }}
+            transition={{ duration: 1, delay: 1.3, ease }}
             className="text-[10px] uppercase tracking-[0.25em] mt-4 text-tempo-carbon/40"
           >
             T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
@@ -170,7 +159,7 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease }}
+            transition={{ duration: 1, delay: 1.6, ease }}
             className="mt-6"
           >
             <Link
