@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CartDrawer } from "@/components/ui/CartDrawer";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 
 const BatchNavbar = () => {
   const location = useLocation();
@@ -59,11 +59,11 @@ const BatchNavbar = () => {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex items-center justify-between h-12 lg:h-14">
+          <div className="flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
             <Link
               to="/"
-              className={`text-base lg:text-lg font-black tracking-[0.2em] uppercase transition-colors ${textColor}`}
+              className={`text-xl lg:text-2xl font-black tracking-[0.2em] uppercase transition-colors leading-none ${textColor}`}
             >
               TEMPO
             </Link>
@@ -102,7 +102,7 @@ const BatchNavbar = () => {
 
               <Link
                 to="/about"
-                className={`relative py-2 transition-colors duration-300 ${
+                className={`relative flex items-center py-2 transition-colors duration-300 ${
                   isAbout ? textColor : `${textMuted} ${textHover}`
                 }`}
               >

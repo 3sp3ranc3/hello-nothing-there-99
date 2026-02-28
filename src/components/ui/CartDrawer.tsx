@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Minus, Plus, Trash2, ExternalLink, Loader2, ShoppingBag } from "lucide-react";
+import { Minus, Plus, Trash2, ExternalLink, Loader2, ShoppingBag, ShoppingCart } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
 
 // Simple event bus to open the cart drawer from anywhere
@@ -35,7 +35,8 @@ export const CartDrawer = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <button className="text-xs uppercase tracking-[0.15em] font-medium text-current transition-colors relative">
+        <button className="flex items-center gap-2 text-xs lg:text-sm uppercase tracking-[0.12em] font-medium text-current transition-colors relative">
+          <ShoppingCart className="w-4 h-4" />
           Cart ({totalItems})
         </button>
       </SheetTrigger>
