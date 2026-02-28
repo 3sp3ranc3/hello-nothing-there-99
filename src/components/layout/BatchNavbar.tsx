@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { CartDrawer } from "@/components/ui/CartDrawer";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const BatchNavbar = () => {
   const location = useLocation();
@@ -44,7 +44,6 @@ const BatchNavbar = () => {
 
   const textColor = isDark ? "text-white" : "text-tempo-carbon";
   const textMuted = isDark ? "text-white/80" : "text-tempo-carbon/50";
-  const textHover = isDark ? "hover:text-white" : "hover:text-tempo-carbon";
 
   return (
     <>
@@ -58,26 +57,26 @@ const BatchNavbar = () => {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14 lg:h-16">
             {/* Logo */}
             <Link
               to="/"
-              className={`text-xl lg:text-2xl font-black tracking-[0.2em] uppercase transition-colors leading-none ${textColor}`}
+              className={`text-2xl lg:text-3xl font-black tracking-[0.2em] uppercase transition-colors leading-none ${textColor}`}
             >
               TEMPO
             </Link>
 
             {/* Desktop Nav Links */}
-            <div className="hidden md:flex items-center gap-8 lg:gap-10">
+            <div className="hidden md:flex items-center gap-8 lg:gap-10 group/nav">
               <Link
                 to="/products/the-architect"
-                className={`relative flex items-center gap-2 py-2 transition-colors duration-300 ${
-                  isBatch002 ? textColor : `${textMuted} ${textHover}`
+                className={`relative flex items-center gap-2 py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                  isBatch002 ? textColor : textMuted
                 }`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 002
                 </span>
                 {isBatch002 && (
@@ -87,12 +86,12 @@ const BatchNavbar = () => {
 
               <Link
                 to="/batch-001"
-                className={`relative flex items-center gap-2 py-2 transition-colors duration-300 ${
-                  isBatch001 ? textColor : `${textMuted} ${textHover}`
+                className={`relative flex items-center gap-2 py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                  isBatch001 ? textColor : textMuted
                 }`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 001
                 </span>
                 {isBatch001 && (
@@ -102,11 +101,11 @@ const BatchNavbar = () => {
 
               <Link
                 to="/about"
-                className={`relative flex items-center py-2 transition-colors duration-300 ${
-                  isAbout ? textColor : `${textMuted} ${textHover}`
+                className={`relative flex items-center py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                  isAbout ? textColor : textMuted
                 }`}
               >
-                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   About
                 </span>
                 {isAbout && (
@@ -117,7 +116,7 @@ const BatchNavbar = () => {
 
             {/* Right Side: Cart + Mobile Toggle */}
             <div className="flex items-center gap-4">
-              <div className={`transition-colors ${textMuted} ${textHover}`}>
+              <div className={`transition-colors ${textColor}`}>
                 <CartDrawer />
               </div>
 
@@ -127,7 +126,7 @@ const BatchNavbar = () => {
                 className={`md:hidden transition-colors ${textColor}`}
                 aria-label="Toggle menu"
               >
-                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+                {mobileOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
             </div>
           </div>
