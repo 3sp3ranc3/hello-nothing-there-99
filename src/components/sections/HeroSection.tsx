@@ -43,8 +43,8 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3, ease }}
-              className="text-[4.5rem] lg:text-[5rem] text-white mb-5"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
+              className="text-[5.4rem] lg:text-[6rem] text-white mb-5"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
               Elite Materials.<br />Honest Pricing.
             </motion.h1>
@@ -68,12 +68,13 @@ const HeroSection = () => {
             >
               <Link
                 to="/products/the-architect"
-                className="group inline-flex items-center bg-white text-tempo-carbon rounded-full overflow-hidden hover:scale-[1.03] transition-transform duration-300"
+                className="group relative inline-flex items-center bg-white text-tempo-carbon rounded-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]"
               >
-                <span className="px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold">
+                <span className="absolute inset-0 bg-tempo-carbon origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full" />
+                <span className="relative z-10 px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold group-hover:text-tempo-bone transition-colors duration-500">
                   Pre-order now
                 </span>
-                <span className="px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 bg-tempo-carbon/[0.03]">
+                <span className="relative z-10 px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 group-hover:border-white/10 bg-tempo-carbon/[0.03] group-hover:text-tempo-bone transition-colors duration-500">
                   $135
                 </span>
               </Link>
@@ -123,7 +124,7 @@ const HeroSection = () => {
               {/* Spec 2 */}
               <div>
                 <p className="text-[13px] font-medium text-white tracking-wide">Exceptional spin. Every rally.</p>
-                <p className="text-[13px] text-white/50 mt-1">T700 carbon · sandblasted face</p>
+                <p className="text-[13px] text-white/50 mt-1">T700 carbon w/ sandblasted finish</p>
               </div>
             </div>
           </motion.div>
@@ -192,8 +193,8 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease }}
-            className="text-[2.5rem] text-tempo-carbon mb-4"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
+            className="text-[3rem] text-tempo-carbon mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
           >
             Elite Materials.<br />Honest Pricing.
           </motion.h1>
