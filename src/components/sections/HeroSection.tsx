@@ -89,25 +89,32 @@ const HeroSection = () => {
             transition={{ duration: 1.2, delay: 2.6 }}
             className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-6 px-10 lg:px-20 xl:px-28"
           >
-            <div className="flex items-start justify-between">
-              <div>
-                <p className="text-[13px] font-medium text-white tracking-wide flex items-center gap-1.5">
-                  <span className="text-[#C9A84C] drop-shadow-[0_0_4px_rgba(201,168,76,0.4)]">★★★★★</span>
-                  Rated
-                </p>
-                <p className="text-[13px] text-white/50 mt-1">Batch 001 · Sold out in Sydney</p>
+            <div className="flex items-center justify-between">
+              {/* Rating badge */}
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-4 h-4 text-[#C9A84C] drop-shadow-[0_0_6px_rgba(201,168,76,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-[13px] font-medium text-white tracking-wide">4.9 rating</p>
+                  <p className="text-[13px] text-white/50 mt-0.5">Batch 001 · Sold out in Sydney</p>
+                </div>
               </div>
+
+              {/* Spec 1 */}
               <div>
                 <p className="text-[13px] font-medium text-white tracking-wide">Maximum Legal Power</p>
                 <p className="text-[13px] text-white/50 mt-1">Trufoam™ technology</p>
               </div>
+
+              {/* Spec 2 */}
               <div>
                 <p className="text-[13px] font-medium text-white tracking-wide">Exceptional spin. Every rally.</p>
                 <p className="text-[13px] text-white/50 mt-1">T700 carbon · sandblasted face</p>
-              </div>
-              <div>
-                <p className="text-[13px] font-medium text-white tracking-wide">Built for the kitchen</p>
-                <p className="text-[13px] text-white/50 mt-1">16mm wide-body</p>
               </div>
             </div>
           </motion.div>
@@ -132,22 +139,27 @@ const HeroSection = () => {
             transition={{ duration: 1.2, delay: 2.0 }}
             className="absolute bottom-0 left-0 right-0 border-t border-white/10 py-4 px-6"
           >
-            <div className="grid grid-cols-2 gap-x-6 gap-y-3">
-              <div>
-                <p className="text-[10px] font-medium text-white">★★★★★ Rated</p>
-                <p className="text-[10px] text-white/50 mt-0.5">Batch 001 · Sold out in Sydney</p>
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-3 h-3 text-[#C9A84C] drop-shadow-[0_0_4px_rgba(201,168,76,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-white">4.9 rating</p>
+                  <p className="text-[10px] text-white/50 mt-0.5">Batch 001 · Sold out</p>
+                </div>
               </div>
               <div>
                 <p className="text-[10px] font-medium text-white">Maximum Legal Power</p>
                 <p className="text-[10px] text-white/50 mt-0.5">Trufoam™ technology</p>
               </div>
               <div>
-                <p className="text-[10px] font-medium text-white">Exceptional spin. Every rally.</p>
-                <p className="text-[10px] text-white/50 mt-0.5">T700 carbon · sandblasted face</p>
-              </div>
-              <div>
-                <p className="text-[10px] font-medium text-white">Built for the kitchen</p>
-                <p className="text-[10px] text-white/50 mt-0.5">16mm wide-body</p>
+                <p className="text-[10px] font-medium text-white">Exceptional spin</p>
+                <p className="text-[10px] text-white/50 mt-0.5">T700 carbon · sandblasted</p>
               </div>
             </div>
           </motion.div>
