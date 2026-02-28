@@ -30,9 +30,9 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
-              className="mb-8"
+              className="mb-5"
             >
-              <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full text-[13px] font-medium text-white/90 tracking-wide">
+              <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent border border-white/20 rounded-full text-[13px] font-medium text-white/80 tracking-wide">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 Batch 002 · 250 units
               </span>
@@ -87,11 +87,16 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 2.6 }}
-            className="absolute bottom-0 left-0 right-0 z-10 bg-black/40 backdrop-blur-sm border-t border-white/10 py-3"
+            className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-5 px-10 lg:px-20 xl:px-28"
           >
-            <p className="text-center text-[11px] uppercase tracking-[0.2em] font-medium text-white/60">
-              Refined from 300+ hours of athlete testing in Sydney
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-[13px] uppercase tracking-[0.15em] font-medium text-white/50">
+                T700 Carbon &nbsp;|&nbsp; 16mm &nbsp;|&nbsp; 4th Gen Core
+              </p>
+              <p className="text-[13px] uppercase tracking-[0.15em] font-medium text-white/50">
+                Engineered in Sydney
+              </p>
+            </div>
           </motion.div>
         )}
       </div>
@@ -112,11 +117,16 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 2.0 }}
-            className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm border-t border-white/10 py-3"
+            className="absolute bottom-0 left-0 right-0 border-t border-white/10 py-4 px-6"
           >
-            <p className="text-center text-[10px] uppercase tracking-[0.2em] font-medium text-white/60">
-              Refined from 300+ hours of athlete testing in Sydney
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] uppercase tracking-[0.15em] font-medium text-white/50">
+                T700 Carbon | 16mm | 4th Gen Core
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.15em] font-medium text-white/50">
+                Engineered in Sydney
+              </p>
+            </div>
           </motion.div>
         </div>
 
