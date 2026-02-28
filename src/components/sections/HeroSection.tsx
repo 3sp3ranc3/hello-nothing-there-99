@@ -87,7 +87,7 @@ const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 2.6 }}
-            className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-6 px-10 lg:px-20 xl:px-28"
+            className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-8 px-10 lg:px-20 xl:px-28"
           >
             <div className="flex items-center justify-between">
               {/* Rating badge */}
