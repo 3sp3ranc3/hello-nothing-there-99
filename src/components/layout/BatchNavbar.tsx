@@ -43,7 +43,7 @@ const BatchNavbar = () => {
   const isDark = isHome && !scrolled;
 
   const textColor = isDark ? "text-white" : "text-tempo-carbon";
-  const textMuted = isDark ? "text-white/60" : "text-tempo-carbon/50";
+  const textMuted = isDark ? "text-white/80" : "text-tempo-carbon/50";
   const textHover = isDark ? "hover:text-white" : "hover:text-tempo-carbon";
 
   return (
@@ -77,7 +77,7 @@ const BatchNavbar = () => {
                 }`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[10px] lg:text-xs uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 002
                 </span>
                 {isBatch002 && (
@@ -92,7 +92,7 @@ const BatchNavbar = () => {
                 }`}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
-                <span className="text-[10px] lg:text-xs uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 001
                 </span>
                 {isBatch001 && (
@@ -106,7 +106,7 @@ const BatchNavbar = () => {
                   isAbout ? textColor : `${textMuted} ${textHover}`
                 }`}
               >
-                <span className="text-[10px] lg:text-xs uppercase tracking-[0.12em] font-medium whitespace-nowrap">
+                <span className="text-xs lg:text-sm uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   About
                 </span>
                 {isAbout && (
