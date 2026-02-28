@@ -18,91 +18,116 @@ const HeroSection = () => {
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${imageLoaded ? "opacity-100" : "opacity-0"}`}
           loading="eager"
           fetchPriority="high"
-          onLoad={() => setImageLoaded(true)} />
-
+          onLoad={() => setImageLoaded(true)}
+        />
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
-        {imageLoaded &&
-        <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-12 lg:px-24 max-w-3xl">
-            <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease }}
-            className="text-xs uppercase tracking-[0.3em] font-medium text-white/60 mb-4">
+      {imageLoaded && (
+          <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
+            {/* Batch pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease }}
+              className="mb-5"
+            >
+              <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent border border-white/20 rounded-full text-[13px] font-medium text-white/80 tracking-wide">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                Batch 002 · 250 units
+              </span>
+            </motion.div>
 
-              Batch 002
-            </motion.p>
-
+            {/* Main headline */}
             <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease }}
-            className="text-6xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight"
-            style={{ lineHeight: 0.9 }}>
-
-              TEMPO
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.3, ease }}
+              className="text-[4.5rem] lg:text-[5rem] text-white mb-5"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
+            >
+              Elite Materials.<br />Honest Pricing.
             </motion.h1>
 
+            {/* Subheadline */}
             <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease }}
-            className="text-lg lg:text-2xl font-medium uppercase tracking-[0.15em] mt-3 text-white/90">
-
-              The Architect
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.0, ease }}
+              className="text-base lg:text-lg text-white/60 mb-10"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
+            >
+              Not a trade-off. Both.
             </motion.p>
 
-            <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.55, ease }}
-            className="text-xs uppercase tracking-[0.25em] mt-5 text-white/50">
-
-              T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
-            </motion.p>
-
+            {/* CTA */}
             <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease }}
-            className="mt-8">
-
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 1.4, ease }}
+            >
               <Link
-              to="/products/the-architect"
-              className="inline-flex items-center gap-2.5 px-8 py-3 border border-white/80 rounded-full text-sm uppercase tracking-widest font-medium text-white hover:bg-white hover:text-tempo-carbon transition-all duration-300">
-
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                Available for Preorder Now
+                to="/products/the-architect"
+                className="group inline-flex items-center bg-white text-tempo-carbon rounded-full overflow-hidden hover:scale-[1.03] transition-transform duration-300"
+              >
+                <span className="px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold">
+                  Pre-order now
+                </span>
+                <span className="px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 bg-tempo-carbon/[0.03]">
+                  $135
+                </span>
               </Link>
             </motion.div>
           </div>
-        }
+        )}
 
-        {/* Trust Bar */}
-        {imageLoaded &&
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="absolute bottom-0 left-0 right-0 z-10">
+        {/* Trust bar */}
+        {imageLoaded && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 2.6 }}
+            className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-8 px-10 lg:px-20 xl:px-28"
+          >
+            <div className="flex items-center justify-between">
+              {/* Rating badge */}
+              <div className="flex items-center gap-4">
+                <div className="flex flex-col items-center gap-0.5">
+                  <div className="flex items-center gap-1">
+                    {[0, 1, 2].map((i) => (
+                      <svg key={i} className="w-5 h-5 text-[#C9A84C] drop-shadow-[0_0_6px_rgba(201,168,76,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[3, 4].map((i) => (
+                      <svg key={i} className="w-5 h-5 text-[#C9A84C] drop-shadow-[0_0_6px_rgba(201,168,76,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-[13px] font-medium text-white tracking-wide">4.9 rating</p>
+                  <p className="text-[13px] text-white/50 mt-0.5">Batch 001 · Sold out in Sydney</p>
+                </div>
+              </div>
 
-            <div className="py-4">
-              <p className="text-center text-xs uppercase tracking-[0.25em] font-medium text-white/50">
-                Engineered in Sydney
-              </p>
-            </div>
-            <div className="flex justify-center pb-5">
-              <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-              className="w-5 h-8 rounded-full border border-white/30 flex items-start justify-center pt-1.5">
+              {/* Spec 1 */}
+              <div>
+                <p className="text-[13px] font-medium text-white tracking-wide">Maximum Legal Power</p>
+                <p className="text-[13px] text-white/50 mt-1">Trufoam™ technology</p>
+              </div>
 
-                <div className="w-1 h-1.5 rounded-full bg-white/50" />
-              </motion.div>
+              {/* Spec 2 */}
+              <div>
+                <p className="text-[13px] font-medium text-white tracking-wide">Exceptional spin. Every rally.</p>
+                <p className="text-[13px] text-white/50 mt-1">T700 carbon · sandblasted face</p>
+              </div>
             </div>
           </motion.div>
-        }
+        )}
       </div>
 
       {/* Mobile: image then text below */}
@@ -113,78 +138,97 @@ const HeroSection = () => {
             alt="Tempo Architect paddle held on court"
             className="w-full h-full object-cover"
             loading="eager"
-            fetchPriority="high" />
-
+            fetchPriority="high"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="absolute bottom-0 left-0 right-0 py-3">
-
-            <p className="text-center text-[10px] uppercase tracking-[0.25em] font-medium text-white/50">
-              T700 carbon w/ sandblasted face
-            </p>
+            transition={{ duration: 1.2, delay: 2.0 }}
+            className="absolute bottom-0 left-0 right-0 border-t border-white/10 py-4 px-6"
+          >
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="w-3 h-3 text-[#C9A84C] drop-shadow-[0_0_4px_rgba(201,168,76,0.5)]" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-[10px] font-medium text-white">4.9 rating</p>
+                  <p className="text-[10px] text-white/50 mt-0.5">Batch 001 · Sold out</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-[10px] font-medium text-white">Maximum Legal Power</p>
+                <p className="text-[10px] text-white/50 mt-0.5">Trufoam™ technology</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-medium text-white">Exceptional spin</p>
+                <p className="text-[10px] text-white/50 mt-0.5">T700 carbon · sandblasted</p>
+              </div>
+            </div>
           </motion.div>
         </div>
 
-        <div className="flex flex-col items-center text-center px-6 py-10 bg-tempo-bone">
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
+        <div className="flex flex-col items-start px-6 py-12 bg-tempo-bone">
+          {/* Batch pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.25, ease }}
-            className="text-xs uppercase tracking-[0.3em] font-medium text-tempo-carbon/50 mb-3">
-
-            Batch 002
-          </motion.p>
+            transition={{ duration: 0.6, ease }}
+            className="mb-6"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-tempo-carbon/5 border border-tempo-carbon/10 rounded-full text-[12px] font-medium text-tempo-carbon/80 tracking-wide">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              Batch 002 · 250 units
+            </span>
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease }}
-            className="text-4xl font-black uppercase tracking-[0.15em] text-tempo-carbon"
-            style={{ lineHeight: 0.9 }}>
-
-            TEMPO
+            transition={{ duration: 1, delay: 0.3, ease }}
+            className="text-[2.5rem] text-tempo-carbon mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
+          >
+            Elite Materials.<br />Honest Pricing.
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.45, ease }}
-            className="text-base font-medium uppercase tracking-[0.2em] mt-3 text-tempo-carbon/80">
-
-            The Architect
-          </motion.p>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.55, ease }}
-            className="text-[10px] uppercase tracking-[0.25em] mt-4 text-tempo-carbon/40">
-
-            T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
+            transition={{ duration: 1, delay: 0.8, ease }}
+            className="text-base text-tempo-carbon/50 mb-9"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
+          >
+            Not a trade-off. Both.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease }}
-            className="mt-6">
-
+            transition={{ duration: 1, delay: 1.2, ease }}
+          >
             <Link
               to="/products/the-architect"
-              className="inline-flex items-center gap-2.5 px-8 py-3 bg-tempo-carbon text-tempo-bone rounded-full text-sm uppercase tracking-widest font-medium hover:scale-105 transition-transform duration-300">
-
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Available for Preorder Now
+              className="group inline-flex items-center bg-tempo-carbon rounded-full overflow-hidden hover:scale-[1.03] transition-transform duration-300"
+            >
+              <span className="px-7 py-3.5 text-[12px] uppercase tracking-[0.2em] font-semibold text-tempo-bone">
+                Pre-order now
+              </span>
+              <span className="px-5 py-3.5 text-sm font-bold tracking-tight text-tempo-bone border-l border-white/10 bg-white/[0.05]">
+                $135
+              </span>
             </Link>
           </motion.div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 export default HeroSection;
