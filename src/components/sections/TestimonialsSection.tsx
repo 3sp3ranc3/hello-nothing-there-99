@@ -94,7 +94,7 @@ const TestimonialsSection = ({ linkable = false, dark = false }: TestimonialsSec
   const isHeaderInView = useInView(headerRef, { once: true, margin: "-100px" });
 
   return (
-    <section className={`py-20 lg:py-32 ${dark ? "" : "bg-tempo-bone"}`}>
+    <section className={`py-16 lg:py-24 ${dark ? "" : "bg-tempo-bone"}`}>
       <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div

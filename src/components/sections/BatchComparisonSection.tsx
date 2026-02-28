@@ -6,7 +6,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 const BatchComparisonSection = () => {
   return (
-    <section className="py-20 lg:py-32">
+    <section className="py-16 lg:py-24">
       <div className="max-w-[900px] mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <motion.div

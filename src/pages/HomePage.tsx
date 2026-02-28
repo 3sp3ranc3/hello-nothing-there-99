@@ -17,7 +17,7 @@ const HomePage = () => {
       <TestimonialsSection linkable />
 
       {/* Discovery CTA Section */}
-      <section className="relative py-24 lg:py-32 overflow-hidden min-h-[60vh] flex items-center">
+      <section className="relative py-20 lg:py-28 overflow-hidden min-h-[55vh] flex items-center">
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
