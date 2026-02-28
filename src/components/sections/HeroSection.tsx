@@ -78,6 +78,7 @@ const HeroSection = () => {
                   $135
                 </span>
               </Link>
+              <p className="mt-3 text-[11px] text-white/40 tracking-widest uppercase">Ships March 2026</p>
             </motion.div>
           </div>
         )}
