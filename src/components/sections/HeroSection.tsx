@@ -43,7 +43,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white mb-5"
+              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.03em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
               Elite Materials.<br />Honest Pricing.
@@ -68,7 +68,7 @@ const HeroSection = () => {
             >
               <Link
                 to="/products/the-architect"
-                className="group relative inline-flex items-center bg-white text-tempo-carbon rounded-full overflow-hidden transition-transform duration-300 hover:scale-[1.03]"
+                className="group relative inline-flex items-center bg-white text-tempo-carbon rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.03] outline-none ring-0"
               >
                 <span className="absolute inset-0 bg-tempo-carbon origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full" />
                 <span className="relative z-10 px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold group-hover:text-tempo-bone transition-colors duration-500">
