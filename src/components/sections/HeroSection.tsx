@@ -29,60 +29,41 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.4, ease }}
-              className="text-6xl lg:text-8xl xl:text-9xl font-black uppercase tracking-tight"
-              style={{ lineHeight: 0.9 }}
+              className="text-3xl lg:text-5xl xl:text-6xl font-light tracking-tight leading-tight"
             >
-              The Architect
+              Engineered for<br />absolute control.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.9, ease }}
-              className="text-xs uppercase tracking-[0.3em] font-medium text-white/60 mt-5"
-            >
-              Batch 002
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.2, ease }}
-              className="text-base lg:text-lg font-normal tracking-wide mt-3 text-white/80"
-            >
-              Engineered for absolute control.
-            </motion.p>
-
-            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.5, ease }}
-              className="text-xs uppercase tracking-[0.25em] mt-5 text-white/50"
-            >
-              T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.8, ease }}
-              className="text-sm tracking-wide mt-2 text-white/60"
+              transition={{ duration: 1, delay: 1.0, ease }}
+              className="text-sm tracking-wide mt-5 text-white/60"
             >
               Elite materials. Honest pricing.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1.4, ease }}
+              className="text-xs uppercase tracking-[0.25em] mt-3 text-white/40"
+            >
+              T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 2.1, ease }}
+              transition={{ duration: 1, delay: 1.8, ease }}
               className="mt-8"
             >
               <Link
                 to="/products/the-architect"
-                className="inline-flex items-center gap-3 px-8 py-3 bg-white text-tempo-carbon rounded-full text-sm uppercase tracking-widest font-medium hover:scale-105 transition-transform duration-300"
+                className="inline-flex items-center px-8 py-3 bg-white text-tempo-carbon rounded-full text-sm uppercase tracking-widest font-medium hover:scale-105 transition-transform duration-300"
               >
-                Pre-order Now
-                <span className="text-xs font-bold tracking-normal">$135</span>
+                Pre-order The Architect Now
+                <span className="ml-3 pl-3 border-l border-tempo-carbon/20 text-xs font-bold tracking-normal">$135</span>
               </Link>
             </motion.div>
           </div>
@@ -132,60 +113,41 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease }}
-            className="text-4xl font-black uppercase tracking-tight text-tempo-carbon"
-            style={{ lineHeight: 0.9 }}
+            className="text-2xl font-light tracking-tight text-tempo-carbon leading-tight"
           >
-            The Architect
+            Engineered for<br />absolute control.
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.9, ease }}
-            className="text-xs uppercase tracking-[0.3em] font-medium text-tempo-carbon/50 mt-4"
-          >
-            Batch 002
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease }}
-            className="text-sm font-normal tracking-wide mt-3 text-tempo-carbon/70"
-          >
-            Engineered for absolute control.
-          </motion.p>
-
-          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.5, ease }}
-            className="text-[10px] uppercase tracking-[0.25em] mt-4 text-tempo-carbon/40"
-          >
-            T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.8, ease }}
-            className="text-xs tracking-wide mt-2 text-tempo-carbon/50"
+            transition={{ duration: 1, delay: 1.0, ease }}
+            className="text-xs tracking-wide mt-4 text-tempo-carbon/50"
           >
             Elite materials. Honest pricing.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.4, ease }}
+            className="text-[10px] uppercase tracking-[0.25em] mt-3 text-tempo-carbon/40"
+          >
+            T700 &nbsp;|&nbsp; 16MM &nbsp;|&nbsp; 4th Gen Core
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 2.1, ease }}
+            transition={{ duration: 1, delay: 1.8, ease }}
             className="mt-6"
           >
             <Link
               to="/products/the-architect"
-              className="inline-flex items-center gap-3 px-8 py-3 bg-tempo-carbon text-tempo-bone rounded-full text-sm uppercase tracking-widest font-medium hover:scale-105 transition-transform duration-300"
+              className="inline-flex items-center px-8 py-3 bg-tempo-carbon text-tempo-bone rounded-full text-sm uppercase tracking-widest font-medium hover:scale-105 transition-transform duration-300"
             >
-              Pre-order Now
-              <span className="text-xs font-bold tracking-normal">$135</span>
+              Pre-order The Architect Now
+              <span className="ml-3 pl-3 border-l border-white/20 text-xs font-bold tracking-normal">$135</span>
             </Link>
           </motion.div>
         </div>
