@@ -91,12 +91,13 @@ const BatchNavbar = () => {
                   isBatch001 ? textColor : `${textMuted} ${textHover}`
                 }`}
               >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <span className="text-[10px] lg:text-xs uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 001
                 </span>
-                <span className="px-2 py-0.5 bg-tempo-crimson text-white text-[8px] lg:text-[9px] rounded-full font-semibold tracking-wider">
-                  EXHAUSTED
-                </span>
+                {isBatch001 && (
+                  <div className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${isDark ? "bg-white" : "bg-tempo-carbon"}`} />
+                )}
               </Link>
 
               <Link
@@ -164,11 +165,9 @@ const BatchNavbar = () => {
                   isDark ? "text-white/80" : "text-tempo-carbon/70"
                 }`}
               >
+                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <span className="text-xs uppercase tracking-[0.12em] font-medium">
                   Batch 001
-                </span>
-                <span className="px-2 py-0.5 bg-tempo-crimson text-white text-[8px] rounded-full font-semibold tracking-wider">
-                  EXHAUSTED
                 </span>
               </Link>
 
