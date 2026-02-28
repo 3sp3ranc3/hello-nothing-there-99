@@ -24,7 +24,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
       {imageLoaded && (
-          <div className="relative z-10 flex flex-col items-start justify-end h-full text-white px-10 lg:px-20 xl:px-28 pb-32 lg:pb-36">
+          <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
             {/* Batch pill */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
