@@ -23,45 +23,48 @@ const HeroSection = () => {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
-        {imageLoaded && (
-          <div className="relative z-10 flex flex-col items-start justify-end h-full text-white px-10 lg:px-20 xl:px-28 pb-28 lg:pb-32">
+      {imageLoaded && (
+          <div className="relative z-10 flex flex-col items-start justify-end h-full text-white px-10 lg:px-20 xl:px-28 pb-32 lg:pb-36">
+            {/* Batch pill */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease }}
+              className="mb-8"
+            >
+              <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/10 backdrop-blur-md border border-white/15 rounded-full text-[13px] font-medium text-white/90 tracking-wide">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                Batch 002 · 250 units
+              </span>
+            </motion.div>
+
+            {/* Main headline */}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3, ease }}
-              className="text-[clamp(2.8rem,7vw,7rem)] font-extralight tracking-[-0.02em] leading-[1.0] mb-6"
+              className="text-[4.5rem] lg:text-[5rem] text-white mb-5"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
             >
-              Elite materials.<br />Honest pricing.
+              Elite Materials.<br />Honest Pricing.
             </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.0, ease }}
-              className="flex items-center gap-3 mb-4"
-            >
-              <span className="text-sm lg:text-base font-medium tracking-[0.15em] uppercase text-white/70">
-                The Architect
-              </span>
-              <span className="w-1 h-1 rounded-full bg-white/40" />
-              <span className="text-sm lg:text-base font-medium tracking-[0.15em] uppercase text-white/70">
-                Batch 002
-              </span>
-            </motion.div>
-
+            {/* Subheadline */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.4, ease }}
-              className="text-[11px] lg:text-xs uppercase tracking-[0.3em] text-white/35 mb-10"
+              transition={{ duration: 1, delay: 1.0, ease }}
+              className="text-base lg:text-lg text-white/60 mb-10"
+              style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
-              T700 &nbsp;&middot;&nbsp; 16MM &nbsp;&middot;&nbsp; 4th Gen Core
+              Not a trade-off. Both.
             </motion.p>
 
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.8, ease }}
+              transition={{ duration: 1, delay: 1.4, ease }}
             >
               <Link
                 to="/products/the-architect"
@@ -117,45 +120,44 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        <div className="flex flex-col items-center text-center px-6 py-14 bg-tempo-bone">
+        <div className="flex flex-col items-start px-6 py-12 bg-tempo-bone">
+          {/* Batch pill */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease }}
+            className="mb-6"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 bg-tempo-carbon/5 border border-tempo-carbon/10 rounded-full text-[12px] font-medium text-tempo-carbon/80 tracking-wide">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              Batch 002 · 250 units
+            </span>
+          </motion.div>
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.3, ease }}
-            className="text-[2.2rem] font-extralight tracking-[-0.01em] text-tempo-carbon leading-[1.05]"
+            className="text-[2.5rem] text-tempo-carbon mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, lineHeight: 0.97 }}
           >
-            Elite materials.<br />Honest pricing.
+            Elite Materials.<br />Honest Pricing.
           </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.0, ease }}
-            className="flex items-center gap-2.5 mt-5"
-          >
-            <span className="text-xs font-medium tracking-[0.15em] uppercase text-tempo-carbon/55">
-              The Architect
-            </span>
-            <span className="w-1 h-1 rounded-full bg-tempo-carbon/30" />
-            <span className="text-xs font-medium tracking-[0.15em] uppercase text-tempo-carbon/55">
-              Batch 002
-            </span>
-          </motion.div>
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.4, ease }}
-            className="text-[10px] uppercase tracking-[0.3em] mt-3 text-tempo-carbon/30"
+            transition={{ duration: 1, delay: 0.8, ease }}
+            className="text-base text-tempo-carbon/50 mb-9"
+            style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
-            T700 &nbsp;&middot;&nbsp; 16MM &nbsp;&middot;&nbsp; 4th Gen Core
+            Not a trade-off. Both.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.8, ease }}
-            className="mt-9"
+            transition={{ duration: 1, delay: 1.2, ease }}
           >
             <Link
               to="/products/the-architect"
