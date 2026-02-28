@@ -46,7 +46,7 @@ const HeroSection = () => {
               className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.03em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
-              Elite Materials<br />Honest Pricing
+              Elite Materials.<br />Honest Pricing.
             </motion.h1>
 
             {/* Subheadline */}
@@ -199,7 +199,7 @@ const HeroSection = () => {
             className="text-[3rem] text-tempo-carbon mb-4"
             style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
           >
-            Elite Materials<br />Honest Pricing
+            Elite Materials.<br />Honest Pricing.
           </motion.h1>
 
           <motion.p
