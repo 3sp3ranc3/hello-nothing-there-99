@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import heroImage from "@/assets/hero-image.webp";
 
 const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const HeroSection = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [fontReady, setFontReady] = useState(false);
+
+  useEffect(() => {
+    document.fonts.ready.then(() => setFontReady(true));
+  }, []);
 
   return (
     <section className="w-full">
@@ -23,7 +28,7 @@ const HeroSection = () => {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
-      {imageLoaded && (
+      {imageLoaded && fontReady && (
           <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
             {/* Batch pill */}
             <motion.div
@@ -98,7 +103,7 @@ const HeroSection = () => {
         )}
 
         {/* Trust bar */}
-        {imageLoaded && (
+        {imageLoaded && fontReady && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
