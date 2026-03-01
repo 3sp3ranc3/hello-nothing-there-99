@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&display=block");
 
 @tailwind base;
 @tailwind components;
@@ -11,34 +11,34 @@
     /* Tempo Foundations */
     --background: 50 11% 97%; /* Bone #F9F9F7 */
     --foreground: 0 0% 10%; /* Carbon #1A1A1A */
-    
+
     --card: 50 11% 97%;
     --card-foreground: 0 0% 10%;
-    
+
     --popover: 50 11% 97%;
     --popover-foreground: 0 0% 10%;
-    
+
     --primary: 0 0% 10%; /* Carbon for buttons */
     --primary-foreground: 50 11% 97%; /* Bone */
-    
+
     --secondary: 50 11% 97%;
     --secondary-foreground: 0 0% 10%;
-    
+
     --muted: 50 6% 90%;
     --muted-foreground: 0 0% 40%;
-    
+
     --accent: 50 11% 94%;
     --accent-foreground: 0 0% 10%;
-    
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 50 11% 97%;
-    
+
     --border: 50 6% 90%; /* Vapor #E5E5E0 */
     --input: 50 6% 90%;
     --ring: 0 0% 10%;
-    
+
     --radius: 0.5rem;
-    
+
     /* Tempo Product Accents */
     --tempo-bone: 43 16% 92%; /* #efede7 */
     --tempo-carbon: 0 0% 12%; /* #1e1e1e */
@@ -56,28 +56,28 @@
   * {
     @apply border-border;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
-  
+
   /* Tempo Headlines - ALL CAPS, Heavy */
   .tempo-headline {
     @apply uppercase font-extrabold tracking-wide;
     line-height: 0.9;
   }
-  
+
   /* Tempo Body - Relaxed reading */
   .tempo-body {
     @apply font-normal leading-relaxed;
     max-width: 50ch;
   }
-  
+
   /* Tempo Spec Labels */
   .tempo-spec {
     @apply uppercase text-xs font-medium tracking-widest;
@@ -89,51 +89,51 @@
   .tempo-divider {
     @apply w-full h-px bg-foreground/10;
   }
-  
+
   /* Product Stage - Full viewport sections */
   .tempo-section {
     @apply min-h-screen py-24 lg:py-32 relative;
   }
-  
+
   /* Container - Expansive */
   .tempo-container {
     @apply max-w-[1800px] mx-auto px-6 lg:px-12;
   }
-  
+
   /* Ghost Button */
   .tempo-btn-ghost {
     @apply rounded-full border border-foreground bg-transparent text-foreground 
            px-8 py-3 text-sm uppercase tracking-widest font-medium
            transition-transform duration-300 hover:scale-105;
   }
-  
+
   /* Primary Button */
   .tempo-btn-primary {
     @apply rounded-full bg-foreground text-background 
            px-8 py-3 text-sm uppercase tracking-widest font-medium
            transition-transform duration-300 hover:scale-105;
   }
-  
+
   /* Link Underline Animation */
   .tempo-link {
     @apply relative inline-block;
   }
-  
+
   .tempo-link::after {
-    content: '';
+    content: "";
     @apply absolute w-full h-px bottom-0 left-0 bg-foreground origin-bottom-right 
            transition-transform duration-300 scale-x-0;
   }
-  
+
   .tempo-link:hover::after {
     @apply scale-x-100 origin-bottom-left;
   }
-  
+
   /* Hard Shadow for Products */
   .tempo-shadow {
     filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.25));
   }
-  
+
   /* Placeholder Image Style */
   .tempo-placeholder {
     @apply bg-muted-foreground/20;
@@ -145,12 +145,12 @@
   .parallax-slow {
     will-change: transform;
   }
-  
+
   /* Text bleeding effect */
   .text-bleed-right {
     @apply translate-x-8 lg:translate-x-16;
   }
-  
+
   .text-bleed-left {
     @apply -translate-x-8 lg:-translate-x-16;
   }
