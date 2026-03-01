@@ -29,7 +29,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease }}
+transition={{ duration: 1.2, ease }}
               className="mb-5"
             >
               <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent border border-white/20 rounded-full text-[13px] font-medium text-white/80 tracking-wide">
@@ -42,7 +42,7 @@ const HeroSection = () => {
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.3, ease }}
+              transition={{ duration: 1.8, delay: 0.3, ease }}
               className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
@@ -53,7 +53,7 @@ const HeroSection = () => {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 1.0, ease }}
+              transition={{ duration: 1.6, delay: 1.0, ease }}
               className="text-base lg:text-lg text-white/60 mb-10"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
@@ -64,7 +64,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.4, ease }}
+              transition={{ duration: 1.6, delay: 1.4, ease }}
             >
               <div className="inline-flex flex-col items-center">
                 <Link
