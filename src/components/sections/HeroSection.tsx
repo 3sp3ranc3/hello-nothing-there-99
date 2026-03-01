@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import heroImage from "@/assets/hero-image.webp";
 
 const BASE = 960;
@@ -15,15 +15,32 @@ const transitionStyle = (step: number): React.CSSProperties => ({
 const HeroSection = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [fontReady, setFontReady] = useState(false);
+  const [scrollDarkness, setScrollDarkness] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     document.fonts.ready.then(() => setFontReady(true));
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      // How far the top of the section has scrolled above viewport top
+      const scrolled = -rect.top;
+      // Start darkening after 10% scroll, reach max at 90%
+      const progress = Math.max(0, Math.min(1, (scrolled - sectionHeight * 0.1) / (sectionHeight * 0.8)));
+      setScrollDarkness(progress * 0.9); // max 90% dark
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const ready = imageLoaded && fontReady;
 
   return (
-    <section className="w-full">
+    <section className="w-full" ref={sectionRef}>
       {/* ── DESKTOP ── */}
       <div className="hidden md:block relative h-screen w-full overflow-hidden bg-tempo-carbon">
         <img
@@ -38,6 +55,10 @@ const HeroSection = () => {
         />
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+        <div
+          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-[1] transition-opacity duration-100"
+          style={{ opacity: scrollDarkness }}
+        />
 
         <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
           {/* step 0 — Batch pill */}
@@ -209,6 +230,10 @@ const HeroSection = () => {
           onLoad={() => setImageLoaded(true)}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+        <div
+          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-[1] transition-opacity duration-100"
+          style={{ opacity: scrollDarkness }}
+        />
 
         {/* Centered content overlay */}
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
