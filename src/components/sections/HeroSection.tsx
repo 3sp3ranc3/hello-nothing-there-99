@@ -43,7 +43,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.3, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.03em]"
+              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
               Elite Materials.<br />Honest Pricing.
