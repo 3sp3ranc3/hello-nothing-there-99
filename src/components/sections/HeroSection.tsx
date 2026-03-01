@@ -206,12 +206,16 @@ const HeroSection = () => {
               </div>
             </div>
             <div>
-              <p className="text-[13px] font-medium text-white tracking-wide">Maximum Legal Power</p>
-              <p className="text-[13px] text-white/50 mt-1">Trufoam™ technology</p>
+              <p className="text-[13px] font-medium text-white tracking-wide">Maximum legal power</p>
+              <p className="text-[13px] text-white/50 mt-1">0.43 PBCoR · Trufoam™ technology</p>
             </div>
             <div>
               <p className="text-[13px] font-medium text-white tracking-wide">Exceptional spin. Every rally.</p>
               <p className="text-[13px] text-white/50 mt-1">T700 carbon w/ sandblasted finish</p>
+            </div>
+            <div>
+              <p className="text-[13px] font-medium text-white tracking-wide">Built for the kitchen</p>
+              <p className="text-[13px] text-white/50 mt-1">16 mm wide-body · vibration dampened</p>
             </div>
           </div>
         </div>
