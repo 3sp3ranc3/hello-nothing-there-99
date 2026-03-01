@@ -25,11 +25,34 @@ const HeroSection = () => {
 
       {imageLoaded && (
           <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
+            {/* Line 1: Elite Materials. */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 3.6, delay: 0, ease }}
+              className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em]"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+            >
+              Elite Materials.
+            </motion.h1>
+
+            {/* Line 2: Honest Pricing. */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 3.6, delay: 0.5, ease }}
+              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+              aria-hidden="true"
+            >
+              Honest Pricing.
+            </motion.h1>
+
             {/* Batch pill */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 2.4, ease }}
+              transition={{ duration: 2.4, delay: 1.0, ease }}
               className="mb-5"
             >
               <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent border border-white/20 rounded-full text-[13px] font-medium text-white/80 tracking-wide">
@@ -38,22 +61,11 @@ transition={{ duration: 2.4, ease }}
               </span>
             </motion.div>
 
-            {/* Main headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 3.6, delay: 0.42, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-            >
-              Elite Materials.<br />Honest Pricing.
-            </motion.h1>
-
             {/* Subheadline */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 3.2, delay: 1.4, ease }}
+              transition={{ duration: 3.2, delay: 1.5, ease }}
               className="text-base lg:text-lg text-white/60 mb-10"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
@@ -64,7 +76,7 @@ transition={{ duration: 2.4, ease }}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 3.2, delay: 1.96, ease }}
+              transition={{ duration: 3.2, delay: 2.0, ease }}
             >
               <div className="inline-flex flex-col items-center">
                 <Link
@@ -90,7 +102,7 @@ transition={{ duration: 2.4, ease }}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.2, delay: 2.6 }}
+            transition={{ duration: 1.2, delay: 3.0 }}
             className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-8 px-10 lg:px-20 xl:px-28"
           >
             <div className="flex items-center justify-between">
@@ -179,11 +191,34 @@ transition={{ duration: 2.4, ease }}
         </div>
 
         <div className="flex flex-col items-start px-6 py-12 bg-tempo-bone">
+          {/* Line 1: Elite Materials. */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, delay: 0, ease }}
+            className="text-[3rem] text-tempo-carbon"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+          >
+            Elite Materials.
+          </motion.h1>
+
+          {/* Line 2: Honest Pricing. */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, delay: 0.5, ease }}
+            className="text-[3rem] text-tempo-carbon mb-4"
+            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+            aria-hidden="true"
+          >
+            Honest Pricing.
+          </motion.h1>
+
           {/* Batch pill */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease }}
+            transition={{ duration: 1.2, delay: 1.0, ease }}
             className="mb-6"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-tempo-carbon/5 border border-tempo-carbon/10 rounded-full text-[12px] font-medium text-tempo-carbon/80 tracking-wide">
@@ -192,20 +227,10 @@ transition={{ duration: 2.4, ease }}
             </span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2, delay: 0.42, ease }}
-            className="text-[3rem] text-tempo-carbon mb-4"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-          >
-            Elite Materials.<br />Honest Pricing.
-          </motion.h1>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 2, delay: 1.12, ease }}
+            transition={{ duration: 2, delay: 1.5, ease }}
             className="text-base text-tempo-carbon/50 mb-9"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
@@ -215,7 +240,7 @@ transition={{ duration: 2.4, ease }}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2, delay: 1.68, ease }}
+            transition={{ duration: 2, delay: 2.0, ease }}
           >
             <Link
               to="/products/the-architect"
