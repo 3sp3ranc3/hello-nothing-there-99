@@ -29,8 +29,8 @@ const HeroSection = () => {
       const sectionHeight = rect.height;
       // How far the top of the section has scrolled above viewport top
       const scrolled = -rect.top;
-      // Start darkening after 10% scroll, reach max at 90%
-      const progress = Math.max(0, Math.min(1, (scrolled - sectionHeight * 0.1) / (sectionHeight * 0.8)));
+      // Start darkening immediately, reach max quickly
+      const progress = Math.max(0, Math.min(1, scrolled / (sectionHeight * 0.4)));
       setScrollDarkness(progress * 0.9); // max 90% dark
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
