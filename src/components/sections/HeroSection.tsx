@@ -29,7 +29,7 @@ const HeroSection = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 1.2, ease }}
+transition={{ duration: 2.4, ease }}
               className="mb-5"
             >
               <span className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-transparent border border-white/20 rounded-full text-[13px] font-medium text-white/80 tracking-wide">
@@ -42,7 +42,7 @@ transition={{ duration: 1.2, ease }}
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.8, delay: 0.3, ease }}
+              transition={{ duration: 3.6, delay: 0.42, ease }}
               className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
             >
@@ -53,7 +53,7 @@ transition={{ duration: 1.2, ease }}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 1.6, delay: 1.0, ease }}
+              transition={{ duration: 3.2, delay: 1.4, ease }}
               className="text-base lg:text-lg text-white/60 mb-10"
               style={{ fontFamily: "'DM Sans', sans-serif" }}
             >
@@ -64,7 +64,7 @@ transition={{ duration: 1.2, ease }}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.6, delay: 1.4, ease }}
+              transition={{ duration: 3.2, delay: 1.96, ease }}
             >
               <div className="inline-flex flex-col items-center">
                 <Link
@@ -183,7 +183,7 @@ transition={{ duration: 1.2, ease }}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
+            transition={{ duration: 1.2, ease }}
             className="mb-6"
           >
             <span className="inline-flex items-center gap-2 px-4 py-2 bg-tempo-carbon/5 border border-tempo-carbon/10 rounded-full text-[12px] font-medium text-tempo-carbon/80 tracking-wide">
@@ -195,7 +195,7 @@ transition={{ duration: 1.2, ease }}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease }}
+            transition={{ duration: 2, delay: 0.42, ease }}
             className="text-[3rem] text-tempo-carbon mb-4"
             style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
           >
@@ -205,7 +205,7 @@ transition={{ duration: 1.2, ease }}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8, ease }}
+            transition={{ duration: 2, delay: 1.12, ease }}
             className="text-base text-tempo-carbon/50 mb-9"
             style={{ fontFamily: "'DM Sans', sans-serif" }}
           >
@@ -215,7 +215,7 @@ transition={{ duration: 1.2, ease }}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1.2, ease }}
+            transition={{ duration: 2, delay: 1.68, ease }}
           >
             <Link
               to="/products/the-architect"
