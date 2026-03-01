@@ -45,8 +45,8 @@ const HeroSection = () => {
 
             {/* Line 1: Elite Materials. */}
             <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ clipPath: "inset(0 0 100% 0)", y: 40 }}
+              animate={{ clipPath: "inset(0 0 0% 0)", y: 0 }}
               transition={{ duration: 3.6, delay: 0, ease }}
               className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
@@ -56,8 +56,8 @@ const HeroSection = () => {
 
             {/* Line 2: Honest Pricing. */}
             <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ clipPath: "inset(0 0 100% 0)", y: 40 }}
+              animate={{ clipPath: "inset(0 0 0% 0)", y: 0 }}
               transition={{ duration: 3.6, delay: 0.5, ease }}
               className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
