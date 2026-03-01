@@ -5,7 +5,7 @@ import heroImage from "@/assets/hero-image.webp";
 // Cowboy-matched animation constants — timed from cowboy.com measurements
 // Every element uses identical duration + easing so they all move at the same pace
 // Only the delay differs (staggered by 350ms, starting at 960ms)
-const DUR = "duration-[690ms]";
+const DUR = "duration-[1100ms]";
 const EASE = "ease-[cubic-bezier(0.49,0.025,0.685,1)]";
 const BASE = 960;
 const STEP = 350;
@@ -30,7 +30,7 @@ const HeroSection = () => {
 
   const ready = imageLoaded && fontReady;
   const show = "opacity-100 translate-y-0";
-  const hide = "opacity-0 translate-y-4";
+  const hide = "opacity-0 translate-y-1.5";
 
   return (
     <section className="w-full">
