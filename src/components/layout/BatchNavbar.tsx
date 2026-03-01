@@ -71,46 +71,36 @@ const BatchNavbar = () => {
             <div className="hidden md:flex items-center gap-8 lg:gap-10 group/nav">
               <Link
                 to="/products/the-architect"
-                className={`relative flex items-center gap-2 py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                className={`group/batch002 relative flex items-center gap-2 py-1.5 px-4 rounded-full border border-transparent transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 hover:border-white ${
                   isBatch002 ? textColor : textMuted
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse opacity-0 group-hover/batch002:opacity-100 transition-opacity duration-300" />
                 <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 002
                 </span>
-                {isBatch002 && (
-                  <div className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${isDark ? "bg-white" : "bg-tempo-carbon"}`} />
-                )}
               </Link>
 
               <Link
                 to="/batch-001"
-                className={`relative flex items-center gap-2 py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                className={`relative flex items-center py-1.5 px-4 rounded-full border border-transparent transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 hover:border-white ${
                   isBatch001 ? textColor : textMuted
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 001
                 </span>
-                {isBatch001 && (
-                  <div className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${isDark ? "bg-white" : "bg-tempo-carbon"}`} />
-                )}
               </Link>
 
               <Link
                 to="/about"
-                className={`relative flex items-center py-2 transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 ${
+                className={`relative flex items-center py-1.5 px-4 rounded-full border border-transparent transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 hover:border-white ${
                   isAbout ? textColor : textMuted
                 }`}
               >
                 <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   About
                 </span>
-                {isAbout && (
-                  <div className={`absolute -bottom-0.5 left-0 right-0 h-0.5 ${isDark ? "bg-white" : "bg-tempo-carbon"}`} />
-                )}
               </Link>
             </div>
 
@@ -148,11 +138,10 @@ const BatchNavbar = () => {
             <div className="px-6 py-4 flex flex-col gap-4">
               <Link
                 to="/products/the-architect"
-                className={`flex items-center gap-2 py-2 transition-colors ${
+                className={`py-2 transition-colors ${
                   isDark ? "text-white/80" : "text-tempo-carbon/70"
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-xs uppercase tracking-[0.12em] font-medium">
                   Batch 002
                 </span>
@@ -160,11 +149,10 @@ const BatchNavbar = () => {
 
               <Link
                 to="/batch-001"
-                className={`flex items-center gap-2 py-2 transition-colors ${
+                className={`py-2 transition-colors ${
                   isDark ? "text-white/80" : "text-tempo-carbon/70"
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-red-500" />
                 <span className="text-xs uppercase tracking-[0.12em] font-medium">
                   Batch 001
                 </span>
