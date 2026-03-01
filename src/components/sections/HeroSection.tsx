@@ -44,27 +44,35 @@ const HeroSection = () => {
             </motion.div>
 
             {/* Line 1: Elite Materials. */}
-            <motion.h1
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              animate={{ clipPath: "inset(0 0 0% 0)" }}
-              transition={{ duration: 3.6, delay: 0, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em]"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+            <motion.div
+              initial={{ opacity: 0, marginTop: "1.1rem" }}
+              animate={{ opacity: [0, 1, 1], marginTop: ["1.1rem", "1.1rem", "0rem"] }}
+              transition={{ duration: 3.6, delay: 0, times: [0, 0.28, 1], ease }}
+              style={{ fontSynthesis: "none" }}
             >
-              Elite Materials.
-            </motion.h1>
+              <h1
+                className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em]"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97, fontSynthesis: "none", textRendering: "geometricPrecision" }}
+              >
+                Elite Materials.
+              </h1>
+            </motion.div>
 
             {/* Line 2: Honest Pricing. */}
-            <motion.h1
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              animate={{ clipPath: "inset(0 0 0% 0)" }}
-              transition={{ duration: 3.6, delay: 0.5, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-              aria-hidden="true"
+            <motion.div
+              initial={{ opacity: 0, marginTop: "1.1rem" }}
+              animate={{ opacity: [0, 1, 1], marginTop: ["1.1rem", "1.1rem", "0rem"] }}
+              transition={{ duration: 3.6, delay: 0.5, times: [0, 0.28, 1], ease }}
+              style={{ fontSynthesis: "none" }}
             >
-              Honest Pricing.
-            </motion.h1>
+              <h1
+                className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
+                style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97, fontSynthesis: "none", textRendering: "geometricPrecision" }}
+                aria-hidden="true"
+              >
+                Honest Pricing.
+              </h1>
+            </motion.div>
 
             {/* Subheadline */}
             <motion.p
@@ -197,27 +205,35 @@ const HeroSection = () => {
 
         <div className="flex flex-col items-start px-6 py-12 bg-tempo-bone">
           {/* Line 1: Elite Materials. */}
-          <motion.h1
-            initial={{ clipPath: "inset(100% 0 0 0)" }}
-            animate={{ clipPath: "inset(0 0 0% 0)" }}
-            transition={{ duration: 2, delay: 0, ease }}
-            className="text-[3rem] text-tempo-carbon"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+          <motion.div
+            initial={{ opacity: 0, marginTop: "0.75rem" }}
+            animate={{ opacity: [0, 1, 1], marginTop: ["0.75rem", "0.75rem", "0rem"] }}
+            transition={{ duration: 2, delay: 0, times: [0, 0.28, 1], ease }}
+            style={{ fontSynthesis: "none" }}
           >
-            Elite Materials.
-          </motion.h1>
+            <h1
+              className="text-[3rem] text-tempo-carbon"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97, fontSynthesis: "none", textRendering: "geometricPrecision" }}
+            >
+              Elite Materials.
+            </h1>
+          </motion.div>
 
           {/* Line 2: Honest Pricing. */}
-          <motion.h1
-            initial={{ clipPath: "inset(100% 0 0 0)" }}
-            animate={{ clipPath: "inset(0 0 0% 0)" }}
-            transition={{ duration: 2, delay: 0.5, ease }}
-            className="text-[3rem] text-tempo-carbon mb-4"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-            aria-hidden="true"
+          <motion.div
+            initial={{ opacity: 0, marginTop: "0.75rem" }}
+            animate={{ opacity: [0, 1, 1], marginTop: ["0.75rem", "0.75rem", "0rem"] }}
+            transition={{ duration: 2, delay: 0.5, times: [0, 0.28, 1], ease }}
+            style={{ fontSynthesis: "none" }}
           >
-            Honest Pricing.
-          </motion.h1>
+            <h1
+              className="text-[3rem] text-tempo-carbon mb-4"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97, fontSynthesis: "none", textRendering: "geometricPrecision" }}
+              aria-hidden="true"
+            >
+              Honest Pricing.
+            </h1>
+          </motion.div>
 
           {/* Batch pill */}
           <motion.div
