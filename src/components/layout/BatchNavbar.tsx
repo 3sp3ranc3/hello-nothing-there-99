@@ -75,7 +75,7 @@ const BatchNavbar = () => {
                   isBatch002 ? textColor : textMuted
                 }`}
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse opacity-0 group-hover/batch002:opacity-100 transition-opacity duration-300" />
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 opacity-0 group-hover/batch002:opacity-100 transition-opacity duration-300" style={{ animation: "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite" }} />
                 <span className="text-sm lg:text-base uppercase tracking-[0.12em] font-medium whitespace-nowrap">
                   Batch 002
                 </span>
