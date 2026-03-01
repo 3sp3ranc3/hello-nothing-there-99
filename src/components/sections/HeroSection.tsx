@@ -30,7 +30,7 @@ const HeroSection = () => {
         <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
           {/* Line 1: Elite Materials. */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[200ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[200ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontSynthesis: "none" }}
@@ -51,7 +51,7 @@ const HeroSection = () => {
 
           {/* Line 2: Honest Pricing. */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[500ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[500ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontSynthesis: "none" }}
@@ -73,7 +73,7 @@ const HeroSection = () => {
 
           {/* Batch pill */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[800ms] mb-5 ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[800ms] mb-5 ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
@@ -85,7 +85,7 @@ const HeroSection = () => {
 
           {/* Subheadline */}
           <p
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1100ms] text-base lg:text-lg text-white/60 mb-10 ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1100ms] text-base lg:text-lg text-white/60 mb-10 ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -95,20 +95,20 @@ const HeroSection = () => {
 
           {/* CTA */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1400ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1400ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
             <div className="inline-flex flex-col items-center">
               <Link
                 to="/products/the-architect"
-                className="group relative inline-flex items-center bg-white hover:bg-tempo-carbon text-tempo-carbon rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.03] outline-none ring-0"
+                className="group relative inline-flex items-center bg-white hover:bg-tempo-carbon text-tempo-carbon rounded-full overflow-hidden transition-[transform] duration-300 ease-out hover:scale-[1.03] outline-none ring-0"
               >
-                <span className="absolute inset-0 bg-tempo-carbon origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.49,0.025,0.685,1)] rounded-full" />
-                <span className="relative z-10 px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold group-hover:text-tempo-bone transition-colors duration-500">
+                <span className="absolute inset-0 bg-tempo-carbon origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out rounded-full" />
+                <span className="relative z-10 px-8 lg:px-10 py-4 lg:py-[1.1rem] text-[13px] lg:text-sm uppercase tracking-[0.2em] font-semibold group-hover:text-tempo-bone transition-colors duration-300">
                   Pre-order now
                 </span>
-                <span className="relative z-10 px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 group-hover:border-white/10 bg-tempo-carbon/[0.03] group-hover:text-tempo-bone transition-colors duration-500">
+                <span className="relative z-10 px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 group-hover:border-white/10 bg-tempo-carbon/[0.03] group-hover:text-tempo-bone transition-colors duration-300">
                   $135
                 </span>
               </Link>
@@ -119,7 +119,7 @@ const HeroSection = () => {
 
         {/* Trust bar */}
         <div
-          className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1800ms] absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-8 px-10 lg:px-20 xl:px-28 ${
+          className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1800ms] absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 py-8 px-10 lg:px-20 xl:px-28 ${
             ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
           }`}
         >
@@ -224,7 +224,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-start px-6 py-12 bg-tempo-bone">
           {/* Line 1: Elite Materials. */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[200ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[200ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontSynthesis: "none" }}
@@ -245,7 +245,7 @@ const HeroSection = () => {
 
           {/* Line 2: Honest Pricing. */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[500ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[500ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontSynthesis: "none" }}
@@ -267,7 +267,7 @@ const HeroSection = () => {
 
           {/* Batch pill */}
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[800ms] mb-6 ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[800ms] mb-6 ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
@@ -278,7 +278,7 @@ const HeroSection = () => {
           </div>
 
           <p
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1100ms] text-base text-tempo-carbon/50 mb-9 ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1100ms] text-base text-tempo-carbon/50 mb-9 ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
             style={{ fontFamily: "'DM Sans', sans-serif" }}
@@ -287,7 +287,7 @@ const HeroSection = () => {
           </p>
 
           <div
-            className={`transition-[opacity,transform] duration-[800ms,1400ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1400ms] ${
+            className={`transition-[opacity,transform] duration-[500ms,800ms] ease-[cubic-bezier(0.49,0.025,0.685,1)] delay-[1400ms] ${
               ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
             }`}
           >
