@@ -24,30 +24,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
 
       {imageLoaded && (
-          <div className="relative z-10 flex flex-col items-start justify-center h-full text-white px-10 lg:px-20 xl:px-28">
-            {/* Line 1: Elite Materials. */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 3.6, delay: 0, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em]"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-            >
-              Elite Materials.
-            </motion.h1>
-
-            {/* Line 2: Honest Pricing. */}
-            <motion.h1
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 3.6, delay: 0.5, ease }}
-              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em]"
-              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
-              aria-hidden="true"
-            >
-              Honest Pricing.
-            </motion.h1>
-
+          <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-10 lg:px-20 xl:px-28">
             {/* Batch pill */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -60,6 +37,29 @@ const HeroSection = () => {
                 Batch 002 · 250 units
               </span>
             </motion.div>
+
+            {/* Line 1: Elite Materials. */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 3.6, delay: 0, ease }}
+              className="text-[5.4rem] lg:text-[6rem] text-white tracking-[-0.06em] text-center"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+            >
+              Elite Materials.
+            </motion.h1>
+
+            {/* Line 2: Honest Pricing. */}
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 3.6, delay: 0.5, ease }}
+              className="text-[5.4rem] lg:text-[6rem] text-white mb-5 tracking-[-0.06em] text-center"
+              style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 0.97 }}
+              aria-hidden="true"
+            >
+              Honest Pricing.
+            </motion.h1>
 
             {/* Subheadline */}
             <motion.p
