@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import HeroSection from "@/components/sections/HeroSection";
-import SocialProofSection from "@/components/sections/SocialProofSection";
 import BatchComparisonSection from "@/components/sections/BatchComparisonSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import architectBackhand from "@/assets/architect-backhand.jpg";
@@ -14,7 +13,6 @@ const HomePage = () => {
     <main className="bg-tempo-bone">
       <BatchNavbar />
       <HeroSection />
-      <SocialProofSection />
       <BatchComparisonSection />
       <TestimonialsSection linkable />
 
