@@ -56,7 +56,7 @@ const HeroSection = () => {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         <div
-          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-20 transition-opacity duration-150"
+          className="absolute inset-0 bg-white pointer-events-none z-20 transition-opacity duration-150"
           style={{ opacity: scrollDarkness }}
         />
 
@@ -235,7 +235,7 @@ const HeroSection = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
         <div
-          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-20 transition-opacity duration-150"
+          className="absolute inset-0 bg-white pointer-events-none z-20 transition-opacity duration-150"
           style={{ opacity: scrollDarkness }}
         />
 
