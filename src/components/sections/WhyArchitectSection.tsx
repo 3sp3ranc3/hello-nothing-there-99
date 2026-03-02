@@ -246,7 +246,7 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row gap-[14px] items-stretch"
+          className="flex flex-col lg:flex-row gap-[14px] items-stretch max-w-[1000px] mx-auto"
         >
           {/* LEFT — Stat blocks (very narrow) */}
           <div className="w-full lg:w-[20%] flex flex-col gap-[10px]">
