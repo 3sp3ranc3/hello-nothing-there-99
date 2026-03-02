@@ -121,7 +121,7 @@ const StatBlockItem = ({
       style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: "clamp(30px, 3.5vw, 44px)",
-        fontWeight: 500,
+        fontWeight: 700,
         lineHeight: 1.0,
         color: isActive ? "#ffffff" : "#000000",
       }}
@@ -205,29 +205,29 @@ const WhyArchitectSection = () => {
 
   return (
     <section className="bg-white py-28 lg:py-40">
-      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
-        {/* Headline + Subline — centered like WHOOP */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-16">
+        {/* Headline + Subline — left-aligned */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-14 lg:mb-20"
+          className="text-left mb-10 lg:mb-14"
         >
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(40px, 6vw, 72px)",
-              fontWeight: 400,
-              lineHeight: 1.05,
+              fontSize: "clamp(44px, 7vw, 80px)",
+              fontWeight: 500,
+              lineHeight: 1.0,
               color: "#000000",
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
             }}
           >
             Craft you can feel from<br className="hidden sm:block" /> the first rally.
           </h2>
           <p
-            className="mt-[16px] max-w-[520px] mx-auto"
+            className="mt-[12px] max-w-[480px]"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "16px",
@@ -248,8 +248,8 @@ const WhyArchitectSection = () => {
           viewport={{ once: true }}
           className="flex flex-col lg:flex-row gap-[14px] items-stretch"
         >
-          {/* LEFT — Stat blocks */}
-          <div className="w-full lg:w-[35%] flex flex-col gap-[14px]">
+          {/* LEFT — Stat blocks (narrow) */}
+          <div className="w-full lg:w-[28%] flex flex-col gap-[10px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -260,8 +260,8 @@ const WhyArchitectSection = () => {
             ))}
           </div>
 
-          {/* RIGHT — Image + Review, matches left column height */}
-          <div className="w-full lg:w-[58%] mt-8 lg:mt-0">
+          {/* RIGHT — Image + Review (wider) */}
+          <div className="w-full lg:w-[72%] mt-8 lg:mt-0">
             <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{ minHeight: "420px" }}>
               <AnimatePresence mode="wait">
                 <motion.img
