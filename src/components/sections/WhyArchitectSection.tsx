@@ -248,8 +248,8 @@ const WhyArchitectSection = () => {
           viewport={{ once: true }}
           className="flex flex-col lg:flex-row gap-[14px] items-stretch"
         >
-          {/* LEFT — Stat blocks (narrow) */}
-          <div className="w-full lg:w-[28%] flex flex-col gap-[10px]">
+          {/* LEFT — Stat blocks (very narrow) */}
+          <div className="w-full lg:w-[20%] flex flex-col gap-[10px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -260,8 +260,8 @@ const WhyArchitectSection = () => {
             ))}
           </div>
 
-          {/* RIGHT — Image + Review (wider) */}
-          <div className="w-full lg:w-[72%] mt-8 lg:mt-0">
+          {/* RIGHT — Image + Review (dominant) */}
+          <div className="w-full lg:w-[80%] mt-8 lg:mt-0">
             <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{ minHeight: "420px" }}>
               <AnimatePresence mode="wait">
                 <motion.img
