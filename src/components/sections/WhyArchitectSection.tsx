@@ -95,20 +95,21 @@ const StatBlockItem = ({
     onClick={onClick}
     className="w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative flex-1"
     style={{
-      padding: "20px 24px",
+      padding: "18px 22px",
       background: isActive ? "#000000" : "#f3f5f9",
       border: isActive ? "1.5px solid #000000" : "1.5px solid rgba(0,0,0,0.06)",
     }}
   >
-    {/* Category pill — top right */}
+    {/* Category pill — top right, outline only */}
     <span
-      className="absolute top-[16px] right-[16px] rounded-full px-[10px] py-[3px] transition-all duration-300"
+      className="absolute top-[14px] right-[14px] rounded-full px-[10px] py-[3px] transition-all duration-300"
       style={{
-        background: isActive ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.06)",
+        background: "transparent",
+        border: isActive ? "1px solid rgba(255,255,255,0.5)" : "1px solid rgba(0,0,0,0.25)",
         fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "9px",
         letterSpacing: "0.14em",
-        color: isActive ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.35)",
+        color: isActive ? "rgba(255,255,255,0.7)" : "#000000",
       }}
     >
       {block.pill}
@@ -119,8 +120,8 @@ const StatBlockItem = ({
       className="transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "clamp(32px, 4vw, 48px)",
-        fontWeight: 300,
+        fontSize: "clamp(30px, 3.5vw, 44px)",
+        fontWeight: 500,
         lineHeight: 1.0,
         color: isActive ? "#ffffff" : "#000000",
       }}
@@ -130,13 +131,13 @@ const StatBlockItem = ({
 
     {/* Human line */}
     <p
-      className="mt-[8px] transition-colors duration-300"
+      className="mt-[6px] transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: "13px",
-        fontWeight: 400,
+        fontWeight: 500,
         lineHeight: 1.4,
-        color: isActive ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.5)",
+        color: isActive ? "rgba(255,255,255,0.85)" : "#000000",
       }}
     >
       {block.human}
@@ -216,22 +217,23 @@ const WhyArchitectSection = () => {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(36px, 5vw, 56px)",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              color: "#0D1117",
+              fontSize: "clamp(40px, 6vw, 72px)",
+              fontWeight: 400,
+              lineHeight: 1.05,
+              color: "#000000",
+              letterSpacing: "-0.02em",
             }}
           >
             Craft you can feel from<br className="hidden sm:block" /> the first rally.
           </h2>
           <p
-            className="mt-[14px] max-w-[520px] mx-auto"
+            className="mt-[16px] max-w-[520px] mx-auto"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "rgba(13,17,23,0.45)",
+              color: "#000000",
             }}
           >
             Four things The Architect does better — proven by verified Batch 001 players.
@@ -246,8 +248,8 @@ const WhyArchitectSection = () => {
           viewport={{ once: true }}
           className="flex flex-col lg:flex-row gap-[14px] items-stretch"
         >
-          {/* LEFT — Stat blocks, each flex-1 to share height equally */}
-          <div className="w-full lg:w-[42%] flex flex-col gap-[14px]">
+          {/* LEFT — Stat blocks */}
+          <div className="w-full lg:w-[35%] flex flex-col gap-[14px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
