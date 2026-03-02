@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images — map to each block
@@ -7,7 +7,7 @@ import architectDetail from "@/assets/architect-detail.webp";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 import architectPair from "@/assets/architect-pair.webp";
 
-const AUTO_ADVANCE_MS = 8000;
+// No auto-advance — click only
 
 interface StatBlock {
   pill: string;
@@ -102,7 +102,7 @@ const StatBlockItem = ({
 }) => (
   <button
     onClick={onClick}
-    className="w-full text-left rounded-xl px-[22px] py-[18px] cursor-pointer transition-all duration-300 relative"
+    className="w-full text-left rounded-xl px-[20px] py-[14px] cursor-pointer transition-all duration-300 relative"
     style={{
       background: isActive ? "#000000" : "#f3f5f9",
       border: isActive ? "1px solid #000000" : "1px solid rgba(0,0,0,0.05)",
@@ -128,7 +128,7 @@ const StatBlockItem = ({
       className="transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "42px",
+        fontSize: "36px",
         fontWeight: 300,
         lineHeight: 1.0,
         color: isActive ? "#ffffff" : "#000000",
@@ -215,30 +215,10 @@ const ReviewCard = ({ review }: { review: Review }) => (
 
 const WhyArchitectSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const resetTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % 4);
-    }, AUTO_ADVANCE_MS);
-  }, []);
-
-  useEffect(() => {
-    resetTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [resetTimer]);
-
-  const handleBlockClick = (index: number) => {
-    setActiveIndex(index);
-    resetTimer();
-  };
 
   return (
-    <section className="bg-[#ffffff] py-24 lg:py-32">
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-16">
+    <section className="bg-[#ffffff] py-32 lg:py-44">
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
         {/* Headline + Subline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -278,16 +258,16 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row gap-3 items-stretch"
+          className="flex flex-col lg:flex-row gap-[10px] items-stretch"
         >
           {/* LEFT — Stat blocks */}
-          <div className="w-full lg:w-[38%] flex flex-col gap-3">
+          <div className="w-full lg:w-[34%] flex flex-col gap-[10px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
                 block={block}
                 isActive={activeIndex === i}
-                onClick={() => handleBlockClick(i)}
+                onClick={() => setActiveIndex(i)}
               />
             ))}
           </div>
