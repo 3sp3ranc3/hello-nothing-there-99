@@ -102,22 +102,22 @@ const StatBlockItem = ({
 }) => (
   <button
     onClick={onClick}
-    className="w-full text-left rounded-xl px-[26px] py-[22px] cursor-pointer transition-all duration-300 relative"
+    className="w-full text-left rounded-xl px-[22px] py-[18px] cursor-pointer transition-all duration-300 relative"
     style={{
-      background: isActive ? "#1A1A1A" : "#F7F7F5",
-      border: isActive ? "1px solid #1A1A1A" : "1px solid rgba(0,0,0,0.07)",
+      background: isActive ? "#000000" : "#f3f5f9",
+      border: isActive ? "1px solid #000000" : "1px solid rgba(0,0,0,0.05)",
       boxShadow: isActive ? "0 8px 28px rgba(0,0,0,0.15)" : "none",
     }}
   >
     {/* Category pill — top right */}
     <span
-      className="absolute top-[18px] right-[18px] rounded-full px-[10px] py-[4px] transition-all duration-300"
+      className="absolute top-[14px] right-[14px] rounded-full px-[10px] py-[3px] transition-all duration-300"
       style={{
         background: isActive ? "rgba(255,255,255,0.13)" : "rgba(0,0,0,0.07)",
         fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "9px",
         letterSpacing: "0.14em",
-        color: isActive ? "rgba(255,255,255,0.65)" : "rgba(13,17,23,0.45)",
+        color: isActive ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.4)",
       }}
     >
       {block.pill}
@@ -128,11 +128,10 @@ const StatBlockItem = ({
       className="transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "50px",
+        fontSize: "42px",
         fontWeight: 300,
         lineHeight: 1.0,
-        color: isActive ? "#ffffff" : "#0D1117",
-        opacity: isActive ? 1 : 0.55,
+        color: isActive ? "#ffffff" : "#000000",
       }}
     >
       {block.stat}
@@ -143,28 +142,13 @@ const StatBlockItem = ({
       className="mt-[6px] transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "14px",
+        fontSize: "13px",
         fontWeight: 400,
         lineHeight: 1.35,
-        color: isActive ? "#ffffff" : "#0D1117",
-        opacity: isActive ? 1 : 0.55,
+        color: isActive ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.55)",
       }}
     >
       {block.human}
-    </p>
-
-    {/* Layer 3 — Proof */}
-    <p
-      className="mt-[5px] transition-colors duration-300"
-      style={{
-        fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "11px",
-        letterSpacing: "0.06em",
-        color: isActive ? "#ffffff" : "#0D1117",
-        opacity: isActive ? 0.4 : 0.35,
-      }}
-    >
-      {block.proof}
     </p>
   </button>
 );
@@ -172,12 +156,12 @@ const StatBlockItem = ({
 // Review card component
 const ReviewCard = ({ review }: { review: Review }) => (
   <div
-    className="absolute bottom-0 left-0 right-0 mx-[16px] mb-[16px] rounded-xl px-[26px] py-[22px]"
+    className="absolute bottom-0 left-0 right-0 mx-[14px] mb-[14px] rounded-xl px-[24px] py-[20px]"
     style={{
-      background: "rgba(255,255,255,0.82)",
-      backdropFilter: "blur(14px)",
-      WebkitBackdropFilter: "blur(14px)",
-      border: "1px solid rgba(255,255,255,0.55)",
+      background: "rgba(255,255,255,0.65)",
+      backdropFilter: "blur(16px)",
+      WebkitBackdropFilter: "blur(16px)",
+      border: "1px solid rgba(255,255,255,0.4)",
     }}
   >
     {/* Verified pill */}
@@ -294,10 +278,10 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row lg:gap-[6%] items-start"
+          className="flex flex-col lg:flex-row gap-3 items-stretch"
         >
           {/* LEFT — Stat blocks */}
-          <div className="w-full lg:w-[40%] flex flex-col gap-3">
+          <div className="w-full lg:w-[38%] flex flex-col gap-3">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -309,8 +293,8 @@ const WhyArchitectSection = () => {
           </div>
 
           {/* RIGHT — Image + Review */}
-          <div className="w-full lg:w-[54%] mt-10 lg:mt-0">
-            <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+          <div className="w-full lg:w-[62%] mt-10 lg:mt-0">
+            <div className="relative w-full h-full min-h-[400px] lg:min-h-0 rounded-2xl overflow-hidden">
               {/* Images — cross-fade */}
               <AnimatePresence mode="wait">
                 <motion.img
@@ -329,7 +313,7 @@ const WhyArchitectSection = () => {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.42) 100%)",
+                  background: "linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.5) 100%)",
                 }}
               />
 
