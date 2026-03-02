@@ -30,8 +30,8 @@ const HeroSection = () => {
       // How far the top of the section has scrolled above viewport top
       const scrolled = -rect.top;
       // Start darkening immediately, reach max quickly
-      const progress = Math.max(0, Math.min(1, scrolled / (sectionHeight * 0.4)));
-      setScrollDarkness(progress * 0.9); // max 90% dark
+      const progress = Math.max(0, Math.min(1, scrolled / (sectionHeight * 0.85)));
+      setScrollDarkness(progress);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -56,7 +56,7 @@ const HeroSection = () => {
 
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         <div
-          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-[1] transition-opacity duration-100"
+          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-20 transition-opacity duration-150"
           style={{ opacity: scrollDarkness }}
         />
 
@@ -235,7 +235,7 @@ const HeroSection = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
         <div
-          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-[1] transition-opacity duration-100"
+          className="absolute inset-0 bg-tempo-carbon pointer-events-none z-20 transition-opacity duration-150"
           style={{ opacity: scrollDarkness }}
         />
 
