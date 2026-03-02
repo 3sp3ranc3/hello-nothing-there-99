@@ -7,13 +7,10 @@ import architectDetail from "@/assets/architect-detail.webp";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 import architectPair from "@/assets/architect-pair.webp";
 
-// No auto-advance — click only
-
 interface StatBlock {
   pill: string;
   stat: string;
   human: string;
-  proof: string;
 }
 
 interface Review {
@@ -28,25 +25,21 @@ const BLOCKS: StatBlock[] = [
     pill: "SWEET SPOT",
     stat: "2.5×",
     human: "Larger sweet spot than standard carbon",
-    proof: "T700 carbon · optimised flex pattern",
   },
   {
     pill: "SPIN",
     stat: "Maximum",
     human: "Spin the rules allow",
-    proof: "Sandblasted T700 face · maximum surface bite",
   },
   {
     pill: "CONTROL",
     stat: "Surgical",
     human: "Placement on every rally",
-    proof: "16mm wide-body · Trufoam™ 4th gen · vibration dampened",
   },
   {
     pill: "VALUE",
     stat: "$135",
     human: "Because great quality shouldn't be gatekept",
-    proof: "Batch 002 · 250 units only · Ships March 2026",
   },
 ];
 
@@ -79,7 +72,6 @@ const REVIEWS: Review[] = [
   },
 ];
 
-// Star component
 const Stars = () => (
   <div className="flex items-center gap-[3px]">
     {[...Array(5)].map((_, i) => (
@@ -90,7 +82,6 @@ const Stars = () => (
   </div>
 );
 
-// Stat block component
 const StatBlockItem = ({
   block,
   isActive,
@@ -102,33 +93,33 @@ const StatBlockItem = ({
 }) => (
   <button
     onClick={onClick}
-    className="w-full text-left rounded-xl px-[20px] py-[14px] cursor-pointer transition-all duration-300 relative"
+    className="w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative flex-1"
     style={{
+      padding: "20px 24px",
       background: isActive ? "#000000" : "#f3f5f9",
-      border: isActive ? "1px solid #000000" : "1px solid rgba(0,0,0,0.05)",
-      boxShadow: isActive ? "0 8px 28px rgba(0,0,0,0.15)" : "none",
+      border: isActive ? "1.5px solid #000000" : "1.5px solid rgba(0,0,0,0.06)",
     }}
   >
     {/* Category pill — top right */}
     <span
-      className="absolute top-[14px] right-[14px] rounded-full px-[10px] py-[3px] transition-all duration-300"
+      className="absolute top-[16px] right-[16px] rounded-full px-[10px] py-[3px] transition-all duration-300"
       style={{
-        background: isActive ? "rgba(255,255,255,0.13)" : "rgba(0,0,0,0.07)",
+        background: isActive ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.06)",
         fontFamily: "'IBM Plex Mono', monospace",
         fontSize: "9px",
         letterSpacing: "0.14em",
-        color: isActive ? "rgba(255,255,255,0.65)" : "rgba(0,0,0,0.4)",
+        color: isActive ? "rgba(255,255,255,0.6)" : "rgba(0,0,0,0.35)",
       }}
     >
       {block.pill}
     </span>
 
-    {/* Layer 1 — Stat */}
+    {/* Stat */}
     <p
       className="transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "36px",
+        fontSize: "clamp(32px, 4vw, 48px)",
         fontWeight: 300,
         lineHeight: 1.0,
         color: isActive ? "#ffffff" : "#000000",
@@ -137,15 +128,15 @@ const StatBlockItem = ({
       {block.stat}
     </p>
 
-    {/* Layer 2 — Human */}
+    {/* Human line */}
     <p
-      className="mt-[6px] transition-colors duration-300"
+      className="mt-[8px] transition-colors duration-300"
       style={{
         fontFamily: "'DM Sans', sans-serif",
         fontSize: "13px",
         fontWeight: 400,
-        lineHeight: 1.35,
-        color: isActive ? "rgba(255,255,255,0.8)" : "rgba(0,0,0,0.55)",
+        lineHeight: 1.4,
+        color: isActive ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.5)",
       }}
     >
       {block.human}
@@ -153,59 +144,54 @@ const StatBlockItem = ({
   </button>
 );
 
-// Review card component
 const ReviewCard = ({ review }: { review: Review }) => (
   <div
-    className="absolute bottom-0 left-0 right-0 mx-[14px] mb-[14px] rounded-xl px-[24px] py-[20px]"
+    className="absolute bottom-[16px] left-[16px] right-[16px] rounded-xl px-[22px] py-[18px]"
     style={{
-      background: "rgba(255,255,255,0.65)",
-      backdropFilter: "blur(16px)",
-      WebkitBackdropFilter: "blur(16px)",
-      border: "1px solid rgba(255,255,255,0.4)",
+      background: "rgba(245,245,245,0.75)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
+      border: "1px solid rgba(255,255,255,0.35)",
     }}
   >
-    {/* Verified pill */}
     <div className="flex items-center gap-[6px]">
-      <span className="w-[6px] h-[6px] rounded-full bg-[#2D9B5A] inline-block" />
+      <span className="w-[5px] h-[5px] rounded-full bg-[#2D9B5A] inline-block" />
       <span
         style={{
           fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "9px",
+          fontSize: "8px",
           letterSpacing: "0.13em",
-          color: "rgba(26,26,26,0.55)",
+          color: "rgba(26,26,26,0.5)",
         }}
       >
         VERIFIED BATCH 001 BUYER
       </span>
     </div>
 
-    {/* Stars */}
-    <div className="mt-[8px]">
+    <div className="mt-[6px]">
       <Stars />
     </div>
 
-    {/* Review text */}
     <p
-      className="mt-[10px]"
+      className="mt-[8px]"
       style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: "16px",
+        fontSize: "14px",
         fontWeight: 300,
-        lineHeight: 1.65,
-        color: "rgba(13,17,23,0.9)",
+        lineHeight: 1.6,
+        color: "rgba(13,17,23,0.85)",
       }}
     >
       {review.text}
     </p>
 
-    {/* Attribution */}
     <p
-      className="mt-[16px]"
+      className="mt-[12px]"
       style={{
         fontFamily: "'IBM Plex Mono', monospace",
-        fontSize: "11px",
+        fontSize: "10px",
         letterSpacing: "0.06em",
-        color: "rgba(13,17,23,0.38)",
+        color: "rgba(13,17,23,0.35)",
       }}
     >
       — {review.name} · {review.descriptor} · {review.location}
@@ -217,51 +203,51 @@ const WhyArchitectSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-[#ffffff] py-32 lg:py-44">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
-        {/* Headline + Subline */}
+    <section className="bg-white py-28 lg:py-40">
+      <div className="max-w-[1100px] mx-auto px-6 lg:px-10">
+        {/* Headline + Subline — centered like WHOOP */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="text-center mb-14 lg:mb-20"
         >
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "52px",
+              fontSize: "clamp(36px, 5vw, 56px)",
               fontWeight: 300,
-              lineHeight: 1.05,
+              lineHeight: 1.1,
               color: "#0D1117",
             }}
           >
-            Craft you can feel from the first rally.
+            Craft you can feel from<br className="hidden sm:block" /> the first rally.
           </h2>
           <p
-            className="mt-[14px] max-w-[580px]"
+            className="mt-[14px] max-w-[520px] mx-auto"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "17px",
+              fontSize: "16px",
               fontWeight: 400,
-              lineHeight: 1.5,
-              color: "rgba(13,17,23,0.5)",
+              lineHeight: 1.55,
+              color: "rgba(13,17,23,0.45)",
             }}
           >
             Four things The Architect does better — proven by verified Batch 001 players.
           </p>
         </motion.div>
 
-        {/* Two columns */}
+        {/* Two columns — WHOOP style */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row gap-[10px] items-stretch"
+          className="flex flex-col lg:flex-row gap-[14px] items-stretch"
         >
-          {/* LEFT — Stat blocks */}
-          <div className="w-full lg:w-[34%] flex flex-col gap-[10px]">
+          {/* LEFT — Stat blocks, each flex-1 to share height equally */}
+          <div className="w-full lg:w-[42%] flex flex-col gap-[14px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -272,10 +258,9 @@ const WhyArchitectSection = () => {
             ))}
           </div>
 
-          {/* RIGHT — Image + Review */}
-          <div className="w-full lg:w-[62%] mt-10 lg:mt-0">
-            <div className="relative w-full h-full min-h-[400px] lg:min-h-0 rounded-2xl overflow-hidden">
-              {/* Images — cross-fade */}
+          {/* RIGHT — Image + Review, matches left column height */}
+          <div className="w-full lg:w-[58%] mt-8 lg:mt-0">
+            <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{ minHeight: "420px" }}>
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeIndex}
@@ -285,26 +270,26 @@ const WhyArchitectSection = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: 0.45, ease: "easeInOut" }}
                 />
               </AnimatePresence>
 
-              {/* Bottom gradient overlay */}
+              {/* Bottom gradient */}
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: "linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.5) 100%)",
+                  background: "linear-gradient(to bottom, transparent 35%, rgba(0,0,0,0.45) 100%)",
                 }}
               />
 
-              {/* Review card — cross-fade independently */}
+              {/* Review card */}
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeIndex}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
+                  transition={{ duration: 0.45, ease: "easeInOut", delay: 0.1 }}
                 >
                   <ReviewCard review={REVIEWS[activeIndex]} />
                 </motion.div>
