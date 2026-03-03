@@ -95,7 +95,7 @@ const StatBlockItem = ({
     onClick={onClick}
     className="w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative flex-1"
     style={{
-      padding: "18px 22px",
+      padding: "28px 26px",
       background: isActive ? "#000000" : "#f3f5f9",
       border: isActive ? "1.5px solid #000000" : "1.5px solid rgba(0,0,0,0.06)",
     }}
@@ -246,10 +246,10 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row gap-[14px] items-stretch max-w-[1000px] mx-auto"
+          className="flex flex-col lg:flex-row gap-[16px] items-stretch"
         >
-          {/* LEFT — Stat blocks (very narrow) */}
-          <div className="w-full lg:w-[20%] flex flex-col gap-[10px]">
+          {/* LEFT — Stat blocks */}
+          <div className="w-full lg:w-[38%] flex flex-col gap-[12px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -260,8 +260,8 @@ const WhyArchitectSection = () => {
             ))}
           </div>
 
-          {/* RIGHT — Image + Review (dominant) */}
-          <div className="w-full lg:w-[80%] mt-8 lg:mt-0">
+          {/* RIGHT — Image + Review */}
+          <div className="w-full lg:w-[62%] mt-8 lg:mt-0">
             <div className="relative w-full h-full rounded-2xl overflow-hidden" style={{ minHeight: "420px" }}>
               <AnimatePresence mode="wait">
                 <motion.img
