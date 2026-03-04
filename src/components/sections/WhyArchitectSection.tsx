@@ -87,10 +87,10 @@ const Stars = () => (
   </div>
 );
 
-const StatBlockItem = ({ block, isActive, onClick }: { block: StatBlock; isActive: boolean; onClick: () => void }) => (
+const StatBlockItem = ({ block, isActive, onClick, className }: { block: StatBlock; isActive: boolean; onClick: () => void; className?: string }) => (
   <button
     onClick={onClick}
-    className="w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative"
+    className={`w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative ${className || ""}`}
     style={{
       padding: "24px 24px 22px 24px",
       background: isActive ? "#000000" : "#f3f5f9",
@@ -249,23 +249,27 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.15 }}
           viewport={{ once: true }}
-          className="flex flex-col lg:flex-row gap-[12px] items-stretch"
+          className="flex flex-col lg:flex-row gap-[12px]"
         >
-          {/* LEFT — Stat tiles: 30% width, compact */}
-          <div className="w-full lg:w-[30%] grid gap-[10px]" style={{ gridTemplateRows: "repeat(4, 1fr)" }}>
+          {/* LEFT — Stat tiles: 30% width, stretches to match right */}
+          <div className="w-full lg:w-[30%] flex flex-col gap-[10px]">
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
                 block={block}
                 isActive={activeIndex === i}
                 onClick={() => setActiveIndex(i)}
+                className="flex-1"
               />
             ))}
           </div>
 
-          {/* RIGHT — Image panel: 70% width, square */}
+          {/* RIGHT — Image panel: 70% width, square (1:1 aspect ratio) */}
           <div className="w-full lg:w-[70%]">
-            <div className="relative w-full rounded-2xl overflow-hidden" style={{ paddingBottom: "100%" }}>
+            <div
+              className="relative w-full rounded-2xl overflow-hidden"
+              style={{ aspectRatio: "1 / 1" }}
+            >
               {/* Image with crossfade */}
               <AnimatePresence mode="wait">
                 <motion.img
