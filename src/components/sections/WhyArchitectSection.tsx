@@ -2,7 +2,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images — map to each block
-import sweetSpotCard from "@/assets/sweet-spot-card.webp";
+import architectFront from "@/assets/architect-front-white.webp";
+import architectDetail from "@/assets/architect-detail.webp";
+import architectBackhand from "@/assets/architect-backhand.jpg";
+import architectPair from "@/assets/architect-pair.webp";
 
 interface StatBlock {
   pill: string;
@@ -45,7 +48,7 @@ const BLOCKS: StatBlock[] = [
   },
 ];
 
-const IMAGES = [sweetSpotCard, sweetSpotCard, sweetSpotCard, sweetSpotCard];
+const IMAGES = [architectFront, architectDetail, architectBackhand, architectPair];
 
 const REVIEWS: Review[] = [
   {
@@ -211,7 +214,7 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-left mb-10 lg:mb-14"
+          className="mb-10 lg:mb-14"
         >
           <h2
             style={{
@@ -223,24 +226,24 @@ const WhyArchitectSection = () => {
               letterSpacing: "-0.03em",
             }}
           >
-            Craft you can feel from
+            Craft you feel from
             <br className="hidden sm:block" /> the first rally.
           </h2>
           <p
-            className="mt-[12px] max-w-[480px]"
+            className="mt-[16px]"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "16px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "rgba(0,0,0,0.65)",
+              color: "rgba(0,0,0,0.55)",
             }}
           >
             Four things The Architect does better — proven by verified Batch 001 players.
           </p>
         </motion.div>
 
-        {/* Two-column layout — matches WHOOP proportions exactly */}
+        {/* Two-column layout — LEFT narrow tiles, RIGHT large image */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -248,8 +251,8 @@ const WhyArchitectSection = () => {
           viewport={{ once: true }}
           className="flex flex-col lg:flex-row gap-[12px] items-stretch"
         >
-          {/* LEFT — Stat tiles: ~40% width, equal height tiles stacked */}
-          <div className="w-full lg:w-[40%] grid gap-[10px]" style={{ gridTemplateRows: "repeat(4, 1fr)" }}>
+          {/* LEFT — Stat tiles: 30% width, compact */}
+          <div className="w-full lg:w-[30%] grid gap-[10px]" style={{ gridTemplateRows: "repeat(4, 1fr)" }}>
             {BLOCKS.map((block, i) => (
               <StatBlockItem
                 key={block.pill}
@@ -260,20 +263,42 @@ const WhyArchitectSection = () => {
             ))}
           </div>
 
-          {/* RIGHT — Image panel: ~60% width, full height of tiles */}
-          <div className="w-full lg:w-[60%]">
-            <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: "100%", minHeight: "480px" }}>
+          {/* RIGHT — Image panel: 70% width, tall */}
+          <div className="w-full lg:w-[70%]">
+            <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: "100%", minHeight: "560px" }}>
+              {/* Image with crossfade */}
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeIndex}
                   src={IMAGES[activeIndex]}
                   alt={BLOCKS[activeIndex].human}
-                  className="absolute inset-0 w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-cover"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 />
+              </AnimatePresence>
+
+              {/* Subtle bottom gradient so card is readable */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3) 100%)",
+                }}
+              />
+
+              {/* Review card — bottom left, ~50% width like WHOOP */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut", delay: 0.1 }}
+                >
+                  <ReviewCard review={REVIEWS[activeIndex]} />
+                </motion.div>
               </AnimatePresence>
             </div>
           </div>
