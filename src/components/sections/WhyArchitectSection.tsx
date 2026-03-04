@@ -2,10 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images — map to each block
-import architectFront from "@/assets/architect-front-white.webp";
-import architectDetail from "@/assets/architect-detail.webp";
-import architectBackhand from "@/assets/architect-backhand.jpg";
-import architectPair from "@/assets/architect-pair.webp";
+import sweetSpotCard from "@/assets/sweet-spot-card.webp";
 
 interface StatBlock {
   pill: string;
@@ -48,7 +45,7 @@ const BLOCKS: StatBlock[] = [
   },
 ];
 
-const IMAGES = [architectFront, architectDetail, architectBackhand, architectPair];
+const IMAGES = [sweetSpotCard, sweetSpotCard, sweetSpotCard, sweetSpotCard];
 
 const REVIEWS: Review[] = [
   {
