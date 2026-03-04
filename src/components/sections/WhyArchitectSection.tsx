@@ -268,7 +268,7 @@ const WhyArchitectSection = () => {
             <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: "100%", minHeight: "560px" }}>
               {/* Image with crossfade */}
               <AnimatePresence mode="wait">
-                <sweet-spot-card.webp
+                <motion.img
                   key={activeIndex}
                   src={IMAGES[activeIndex]}
                   alt={BLOCKS[activeIndex].human}
