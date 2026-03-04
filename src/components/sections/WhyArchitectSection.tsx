@@ -263,39 +263,17 @@ const WhyArchitectSection = () => {
           {/* RIGHT — Image panel: ~60% width, full height of tiles */}
           <div className="w-full lg:w-[60%]">
             <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: "100%", minHeight: "480px" }}>
-              {/* Image with crossfade */}
               <AnimatePresence mode="wait">
                 <motion.img
                   key={activeIndex}
                   src={IMAGES[activeIndex]}
                   alt={BLOCKS[activeIndex].human}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-contain"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 />
-              </AnimatePresence>
-
-              {/* Subtle bottom gradient so card is readable */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3) 100%)",
-                }}
-              />
-
-              {/* Review card — bottom left, ~50% width like WHOOP */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeInOut", delay: 0.1 }}
-                >
-                  <ReviewCard review={REVIEWS[activeIndex]} />
-                </motion.div>
               </AnimatePresence>
             </div>
           </div>
