@@ -206,7 +206,7 @@ const WhyArchitectSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-white py-28 lg:py-40">
+    <section className="bg-white pt-10 lg:pt-16 pb-28 lg:pb-40">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
         {/* Headline + Subline */}
         <motion.div
