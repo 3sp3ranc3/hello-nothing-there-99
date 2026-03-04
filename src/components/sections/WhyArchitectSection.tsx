@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Images — map to each block
-import architectFront from "@/assets/architect-front-white.webp";
+import architectFront from "@/assets/sweet-spot-card.webp";
 import architectDetail from "@/assets/architect-detail.webp";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 import architectPair from "@/assets/architect-pair.webp";
