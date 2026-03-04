@@ -219,7 +219,7 @@ const WhyArchitectSection = () => {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(44px, 7vw, 80px)",
+              fontSize: "clamp(56px, 8vw, 100px)",
               fontWeight: 500,
               lineHeight: 1.0,
               color: "#000000",
@@ -233,7 +233,7 @@ const WhyArchitectSection = () => {
             className="mt-[16px]"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "16px",
+              fontSize: "20px",
               fontWeight: 400,
               lineHeight: 1.55,
               color: "rgba(0,0,0,0.55)",
@@ -278,27 +278,6 @@ const WhyArchitectSection = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4, ease: "easeInOut" }}
                 />
-              </AnimatePresence>
-
-              {/* Subtle bottom gradient so card is readable */}
-              <div
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background: "linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3) 100%)",
-                }}
-              />
-
-              {/* Review card — bottom left, ~50% width like WHOOP */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeInOut", delay: 0.1 }}
-                >
-                  <ReviewCard review={REVIEWS[activeIndex]} />
-                </motion.div>
               </AnimatePresence>
             </div>
           </div>
