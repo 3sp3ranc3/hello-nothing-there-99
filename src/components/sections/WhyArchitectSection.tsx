@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Single image for the right panel
-import sweetSpotCard from "@/assets/sweet-spot-card.webp";
+// Images — map to each block
+import architectFront from "@/assets/architect-front-white.webp";
+import architectDetail from "@/assets/architect-detail.webp";
+import architectBackhand from "@/assets/architect-backhand.jpg";
+import architectPair from "@/assets/architect-pair.webp";
 
 interface StatBlock {
   pill: string;
@@ -45,7 +48,7 @@ const BLOCKS: StatBlock[] = [
   },
 ];
 
-
+const IMAGES = [architectFront, architectDetail, architectBackhand, architectPair];
 
 const REVIEWS: Review[] = [
   {
@@ -263,11 +266,19 @@ const WhyArchitectSection = () => {
           {/* RIGHT — Image panel: 70% width, tall */}
           <div className="w-full lg:w-[70%]">
             <div className="relative w-full rounded-2xl overflow-hidden" style={{ height: "100%", minHeight: "560px" }}>
-              <img
-                src={sweetSpotCard}
-                alt="The Architect paddle"
-                className="absolute inset-0 w-full h-full object-contain"
-              />
+              {/* Image with crossfade */}
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeIndex}
+                  src={IMAGES[activeIndex]}
+                  alt={BLOCKS[activeIndex].human}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                />
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>
