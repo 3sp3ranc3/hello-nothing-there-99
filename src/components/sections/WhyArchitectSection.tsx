@@ -276,7 +276,7 @@ const WhyArchitectSection = () => {
 
           {/* RIGHT — Image panel: 70% width, square (1:1 aspect ratio) */}
           <div className="w-full lg:w-[70%]">
-            <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
+            <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "4 / 3" }}>
               {/* Image with crossfade */}
               <AnimatePresence mode="wait">
                 <motion.img
