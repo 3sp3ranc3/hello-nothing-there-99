@@ -224,7 +224,7 @@ const WhyArchitectSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="mb-10 lg:mb-14"
+          className="mb-5 lg:mb-7"
         >
           <h2
             style={{
@@ -246,7 +246,7 @@ const WhyArchitectSection = () => {
               fontSize: "20px",
               fontWeight: 400,
               lineHeight: 1.55,
-              color: "rgba(0,0,0,0.55)",
+              color: "#000000",
             }}
           >
             Four things The Architect does better — proven by verified Batch 001 players.
