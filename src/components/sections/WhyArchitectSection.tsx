@@ -87,7 +87,17 @@ const Stars = () => (
   </div>
 );
 
-const StatBlockItem = ({ block, isActive, onClick, className }: { block: StatBlock; isActive: boolean; onClick: () => void; className?: string }) => (
+const StatBlockItem = ({
+  block,
+  isActive,
+  onClick,
+  className,
+}: {
+  block: StatBlock;
+  isActive: boolean;
+  onClick: () => void;
+  className?: string;
+}) => (
   <button
     onClick={onClick}
     className={`w-full text-left rounded-2xl cursor-pointer transition-all duration-300 relative ${className || ""}`}
@@ -206,7 +216,7 @@ const WhyArchitectSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="bg-white pt-10 lg:pt-16 pb-28 lg:pb-40">
+    <section className="bg-white pt-4 lg:pt-6 pb-28 lg:pb-40">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-16">
         {/* Headline + Subline */}
         <motion.div
@@ -266,10 +276,7 @@ const WhyArchitectSection = () => {
 
           {/* RIGHT — Image panel: 70% width, square (1:1 aspect ratio) */}
           <div className="w-full lg:w-[70%]">
-            <div
-              className="relative w-full rounded-2xl overflow-hidden"
-              style={{ aspectRatio: "1 / 1" }}
-            >
+            <div className="relative w-full rounded-2xl overflow-hidden" style={{ aspectRatio: "1 / 1" }}>
               {/* Image with crossfade */}
               <AnimatePresence mode="wait">
                 <motion.img
