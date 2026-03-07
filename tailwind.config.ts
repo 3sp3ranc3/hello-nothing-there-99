@@ -77,6 +77,10 @@ export default {
         'tempo-relaxed': '1.6',
       },
       keyframes: {
+        "pulse002": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.4" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
