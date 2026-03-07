@@ -77,6 +77,10 @@ export default {
         'tempo-relaxed': '1.6',
       },
       keyframes: {
+        "pulse002": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.4" },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -109,6 +113,7 @@ export default {
         },
       },
       animation: {
+        "pulse002": "pulse002 2.4s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "unmask": "unmask 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
