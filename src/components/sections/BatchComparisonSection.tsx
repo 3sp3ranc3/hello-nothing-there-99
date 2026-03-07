@@ -7,9 +7,19 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const BatchComparisonSection = () => {
   return (
     <section
-      className="relative overflow-hidden"
-      style={{ background: "#0E0E0E", padding: "120px 0 140px" }}
+      className="relative overflow-hidden py-20 md:py-0"
+      style={{ background: "#0E0E0E" }}
     >
+      {/* Desktop/mobile padding handled via className + inline */}
+      <style>{`
+        @media (min-width: 768px) {
+          .journey-section-inner { padding-top: 120px; padding-bottom: 140px; }
+        }
+        @media (max-width: 767px) {
+          .journey-section-inner { padding-top: 80px; padding-bottom: 100px; }
+          .journey-container { padding-left: 24px !important; padding-right: 24px !important; }
+        }
+      `}</style>
       {/* SVG fractal noise overlay */}
       <div className="absolute inset-0 pointer-events-none" style={{ opacity: 0.04 }}>
         <svg width="100%" height="100%">
