@@ -30,7 +30,7 @@ const BatchComparisonSection = () => {
         </svg>
       </div>
 
-      <div className="relative mx-auto" style={{ maxWidth: 1100, padding: "0 48px" }}>
+      <div className="relative mx-auto journey-section-inner journey-container" style={{ maxWidth: 1100, padding: "0 48px" }}>
         {/* Header */}
         <motion.p
           initial={{ opacity: 0, y: 12 }}
