@@ -113,6 +113,7 @@ export default {
         },
       },
       animation: {
+        "pulse002": "pulse002 2.4s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "unmask": "unmask 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
