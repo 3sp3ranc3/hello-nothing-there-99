@@ -5,7 +5,7 @@ import BatchNavbar from "@/components/layout/BatchNavbar";
 import MegaFooter from "@/components/layout/MegaFooter";
 import HeroSection from "@/components/sections/HeroSection";
 import WhyArchitectSection from "@/components/sections/WhyArchitectSection";
-import BatchComparisonSection from "@/components/sections/BatchComparisonSection";
+import JourneyTimelineSection from "@/components/sections/JourneyTimelineSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 
@@ -15,7 +15,7 @@ const HomePage = () => {
       <BatchNavbar />
       <HeroSection />
       <WhyArchitectSection />
-      <BatchComparisonSection />
+      <JourneyTimelineSection />
       <TestimonialsSection linkable />
 
       {/* Discovery CTA Section */}
