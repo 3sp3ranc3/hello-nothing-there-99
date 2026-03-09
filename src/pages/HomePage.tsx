@@ -15,7 +15,7 @@ const HomePage = () => {
       <BatchNavbar />
       <HeroSection />
       <WhyArchitectSection />
-      <BatchComparisonSection />
+      <JourneyTimelineSection />
       <TestimonialsSection linkable />
 
       {/* Discovery CTA Section */}
