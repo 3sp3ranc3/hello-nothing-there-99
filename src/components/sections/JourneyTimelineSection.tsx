@@ -1,7 +1,7 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface TimelineEvent {
   date: string;
@@ -41,8 +41,8 @@ const EVENTS: TimelineEvent[] = [
     body: "Showed it to my circle. The reaction said everything. These were people playing with $280 paddles and couldn't believe the perfection. And so Batch 001 opened for pre-orders. To keep initial costs manageable, we ran a pre-order model. Being a new brand without massive order volumes meant pricing was higher than I wanted… but the community showed up anyway. Sold out in 3 days.",
   },
   {
-    date: "Oct 2025 – Jan 2026",
-    headline: "The Reviews & Refinements",
+    date: "Oct '25 – Jan '26",
+    headline: "Reviews & Refinements",
     body: "The reviews confirmed everything I felt on day one. Players came back raving about the sweet spot, the spin, the control. Not a single person felt like they overpaid. That feedback became the blueprint for what came next. Refined the handle and the details for Batch 002. Based directly on player feedback. Every change was intentional; nothing changed for the sake of it.",
   },
   {
@@ -56,27 +56,18 @@ const ease = [0.16, 1, 0.3, 1] as [number, number, number, number];
 
 const JourneyTimelineSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const isLast = (i: number) => i === EVENTS.length - 1;
-
-  const goTo = (i: number) => {
-    if (i < 0 || i >= EVENTS.length) return;
-    setActiveIndex(i);
-  };
-
-  const navPrev = () => goTo(activeIndex - 1);
-  const navNext = () => goTo(activeIndex + 1);
+  const isFinalNode = (i: number) => i === EVENTS.length - 1;
 
   return (
-    <section className="relative bg-tempo-carbon overflow-hidden">
-      <div className="max-w-[1100px] mx-auto px-6 md:px-12 py-24 md:py-32 lg:py-40">
+    <section style={{ background: "#000000" }}>
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-28 md:py-36 lg:py-44">
         {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-24"
+          className="mb-20 md:mb-28"
         >
           <h2
             style={{
@@ -92,114 +83,70 @@ const JourneyTimelineSection = () => {
           </h2>
         </motion.div>
 
-        {/* ── Nav Arrows ── */}
-        <div className="flex items-center justify-center gap-4 mb-10">
-          <button
-            onClick={navPrev}
-            disabled={activeIndex === 0}
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all disabled:opacity-20 disabled:cursor-not-allowed"
-            aria-label="Previous event"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <span
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11,
-              letterSpacing: "0.10em",
-              color: "rgba(255,255,255,0.35)",
-            }}
-          >
-            {activeIndex + 1} / {EVENTS.length}
-          </span>
-          <button
-            onClick={navNext}
-            disabled={activeIndex === EVENTS.length - 1}
-            className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:text-white hover:border-white/40 transition-all disabled:opacity-20 disabled:cursor-not-allowed"
-            aria-label="Next event"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* ── Timeline Bar ── */}
-        <div className="relative mx-auto mb-14 md:mb-20" ref={scrollRef}>
-          {/* Track */}
-          <div className="relative flex items-center justify-between">
-            {/* Background line */}
-            <div className="absolute top-1/2 left-0 right-0 h-[3px] -translate-y-1/2 bg-white/10 rounded-full" />
+        {/* ── Timeline ── */}
+        <div className="relative flex">
+          {/* Vertical line track */}
+          <div className="relative flex-shrink-0" style={{ width: 48 }}>
+            {/* Background track — white bordered line */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 rounded-full"
+              style={{
+                width: 6,
+                background: "rgba(255,255,255,0.08)",
+                border: "1.5px solid rgba(255,255,255,0.15)",
+              }}
+            />
             {/* Progress fill */}
             <motion.div
-              className="absolute top-1/2 left-0 h-[3px] -translate-y-1/2 rounded-full"
-              style={{ background: "hsl(var(--tempo-navy))" }}
+              className="absolute left-1/2 -translate-x-1/2 top-0 rounded-full"
+              style={{
+                width: 6,
+                background: "#FFFFFF",
+                border: "1.5px solid rgba(255,255,255,0.5)",
+              }}
               initial={false}
               animate={{
-                width: `${(activeIndex / (EVENTS.length - 1)) * 100}%`,
+                height: `${((activeIndex + 0.5) / EVENTS.length) * 100}%`,
               }}
-              transition={{ duration: 0.5, ease }}
+              transition={{ duration: 0.6, ease }}
             />
-            {/* White border around progress for pop */}
-            <motion.div
-              className="absolute top-1/2 left-0 h-[5px] -translate-y-1/2 rounded-full border border-white/20"
-              style={{ background: "hsl(var(--tempo-navy))" }}
-              initial={false}
-              animate={{
-                width: `${(activeIndex / (EVENTS.length - 1)) * 100}%`,
-              }}
-              transition={{ duration: 0.5, ease }}
-            />
+          </div>
 
-            {/* Nodes */}
+          {/* Events */}
+          <div className="flex-1 pl-6 md:pl-12">
             {EVENTS.map((event, i) => {
               const isActive = i === activeIndex;
-              const isPast = i < activeIndex;
-              const isFinal = isLast(i);
+              const isFinal = isFinalNode(i);
 
               return (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className="relative z-10 flex flex-col items-center group cursor-pointer"
-                  style={{ flex: "0 0 auto" }}
-                  aria-label={`${event.date}: ${event.headline}`}
-                >
-                  {/* Date label – desktop only */}
-                  <span
-                    className="hidden md:block mb-3 whitespace-nowrap"
+                <div key={i} className="relative" style={{ paddingBottom: i < EVENTS.length - 1 ? 0 : 0 }}>
+                  {/* Node dot — positioned on the vertical line */}
+                  <div
+                    className="absolute flex items-center justify-center"
                     style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: 9,
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                      color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.25)",
-                      transition: "color 0.3s",
+                      left: -6 - 24 - 6, // center on the 48px track
+                      width: 48,
+                      top: 8,
                     }}
                   >
-                    {event.date}
-                  </span>
-
-                  {/* Dot */}
-                  <div className="relative">
                     <motion.div
-                      className="rounded-full transition-colors duration-300"
+                      className="rounded-full"
                       style={{
-                        width: isActive || isFinal ? 16 : 10,
-                        height: isActive || isFinal ? 16 : 10,
-                        background: isActive || isPast || isFinal
-                          ? "hsl(var(--tempo-navy))"
-                          : "rgba(255,255,255,0.12)",
-                        border: isActive || isFinal ? "2px solid rgba(255,255,255,0.6)" : isPast ? "2px solid rgba(255,255,255,0.2)" : "none",
+                        width: isActive ? 18 : isFinal ? 16 : 10,
+                        height: isActive ? 18 : isFinal ? 16 : 10,
+                        background: isActive || i < activeIndex || isFinal ? "#FFFFFF" : "rgba(255,255,255,0.15)",
+                        border: isActive || isFinal ? "3px solid rgba(255,255,255,0.9)" : "none",
                       }}
                       animate={
                         isActive || isFinal
                           ? {
                               boxShadow: [
-                                "0 0 0px rgba(27,42,65,0.4)",
-                                "0 0 16px rgba(27,42,65,0.7)",
-                                "0 0 0px rgba(27,42,65,0.4)",
+                                "0 0 0px rgba(255,255,255,0.2)",
+                                "0 0 20px rgba(255,255,255,0.5)",
+                                "0 0 0px rgba(255,255,255,0.2)",
                               ],
                             }
-                          : { boxShadow: "0 0 0px transparent" }
+                          : { boxShadow: "none" }
                       }
                       transition={
                         isActive || isFinal
@@ -209,78 +156,76 @@ const JourneyTimelineSection = () => {
                     />
                   </div>
 
-                  {/* Headline label – desktop only */}
-                  <span
-                    className="hidden md:block mt-3 whitespace-nowrap max-w-[100px] truncate text-center"
+                  {/* Content */}
+                  <button
+                    onClick={() => setActiveIndex(i)}
+                    className="w-full text-left cursor-pointer group"
                     style={{
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 11,
-                      fontWeight: 500,
-                      color: isActive ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.3)",
-                      transition: "color 0.3s",
+                      paddingTop: 0,
+                      paddingBottom: i < EVENTS.length - 1 ? 48 : 0,
                     }}
                   >
-                    {event.headline}
-                  </span>
-                </button>
+                    {/* Date */}
+                    <span
+                      style={{
+                        fontFamily: "'IBM Plex Mono', monospace",
+                        fontSize: 10,
+                        letterSpacing: "0.14em",
+                        textTransform: "uppercase",
+                        color: "rgba(255,255,255,0.3)",
+                        display: "block",
+                        marginBottom: 8,
+                      }}
+                    >
+                      {event.date}
+                    </span>
+
+                    {/* Headline */}
+                    <h3
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontWeight: 500,
+                        fontSize: "clamp(24px, 3.5vw, 36px)",
+                        letterSpacing: "-0.02em",
+                        lineHeight: 1.15,
+                        color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.45)",
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      {event.headline}
+                    </h3>
+
+                    {/* Expanded body */}
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.5, ease }}
+                          className="overflow-hidden"
+                        >
+                          <p
+                            style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 15,
+                              fontWeight: 400,
+                              lineHeight: 1.7,
+                              color: "rgba(255,255,255,0.65)",
+                              marginTop: 16,
+                              maxWidth: 580,
+                            }}
+                          >
+                            {event.body}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </button>
+                </div>
               );
             })}
           </div>
-        </div>
-
-        {/* ── Content Panel ── */}
-        <div className="relative min-h-[220px] md:min-h-[200px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.5, ease }}
-              className="max-w-2xl mx-auto text-center"
-            >
-              {/* Date */}
-              <span
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: 11,
-                  letterSpacing: "0.14em",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.4)",
-                }}
-              >
-                {EVENTS[activeIndex].date}
-              </span>
-
-              {/* Headline */}
-              <h3
-                className="mt-4 mb-6"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontWeight: 500,
-                  fontSize: "clamp(26px, 4vw, 40px)",
-                  letterSpacing: "-0.02em",
-                  lineHeight: 1.1,
-                  color: "#FFFFFF",
-                }}
-              >
-                {EVENTS[activeIndex].headline}
-              </h3>
-
-              {/* Body */}
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 15,
-                  fontWeight: 400,
-                  lineHeight: 1.7,
-                  color: "rgba(255,255,255,0.55)",
-                }}
-              >
-                {EVENTS[activeIndex].body}
-              </p>
-            </motion.div>
-          </AnimatePresence>
         </div>
 
         {/* ── Bottom CTA ── */}
@@ -289,16 +234,16 @@ const JourneyTimelineSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease }}
           viewport={{ once: true }}
-          className="mt-20 md:mt-28 text-center"
+          className="mt-24 md:mt-32 text-center"
         >
           <p
-            className="mb-8 max-w-lg mx-auto"
+            className="mb-10 max-w-lg mx-auto"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: 16,
               fontWeight: 400,
               lineHeight: 1.6,
-              color: "rgba(255,255,255,0.6)",
+              color: "rgba(255,255,255,0.65)",
             }}
           >
             Batch 002 is open for pre-order now. This won't sit around.
@@ -312,12 +257,12 @@ const JourneyTimelineSection = () => {
               style={{
                 background: "#FFFFFF",
                 borderRadius: 100,
-                padding: "16px 36px",
+                padding: "18px 40px",
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: 15,
                 fontWeight: 600,
                 letterSpacing: "-0.01em",
-                color: "#0E0E0E",
+                color: "#000000",
                 cursor: "pointer",
               }}
               whileHover={{ scale: 0.97 }}
