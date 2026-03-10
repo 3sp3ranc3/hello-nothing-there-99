@@ -46,7 +46,7 @@ const EVENTS: TimelineEvent[] = [
     body: "The reviews confirmed everything I felt on day one. Players came back raving about the sweet spot, the spin, the control. Not a single person felt like they overpaid. That feedback became the blueprint for what came next. Refined the handle and the details for Batch 002. Based directly on player feedback. Every change was intentional; nothing changed for the sake of it.",
   },
   {
-    date: "Mar 2026",
+    date: "Today",
     headline: "The Evolution",
     body: "The Batch 002 prototype landed — and so did the new pricing. Larger order volumes meant we finally had the leverage to do what this was always about. The Architect is now $135. A paddle built from the same manufacturers as the $280+ options — priced like it should have been from the start.",
   },
