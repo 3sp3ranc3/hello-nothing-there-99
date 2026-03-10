@@ -86,7 +86,7 @@ const JourneyTimelineSection = () => {
         {/* Two-column layout: timeline+headlines left, description right */}
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-0">
           {/* LEFT: Timeline + Headlines */}
-          <div className="lg:w-[45%] xl:w-[40%]">
+          <div className="lg:w-[40%] xl:w-[35%]">
             <div className="relative flex">
               {/* Vertical line track */}
               <div className="relative flex-shrink-0" style={{ width: 32 }}>
