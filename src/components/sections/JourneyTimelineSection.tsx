@@ -59,50 +59,48 @@ const JourneyTimelineSection = () => {
   const isFinalNode = (i: number) => i === EVENTS.length - 1;
 
   return (
-    <section style={{ background: "#000000" }}>
-      <div className="max-w-[1200px] mx-auto px-6 md:px-12 py-28 md:py-36 lg:py-44">
-        {/* ── Header ── */}
+    <section className="bg-white">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-16 py-24 md:py-32 lg:py-40">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease }}
           viewport={{ once: true }}
-          className="mb-20 md:mb-28"
+          className="mb-16 md:mb-24"
         >
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontWeight: 500,
-              fontSize: "clamp(44px, 6vw, 80px)",
+              fontSize: "clamp(48px, 6vw, 88px)",
               letterSpacing: "-0.03em",
               lineHeight: 1,
-              color: "#FFFFFF",
+              color: "#000000",
             }}
           >
             Our Journey
           </h2>
         </motion.div>
 
-        {/* ── Timeline ── */}
-        <div className="relative flex">
-          {/* Vertical line track */}
-          <div className="relative flex-shrink-0" style={{ width: 48 }}>
-            {/* Background track — white bordered line */}
+        {/* Timeline */}
+        <div className="relative flex gap-8 md:gap-16">
+          {/* Vertical line track — left side */}
+          <div className="relative flex-shrink-0" style={{ width: 32 }}>
+            {/* Background track */}
             <div
               className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 rounded-full"
               style={{
-                width: 6,
-                background: "rgba(255,255,255,0.08)",
-                border: "1.5px solid rgba(255,255,255,0.15)",
+                width: 4,
+                background: "hsl(var(--tempo-vapor))",
               }}
             />
             {/* Progress fill */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 top-0 rounded-full"
               style={{
-                width: 6,
-                background: "#FFFFFF",
-                border: "1.5px solid rgba(255,255,255,0.5)",
+                width: 4,
+                background: "#000000",
               }}
               initial={false}
               animate={{
@@ -112,38 +110,38 @@ const JourneyTimelineSection = () => {
             />
           </div>
 
-          {/* Events */}
-          <div className="flex-1 pl-6 md:pl-12">
+          {/* Events — right side */}
+          <div className="flex-1">
             {EVENTS.map((event, i) => {
               const isActive = i === activeIndex;
               const isFinal = isFinalNode(i);
 
               return (
-                <div key={i} className="relative" style={{ paddingBottom: i < EVENTS.length - 1 ? 0 : 0 }}>
-                  {/* Node dot — positioned on the vertical line */}
+                <div key={i} className="relative">
+                  {/* Node dot */}
                   <div
                     className="absolute flex items-center justify-center"
                     style={{
-                      left: -6 - 24 - 6, // center on the 48px track
-                      width: 48,
-                      top: 8,
+                      left: -8 - 16 - 8,
+                      width: 32,
+                      top: 10,
                     }}
                   >
                     <motion.div
                       className="rounded-full"
                       style={{
-                        width: isActive ? 18 : isFinal ? 16 : 10,
-                        height: isActive ? 18 : isFinal ? 16 : 10,
-                        background: isActive || i < activeIndex || isFinal ? "#FFFFFF" : "rgba(255,255,255,0.15)",
-                        border: isActive || isFinal ? "3px solid rgba(255,255,255,0.9)" : "none",
+                        width: isActive ? 16 : isFinal ? 14 : 8,
+                        height: isActive ? 16 : isFinal ? 14 : 8,
+                        background: isActive || i < activeIndex || isFinal ? "#000000" : "hsl(var(--tempo-vapor))",
+                        border: isActive || isFinal ? "3px solid #000000" : "none",
                       }}
                       animate={
                         isActive || isFinal
                           ? {
                               boxShadow: [
-                                "0 0 0px rgba(255,255,255,0.2)",
-                                "0 0 20px rgba(255,255,255,0.5)",
-                                "0 0 0px rgba(255,255,255,0.2)",
+                                "0 0 0px rgba(0,0,0,0.1)",
+                                "0 0 16px rgba(0,0,0,0.3)",
+                                "0 0 0px rgba(0,0,0,0.1)",
                               ],
                             }
                           : { boxShadow: "none" }
@@ -161,39 +159,40 @@ const JourneyTimelineSection = () => {
                     onClick={() => setActiveIndex(i)}
                     className="w-full text-left cursor-pointer group"
                     style={{
-                      paddingTop: 0,
-                      paddingBottom: i < EVENTS.length - 1 ? 48 : 0,
+                      paddingBottom: i < EVENTS.length - 1 ? 56 : 0,
                     }}
                   >
                     {/* Date */}
                     <span
                       style={{
                         fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: 10,
+                        fontSize: 12,
                         letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        color: "rgba(255,255,255,0.3)",
+                        color: "#000000",
                         display: "block",
-                        marginBottom: 8,
+                        marginBottom: 10,
                       }}
                     >
                       {event.date}
                     </span>
 
                     {/* Headline */}
-                    <h3
+                    <motion.h3
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontWeight: 500,
-                        fontSize: "clamp(24px, 3.5vw, 36px)",
                         letterSpacing: "-0.02em",
                         lineHeight: 1.15,
-                        color: isActive ? "#FFFFFF" : "rgba(255,255,255,0.45)",
-                        transition: "color 0.3s ease",
+                        color: "#000000",
                       }}
+                      animate={{
+                        fontSize: isActive ? "clamp(32px, 4vw, 48px)" : "clamp(22px, 2.5vw, 32px)",
+                      }}
+                      transition={{ duration: 0.4, ease }}
                     >
                       {event.headline}
-                    </h3>
+                    </motion.h3>
 
                     {/* Expanded body */}
                     <AnimatePresence initial={false}>
@@ -208,12 +207,12 @@ const JourneyTimelineSection = () => {
                           <p
                             style={{
                               fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 15,
+                              fontSize: 18,
                               fontWeight: 400,
                               lineHeight: 1.7,
-                              color: "rgba(255,255,255,0.65)",
-                              marginTop: 16,
-                              maxWidth: 580,
+                              color: "#000000",
+                              marginTop: 20,
+                              maxWidth: 640,
                             }}
                           >
                             {event.body}
@@ -228,7 +227,7 @@ const JourneyTimelineSection = () => {
           </div>
         </div>
 
-        {/* ── Bottom CTA ── */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -237,13 +236,13 @@ const JourneyTimelineSection = () => {
           className="mt-24 md:mt-32 text-center"
         >
           <p
-            className="mb-10 max-w-lg mx-auto"
+            className="mb-10 max-w-xl mx-auto"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 16,
+              fontSize: 18,
               fontWeight: 400,
               lineHeight: 1.6,
-              color: "rgba(255,255,255,0.65)",
+              color: "#000000",
             }}
           >
             Batch 002 is open for pre-order now. This won't sit around.
@@ -255,14 +254,14 @@ const JourneyTimelineSection = () => {
             <motion.span
               className="inline-flex items-center gap-3 group"
               style={{
-                background: "#FFFFFF",
+                background: "#000000",
                 borderRadius: 100,
-                padding: "18px 40px",
+                padding: "20px 44px",
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: 15,
+                fontSize: 16,
                 fontWeight: 600,
                 letterSpacing: "-0.01em",
-                color: "#000000",
+                color: "#FFFFFF",
                 cursor: "pointer",
               }}
               whileHover={{ scale: 0.97 }}
@@ -277,10 +276,10 @@ const JourneyTimelineSection = () => {
             className="mt-5"
             style={{
               fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 10,
+              fontSize: 11,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
+              color: "#000000",
             }}
           >
             Limited to 250 units
