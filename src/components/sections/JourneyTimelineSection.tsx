@@ -83,147 +83,194 @@ const JourneyTimelineSection = () => {
           </h2>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative flex gap-8 md:gap-16">
-          {/* Vertical line track — left side */}
-          <div className="relative flex-shrink-0" style={{ width: 32 }}>
-            {/* Background track */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 rounded-full"
-              style={{
-                width: 4,
-                background: "hsl(var(--tempo-vapor))",
-              }}
-            />
-            {/* Progress fill */}
-            <motion.div
-              className="absolute left-1/2 -translate-x-1/2 top-0 rounded-full"
-              style={{
-                width: 4,
-                background: "#000000",
-              }}
-              initial={false}
-              animate={{
-                height: `${((activeIndex + 0.5) / EVENTS.length) * 100}%`,
-              }}
-              transition={{ duration: 0.6, ease }}
-            />
+        {/* Two-column layout: timeline+headlines left, description right */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-0">
+          {/* LEFT: Timeline + Headlines */}
+          <div className="lg:w-[45%] xl:w-[40%]">
+            <div className="relative flex">
+              {/* Vertical line track */}
+              <div className="relative flex-shrink-0" style={{ width: 32 }}>
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 rounded-full"
+                  style={{ width: 4, background: "hsl(var(--tempo-vapor))" }}
+                />
+                <motion.div
+                  className="absolute left-1/2 -translate-x-1/2 top-0 rounded-full"
+                  style={{ width: 4, background: "#000000" }}
+                  initial={false}
+                  animate={{
+                    height: `${((activeIndex + 0.5) / EVENTS.length) * 100}%`,
+                  }}
+                  transition={{ duration: 0.6, ease }}
+                />
+              </div>
+
+              {/* Headlines */}
+              <div className="flex-1 pl-6 md:pl-10">
+                {EVENTS.map((event, i) => {
+                  const isActive = i === activeIndex;
+                  const isFinal = isFinalNode(i);
+
+                  return (
+                    <div key={i} className="relative">
+                      {/* Node dot */}
+                      <div
+                        className="absolute flex items-center justify-center"
+                        style={{ left: -6 - 16 - 6, width: 32, top: 6 }}
+                      >
+                        <motion.div
+                          className="rounded-full"
+                          style={{
+                            width: isActive ? 16 : isFinal ? 14 : 8,
+                            height: isActive ? 16 : isFinal ? 14 : 8,
+                            background:
+                              isActive || i < activeIndex || isFinal
+                                ? "#000000"
+                                : "hsl(var(--tempo-vapor))",
+                            border: isActive || isFinal ? "3px solid #000000" : "none",
+                          }}
+                          animate={
+                            isActive || isFinal
+                              ? {
+                                  boxShadow: [
+                                    "0 0 0px rgba(0,0,0,0.1)",
+                                    "0 0 16px rgba(0,0,0,0.3)",
+                                    "0 0 0px rgba(0,0,0,0.1)",
+                                  ],
+                                }
+                              : { boxShadow: "none" }
+                          }
+                          transition={
+                            isActive || isFinal
+                              ? { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
+                              : { duration: 0.3 }
+                          }
+                        />
+                      </div>
+
+                      <button
+                        onClick={() => setActiveIndex(i)}
+                        className="w-full text-left cursor-pointer group"
+                        style={{ paddingBottom: i < EVENTS.length - 1 ? 40 : 0 }}
+                      >
+                        {/* Date */}
+                        <span
+                          style={{
+                            fontFamily: "'IBM Plex Mono', monospace",
+                            fontSize: 12,
+                            letterSpacing: "0.14em",
+                            textTransform: "uppercase",
+                            color: "#000000",
+                            display: "block",
+                            marginBottom: 6,
+                          }}
+                        >
+                          {event.date}
+                        </span>
+
+                        {/* Headline */}
+                        <motion.h3
+                          style={{
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontWeight: 500,
+                            letterSpacing: "-0.02em",
+                            lineHeight: 1.15,
+                            color: "#000000",
+                          }}
+                          animate={{
+                            fontSize: isActive ? "clamp(28px, 3vw, 40px)" : "clamp(20px, 2vw, 26px)",
+                            opacity: isActive ? 1 : 0.45,
+                          }}
+                          transition={{ duration: 0.4, ease }}
+                        >
+                          {event.headline}
+                        </motion.h3>
+
+                        {/* Mobile: show body inline */}
+                        <AnimatePresence initial={false}>
+                          {isActive && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.5, ease }}
+                              className="overflow-hidden lg:hidden"
+                            >
+                              <p
+                                style={{
+                                  fontFamily: "'DM Sans', sans-serif",
+                                  fontSize: 18,
+                                  fontWeight: 400,
+                                  lineHeight: 1.7,
+                                  color: "#000000",
+                                  marginTop: 16,
+                                }}
+                              >
+                                {event.body}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          {/* Events — right side */}
-          <div className="flex-1">
-            {EVENTS.map((event, i) => {
-              const isActive = i === activeIndex;
-              const isFinal = isFinalNode(i);
-
-              return (
-                <div key={i} className="relative">
-                  {/* Node dot */}
-                  <div
-                    className="absolute flex items-center justify-center"
+          {/* RIGHT: Description panel (desktop only) */}
+          <div className="hidden lg:flex lg:w-[55%] xl:w-[60%] lg:pl-16 xl:pl-24 items-start pt-2">
+            <div className="sticky top-32 w-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.5, ease }}
+                >
+                  <span
                     style={{
-                      left: -8 - 16 - 8,
-                      width: 32,
-                      top: 10,
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontSize: 13,
+                      letterSpacing: "0.14em",
+                      textTransform: "uppercase",
+                      color: "#000000",
+                      display: "block",
+                      marginBottom: 16,
                     }}
                   >
-                    <motion.div
-                      className="rounded-full"
-                      style={{
-                        width: isActive ? 16 : isFinal ? 14 : 8,
-                        height: isActive ? 16 : isFinal ? 14 : 8,
-                        background: isActive || i < activeIndex || isFinal ? "#000000" : "hsl(var(--tempo-vapor))",
-                        border: isActive || isFinal ? "3px solid #000000" : "none",
-                      }}
-                      animate={
-                        isActive || isFinal
-                          ? {
-                              boxShadow: [
-                                "0 0 0px rgba(0,0,0,0.1)",
-                                "0 0 16px rgba(0,0,0,0.3)",
-                                "0 0 0px rgba(0,0,0,0.1)",
-                              ],
-                            }
-                          : { boxShadow: "none" }
-                      }
-                      transition={
-                        isActive || isFinal
-                          ? { duration: 2.4, repeat: Infinity, ease: "easeInOut" }
-                          : { duration: 0.3 }
-                      }
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <button
-                    onClick={() => setActiveIndex(i)}
-                    className="w-full text-left cursor-pointer group"
+                    {EVENTS[activeIndex].date}
+                  </span>
+                  <h3
                     style={{
-                      paddingBottom: i < EVENTS.length - 1 ? 56 : 0,
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontWeight: 500,
+                      fontSize: "clamp(36px, 4vw, 56px)",
+                      letterSpacing: "-0.02em",
+                      lineHeight: 1.1,
+                      color: "#000000",
+                      marginBottom: 28,
                     }}
                   >
-                    {/* Date */}
-                    <span
-                      style={{
-                        fontFamily: "'IBM Plex Mono', monospace",
-                        fontSize: 12,
-                        letterSpacing: "0.14em",
-                        textTransform: "uppercase",
-                        color: "#000000",
-                        display: "block",
-                        marginBottom: 10,
-                      }}
-                    >
-                      {event.date}
-                    </span>
-
-                    {/* Headline */}
-                    <motion.h3
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontWeight: 500,
-                        letterSpacing: "-0.02em",
-                        lineHeight: 1.15,
-                        color: "#000000",
-                      }}
-                      animate={{
-                        fontSize: isActive ? "clamp(32px, 4vw, 48px)" : "clamp(22px, 2.5vw, 32px)",
-                      }}
-                      transition={{ duration: 0.4, ease }}
-                    >
-                      {event.headline}
-                    </motion.h3>
-
-                    {/* Expanded body */}
-                    <AnimatePresence initial={false}>
-                      {isActive && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.5, ease }}
-                          className="overflow-hidden"
-                        >
-                          <p
-                            style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 18,
-                              fontWeight: 400,
-                              lineHeight: 1.7,
-                              color: "#000000",
-                              marginTop: 20,
-                              maxWidth: 640,
-                            }}
-                          >
-                            {event.body}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </button>
-                </div>
-              );
-            })}
+                    {EVENTS[activeIndex].headline}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 22,
+                      fontWeight: 400,
+                      lineHeight: 1.7,
+                      color: "#000000",
+                      maxWidth: 600,
+                    }}
+                  >
+                    {EVENTS[activeIndex].body}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
 
@@ -239,7 +286,7 @@ const JourneyTimelineSection = () => {
             className="mb-10 max-w-xl mx-auto"
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 18,
+              fontSize: 20,
               fontWeight: 400,
               lineHeight: 1.6,
               color: "#000000",
