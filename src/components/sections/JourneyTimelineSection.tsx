@@ -243,10 +243,10 @@ const JourneyTimelineSection = () => {
                   >
                     {EVENTS[activeIndex].date}
                   </span>
-                  <h3
+                    <h3
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
-                      fontWeight: 500,
+                      fontWeight: 700,
                       fontSize: "clamp(24px, 2.5vw, 36px)",
                       letterSpacing: "-0.02em",
                       lineHeight: 1.1,
