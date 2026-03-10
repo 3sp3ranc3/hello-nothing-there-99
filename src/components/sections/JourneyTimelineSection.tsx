@@ -259,7 +259,7 @@ const JourneyTimelineSection = () => {
                   <p
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: "clamp(26px, 3vw, 38px)",
+                      fontSize: "clamp(30px, 3.5vw, 48px)",
                       fontWeight: 400,
                       lineHeight: 1.55,
                       color: "#000000",
