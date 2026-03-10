@@ -220,7 +220,7 @@ const JourneyTimelineSection = () => {
           </div>
 
           {/* RIGHT: Description panel (desktop only) */}
-          <div className="hidden lg:flex lg:w-[55%] xl:w-[60%] lg:pl-16 xl:pl-24 items-start pt-2">
+          <div className="hidden lg:flex lg:w-[60%] xl:w-[65%] lg:pl-16 xl:pl-20 items-start pt-2">
             <div className="sticky top-32 w-full">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -233,12 +233,12 @@ const JourneyTimelineSection = () => {
                   <span
                     style={{
                       fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: 13,
+                      fontSize: 12,
                       letterSpacing: "0.14em",
                       textTransform: "uppercase",
                       color: "#000000",
                       display: "block",
-                      marginBottom: 16,
+                      marginBottom: 12,
                     }}
                   >
                     {EVENTS[activeIndex].date}
@@ -247,11 +247,11 @@ const JourneyTimelineSection = () => {
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 500,
-                      fontSize: "clamp(36px, 4vw, 56px)",
+                      fontSize: "clamp(24px, 2.5vw, 36px)",
                       letterSpacing: "-0.02em",
                       lineHeight: 1.1,
                       color: "#000000",
-                      marginBottom: 28,
+                      marginBottom: 32,
                     }}
                   >
                     {EVENTS[activeIndex].headline}
@@ -259,11 +259,10 @@ const JourneyTimelineSection = () => {
                   <p
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 22,
+                      fontSize: "clamp(26px, 3vw, 38px)",
                       fontWeight: 400,
-                      lineHeight: 1.7,
+                      lineHeight: 1.55,
                       color: "#000000",
-                      maxWidth: 600,
                     }}
                   >
                     {EVENTS[activeIndex].body}
