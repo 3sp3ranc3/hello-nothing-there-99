@@ -159,7 +159,7 @@ const BatchNavbar = () => {
               </Link>
 
               <Link
-                to="/about"
+                to="/pages/about"
                 className={`py-2 transition-colors ${
                   isDark ? "text-white/80" : "text-tempo-carbon/70"
                 }`}
