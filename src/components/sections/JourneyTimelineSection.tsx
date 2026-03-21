@@ -273,64 +273,6 @@ const JourneyTimelineSection = () => {
           </div>
         </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease }}
-          viewport={{ once: true }}
-          className="mt-24 md:mt-32 text-center"
-        >
-          <p
-            className="mb-10 max-w-xl mx-auto"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 20,
-              fontWeight: 400,
-              lineHeight: 1.6,
-              color: "#000000",
-            }}
-          >
-            Batch 002 is open for pre-order now. This won't sit around.
-            <br className="hidden sm:block" />
-            If Batch 001 taught us anything, it's that people who find this paddle don't hesitate twice.
-          </p>
-
-          <Link to="/products/the-architect">
-            <motion.span
-              className="inline-flex items-center gap-3 group"
-              style={{
-                background: "#000000",
-                borderRadius: 100,
-                padding: "20px 44px",
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 16,
-                fontWeight: 600,
-                letterSpacing: "-0.01em",
-                color: "#FFFFFF",
-                cursor: "pointer",
-              }}
-              whileHover={{ scale: 0.97 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Pre-order Batch 002 · $135
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-[3px]" />
-            </motion.span>
-          </Link>
-
-          <p
-            className="mt-5"
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: 11,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "#000000",
-            }}
-          >
-            Limited to 250 units
-          </p>
-        </motion.div>
       </div>
     </section>
   );
