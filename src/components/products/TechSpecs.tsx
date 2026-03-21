@@ -126,7 +126,6 @@ const SpecCard = ({
       style={{ perspective: "1200px" }}
       onMouseEnter={handleMouseEnter}
       onClick={handleClick}
-      onTouchStart={handleTouch}
       title={flipped ? "Tap to see icon" : "Tap to reveal"}
     >
       <motion.div
