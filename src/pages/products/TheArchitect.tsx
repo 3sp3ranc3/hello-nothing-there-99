@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { trackProductView, trackAddToCart } from "@/lib/shopify-analytics";
-import { ArrowRight, ShieldCheck, Truck, Loader2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Loader2 } from "lucide-react";
 
 
 import BatchNavbar from "@/components/layout/BatchNavbar";
