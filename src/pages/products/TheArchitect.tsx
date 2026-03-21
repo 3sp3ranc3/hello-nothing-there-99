@@ -278,7 +278,7 @@ const TheArchitect = () => {
                             <span key={i}>{star}</span>
                           ))}
                         </span>
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-1 underline underline-offset-4 decoration-tempo-carbon/20 group-hover:decoration-tempo-carbon/50">
                           Read Batch 001 Reviews
                           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                         </span>
