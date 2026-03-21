@@ -69,6 +69,7 @@ const TheArchitect = () => {
   const [faqDefaultOpen, setFaqDefaultOpen] = useState<string | undefined>(undefined);
   const techSectionRef = useRef<HTMLElement>(null);
   const faqSectionRef = useRef<HTMLDivElement>(null);
+  const testimonialsSectionRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const isProgressInView = useInView(progressRef, { once: true });
 
@@ -267,9 +268,9 @@ const TheArchitect = () => {
                     </div>
 
                     {/* Reviews link */}
-                    <Link
-                      to="/pages/batch-001"
-                      className="flex items-center justify-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group"
+                    <button
+                      onClick={() => testimonialsSectionRef.current?.scrollIntoView({ behavior: "smooth" })}
+                      className="flex items-center justify-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group cursor-pointer"
                     >
                       <span className="flex items-center gap-0.5 text-amber-500/60">
                         {"★★★★★".split("").map((star, i) => (
@@ -280,7 +281,7 @@ const TheArchitect = () => {
                         Read Batch 001 Reviews
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                       </span>
-                    </Link>
+                    </button>
 
                   </div>
 
@@ -355,7 +356,9 @@ const TheArchitect = () => {
             </div>
           </section>
 
-          <TestimonialsSection dark />
+          <div ref={testimonialsSectionRef}>
+            <TestimonialsSection dark />
+          </div>
 
           <div ref={faqSectionRef} className="max-w-[1100px] mx-auto px-6 lg:px-12">
             <ProductFAQ items={faqItems} dark defaultOpenValue={faqDefaultOpen} />
