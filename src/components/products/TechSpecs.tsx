@@ -92,27 +92,29 @@ const SpecCard = ({
     }
   }, [forceFlip]);
 
-  // Hover flips the card the first time (non-first cards only, desktop only)
+  // Desktop only: hover flips the card the first time (non-first cards)
   const handleMouseEnter = () => {
+    if (isMobile) return;
     if (!isFirst && !hasFlippedOnce) {
       setFlipped(true);
       setHasFlippedOnce(true);
     }
   };
 
-  // Touch: first tap flips to reveal, subsequent taps toggle
-  const handleTouch = (e: React.TouchEvent) => {
-    e.preventDefault();
-    if (!hasFlippedOnce) {
-      setFlipped(true);
-      setHasFlippedOnce(true);
+  // Click toggles — works on both mobile and desktop
+  const handleClick = () => {
+    if (isMobile) {
+      // On mobile, first click reveals, subsequent clicks toggle
+      if (!hasFlippedOnce) {
+        setFlipped(true);
+        setHasFlippedOnce(true);
+      } else {
+        setFlipped((f) => !f);
+      }
     } else {
       setFlipped((f) => !f);
     }
   };
-
-  // Click always toggles (desktop)
-  const handleClick = () => setFlipped((f) => !f);
 
   const bgFront = dark ? "rgba(30, 58, 95, 0.45)" : "rgba(238, 236, 234, 0.55)";
   const bgBack  = dark ? "rgba(36, 80, 128, 0.45)" : "rgba(227, 225, 222, 0.55)";
