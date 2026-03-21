@@ -186,6 +186,7 @@ const SpecCard = ({
 
 const TechSpecs = ({ headline, description, specs, variant = "full", dark = false, revealAll: revealAllProp = false }: TechSpecsProps) => {
   const [revealAll, setRevealAll] = useState(revealAllProp);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (revealAllProp) setRevealAll(true);
