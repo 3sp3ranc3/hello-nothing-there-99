@@ -246,7 +246,7 @@ const MegaFooter = forwardRef<HTMLElement>((_, ref) => {
 
             {/* Trust Badges - Desktop Only */}
             <p className="text-xs tracking-wide text-tempo-bone/50 hidden lg:block">
-              100% Secure Checkout | Free Shipping Over $100 | 12-Month Warranty
+              100% Secure Checkout | 12-Month Warranty
             </p>
 
             {/* Payment Icons */}

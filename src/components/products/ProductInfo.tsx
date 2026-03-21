@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useRef } from "react";
-import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 
 interface ProductInfoProps {
   title: string;
@@ -107,12 +107,7 @@ const ProductInfo = ({ title, description, price, retailPrice, features, onViewS
           <ShieldCheck className="w-4 h-4" />
           <span>12-Month Warranty</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Truck className="w-4 h-4" />
-          <span>Free Shipping</span>
-        </div>
       </div>
-
       {/* Primary CTA */}
       <motion.button
         onMouseEnter={() => setIsButtonHovered(true)}

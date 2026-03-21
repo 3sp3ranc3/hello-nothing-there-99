@@ -70,7 +70,7 @@ const ProductSection = () => {
                   
                   <div className="flex items-baseline gap-3">
                     <span className="text-sm line-through text-tempo-bone/40">$155</span>
-                    <span className="text-4xl font-black">$119</span>
+                    <span className="text-4xl font-black">$109</span>
                   </div>
                   
                   <p className="text-sm text-tempo-bone/70">
@@ -102,7 +102,7 @@ const ProductSection = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full py-4 bg-tempo-bone text-tempo-carbon font-bold uppercase tracking-widest rounded-full hover:bg-white transition-colors mt-4"
                   >
-                    Reserve Now — $119
+                    Reserve Now — $109
                   </motion.button>
                 </div>
               </div>
@@ -129,12 +129,6 @@ const ProductSection = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
                   <span>12-Month Warranty</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                  </svg>
-                  <span>Free Shipping</span>
                 </div>
               </div>
             </div>

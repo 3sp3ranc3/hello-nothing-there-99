@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { trackProductView, trackAddToCart } from "@/lib/shopify-analytics";
-import { ArrowRight, ShieldCheck, Truck, Loader2 } from "lucide-react";
+import { ArrowRight, ShieldCheck, Loader2 } from "lucide-react";
 
 
 import BatchNavbar from "@/components/layout/BatchNavbar";
@@ -184,7 +184,7 @@ const TheArchitect = () => {
                         <span className="text-sm text-tempo-carbon/40 line-through">Batch 001: $155</span>
                       </div>
                       <div className="flex items-baseline gap-3">
-                        <span className="text-5xl font-black text-tempo-carbon tracking-tight">$119</span>
+                        <span className="text-5xl font-black text-tempo-carbon tracking-tight">$109</span>
                         <span className="text-sm font-medium text-tempo-carbon/50 uppercase tracking-widest">Preorder</span>
                       </div>
                       <p className="text-xs text-tempo-carbon/40 uppercase tracking-widest pt-0.5">Elite materials. Honest pricing.</p>
@@ -258,10 +258,6 @@ const TheArchitect = () => {
                       <div className="flex items-center gap-2">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         <span>12-Month Warranty</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Truck className="w-3.5 h-3.5" />
-                        <span>Free Premium Shipping</span>
                       </div>
                     </div>
 
