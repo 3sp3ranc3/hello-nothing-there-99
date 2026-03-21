@@ -155,7 +155,7 @@ const HeroSection = () => {
                   Pre-order now
                 </span>
                 <span className="relative z-10 px-6 lg:px-7 py-4 lg:py-[1.1rem] text-sm lg:text-base font-bold tracking-tight border-l border-tempo-carbon/10 group-hover:border-white/10 bg-tempo-carbon/[0.03] group-hover:text-tempo-bone transition-colors duration-500">
-                  $135
+                  $119
                 </span>
               </Link>
               <p className="mt-3 text-[11px] text-white/40 tracking-widest uppercase">Ships March 2026</p>
@@ -333,7 +333,7 @@ const HeroSection = () => {
                 Pre-order now
               </span>
               <span className="px-5 py-3.5 text-sm font-bold tracking-tight text-tempo-carbon border-l border-tempo-carbon/10 bg-tempo-carbon/[0.03]">
-                $135
+                $119
               </span>
             </Link>
           </div>

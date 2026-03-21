@@ -69,8 +69,8 @@ const ProductSection = () => {
                   <span className="text-xs uppercase tracking-widest text-tempo-bone/60">Batch 002 Preorder</span>
                   
                   <div className="flex items-baseline gap-3">
-                    <span className="text-sm line-through text-tempo-bone/40">$195</span>
-                    <span className="text-4xl font-black">$135</span>
+                    <span className="text-sm line-through text-tempo-bone/40">$155</span>
+                    <span className="text-4xl font-black">$119</span>
                   </div>
                   
                   <p className="text-sm text-tempo-bone/70">
@@ -102,7 +102,7 @@ const ProductSection = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full py-4 bg-tempo-bone text-tempo-carbon font-bold uppercase tracking-widest rounded-full hover:bg-white transition-colors mt-4"
                   >
-                    Reserve Now — $135
+                    Reserve Now — $119
                   </motion.button>
                 </div>
               </div>
