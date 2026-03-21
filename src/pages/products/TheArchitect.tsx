@@ -69,6 +69,7 @@ const TheArchitect = () => {
   const [faqDefaultOpen, setFaqDefaultOpen] = useState<string | undefined>(undefined);
   const techSectionRef = useRef<HTMLElement>(null);
   const faqSectionRef = useRef<HTMLDivElement>(null);
+  const testimonialsSectionRef = useRef<HTMLDivElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
   const isProgressInView = useInView(progressRef, { once: true });
 
