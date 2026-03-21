@@ -107,11 +107,7 @@ const ProductInfo = ({ title, description, price, retailPrice, features, onViewS
           <ShieldCheck className="w-4 h-4" />
           <span>12-Month Warranty</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Truck className="w-4 h-4" />
-          <span>Free Shipping</span>
-        </div>
-      </div>
+        
 
       {/* Primary CTA */}
       <motion.button

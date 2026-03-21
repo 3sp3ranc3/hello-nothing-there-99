@@ -40,7 +40,7 @@ const StickyHeroCTA = () => {
               Pre-order now
             </span>
             <span className="px-5 py-3.5 text-sm font-bold tracking-tight border-l border-white/10">
-              $119
+              $109
             </span>
           </Link>
         </motion.div>

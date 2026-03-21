@@ -42,7 +42,7 @@ const BLOCKS: StatBlock[] = [
   },
   {
     pill: "VALUE",
-    stat: "$119",
+    stat: "$109",
     unit: "",
     human: "Because great quality shouldn't be gatekept",
   },
