@@ -7,6 +7,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import WhyArchitectSection from "@/components/sections/WhyArchitectSection";
 import JourneyTimelineSection from "@/components/sections/JourneyTimelineSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import StickyHeroCTA from "@/components/ui/StickyHeroCTA";
 import architectBackhand from "@/assets/architect-backhand.jpg";
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
     <main className="bg-tempo-bone">
       <BatchNavbar />
       <HeroSection />
+      <StickyHeroCTA />
       <WhyArchitectSection />
       <JourneyTimelineSection />
       
