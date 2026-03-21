@@ -69,8 +69,8 @@ const ProductSection = () => {
                   <span className="text-xs uppercase tracking-widest text-tempo-bone/60">Batch 002 Preorder</span>
                   
                   <div className="flex items-baseline gap-3">
-                    <span className="text-sm line-through text-tempo-bone/40">$195</span>
-                    <span className="text-4xl font-black">$135</span>
+                    <span className="text-sm line-through text-tempo-bone/40">$155</span>
+                    <span className="text-4xl font-black">$119</span>
                   </div>
                   
                   <p className="text-sm text-tempo-bone/70">
