@@ -269,7 +269,7 @@ const TheArchitect = () => {
                     {/* Reviews link */}
                     <Link
                       to="/pages/batch-001"
-                      className="flex items-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group"
+                      className="flex items-center justify-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group"
                     >
                       <span className="flex items-center gap-0.5 text-amber-500/60">
                         {"★★★★★".split("").map((star, i) => (
