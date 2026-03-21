@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, LayoutGrid } from "lucide-react";
 
