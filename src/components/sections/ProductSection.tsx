@@ -102,7 +102,7 @@ const ProductSection = () => {
                     whileTap={{ scale: 0.98 }}
                     className="w-full py-4 bg-tempo-bone text-tempo-carbon font-bold uppercase tracking-widest rounded-full hover:bg-white transition-colors mt-4"
                   >
-                    Reserve Now — $119
+                    Reserve Now — $109
                   </motion.button>
                 </div>
               </div>
