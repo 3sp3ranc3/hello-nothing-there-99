@@ -27,7 +27,7 @@ export const CartDrawer = () => {
   const handleCheckout = () => {
     const checkoutUrl = getCheckoutUrl();
     if (checkoutUrl) {
-      window.open(checkoutUrl, "_blank");
+      window.location.href = checkoutUrl;
       setIsOpen(false);
     }
   };
