@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 interface Testimonial {
   tag: string;
@@ -84,6 +84,58 @@ const TestimonialCard = ({ testimonial, index, linkable }: { testimonial: Testim
   return content;
 };
 
+const MobileCarousel = ({ testimonials, linkable, dark }: { testimonials: Testimonial[]; linkable: boolean; dark: boolean }) => {
+  const [current, setCurrent] = useState(0);
+  const total = testimonials.length;
+
+  return (
+    <div className="md:hidden">
+      <div className="overflow-hidden">
+        <motion.div
+          animate={{ x: `-${current * 100}%` }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="flex"
+        >
+          {testimonials.map((testimonial, index) => (
+            <div key={index} className="w-full flex-shrink-0 px-1">
+              <TestimonialCard testimonial={testimonial} index={0} linkable={linkable} />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      {/* Navigation */}
+      <div className="flex items-center justify-center gap-4 mt-6">
+        <button
+          onClick={() => setCurrent((p) => Math.max(0, p - 1))}
+          disabled={current === 0}
+          className={`p-2 rounded-full border transition-colors ${dark ? "border-white/20 text-tempo-bone disabled:opacity-30" : "border-tempo-carbon/20 text-tempo-carbon disabled:opacity-30"}`}
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-2 h-2 rounded-full transition-colors ${i === current ? (dark ? "bg-tempo-bone" : "bg-tempo-carbon") : (dark ? "bg-white/20" : "bg-tempo-carbon/20")}`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={() => setCurrent((p) => Math.min(total - 1, p + 1))}
+          disabled={current === total - 1}
+          className={`p-2 rounded-full border transition-colors ${dark ? "border-white/20 text-tempo-bone disabled:opacity-30" : "border-tempo-carbon/20 text-tempo-carbon disabled:opacity-30"}`}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
 interface TestimonialsSectionProps {
   linkable?: boolean;
   dark?: boolean;
@@ -112,12 +164,15 @@ const TestimonialsSection = ({ linkable = false, dark = false }: TestimonialsSec
           </h2>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} index={index} linkable={linkable} />
           ))}
         </div>
+
+        {/* Mobile Carousel */}
+        <MobileCarousel testimonials={testimonials} linkable={linkable} dark={dark} />
       </div>
     </section>
   );
