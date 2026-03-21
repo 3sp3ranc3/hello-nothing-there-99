@@ -138,7 +138,7 @@ const HeroSection = () => {
           </p>
 
           {/* step 4 — CTA */}
-          <div
+          <div id="hero-cta"
             style={{
               ...transitionStyle(4),
               opacity: ready ? 1 : 0,
