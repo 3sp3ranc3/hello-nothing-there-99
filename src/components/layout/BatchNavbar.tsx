@@ -37,7 +37,7 @@ const BatchNavbar = () => {
 
   const isBatch001 = location.pathname === "/batch-001";
   const isBatch002 = location.pathname === "/products/the-architect";
-  const isAbout = location.pathname === "/about";
+  const isAbout = location.pathname === "/pages/about";
 
   const isHome = location.pathname === "/";
   const isDark = isHome && !scrolled;
