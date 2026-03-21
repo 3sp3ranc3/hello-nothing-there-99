@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, LayoutGrid } from "lucide-react";
 
@@ -59,11 +60,13 @@ const SpecCard = ({
   isFirst,
   dark,
   forceFlip,
+  isMobile,
 }: {
   spec: Spec;
   isFirst: boolean;
   dark: boolean;
   forceFlip: boolean;
+  isMobile: boolean;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -89,27 +92,29 @@ const SpecCard = ({
     }
   }, [forceFlip]);
 
-  // Hover flips the card the first time (non-first cards only, desktop only)
+  // Desktop only: hover flips the card the first time (non-first cards)
   const handleMouseEnter = () => {
+    if (isMobile) return;
     if (!isFirst && !hasFlippedOnce) {
       setFlipped(true);
       setHasFlippedOnce(true);
     }
   };
 
-  // Touch: first tap flips to reveal, subsequent taps toggle
-  const handleTouch = (e: React.TouchEvent) => {
-    e.preventDefault();
-    if (!hasFlippedOnce) {
-      setFlipped(true);
-      setHasFlippedOnce(true);
+  // Click toggles — works on both mobile and desktop
+  const handleClick = () => {
+    if (isMobile) {
+      // On mobile, first click reveals, subsequent clicks toggle
+      if (!hasFlippedOnce) {
+        setFlipped(true);
+        setHasFlippedOnce(true);
+      } else {
+        setFlipped((f) => !f);
+      }
     } else {
       setFlipped((f) => !f);
     }
   };
-
-  // Click always toggles (desktop)
-  const handleClick = () => setFlipped((f) => !f);
 
   const bgFront = dark ? "rgba(30, 58, 95, 0.45)" : "rgba(238, 236, 234, 0.55)";
   const bgBack  = dark ? "rgba(36, 80, 128, 0.45)" : "rgba(227, 225, 222, 0.55)";
@@ -121,7 +126,6 @@ const SpecCard = ({
       style={{ perspective: "1200px" }}
       onMouseEnter={handleMouseEnter}
       onClick={handleClick}
-      onTouchStart={handleTouch}
       title={flipped ? "Tap to see icon" : "Tap to reveal"}
     >
       <motion.div
@@ -182,6 +186,7 @@ const SpecCard = ({
 
 const TechSpecs = ({ headline, description, specs, variant = "full", dark = false, revealAll: revealAllProp = false }: TechSpecsProps) => {
   const [revealAll, setRevealAll] = useState(revealAllProp);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (revealAllProp) setRevealAll(true);
@@ -235,6 +240,7 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
             isFirst={index === 0}
             dark={dark}
             forceFlip={revealAll}
+            isMobile={isMobile}
           />
         ))}
       </div>
