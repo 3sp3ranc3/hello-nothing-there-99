@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import heroImage from "@/assets/hero-image.webp";
 
-const BASE = 960;
+const BASE = 300;
 const STEP = 350;
 
 const transitionStyle = (step: number): React.CSSProperties => ({
