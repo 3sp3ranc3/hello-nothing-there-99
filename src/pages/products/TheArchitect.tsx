@@ -255,7 +255,7 @@ const TheArchitect = () => {
                     </div>
 
                     {/* Trust signals */}
-                    <div className="flex items-center gap-6 text-xs text-tempo-carbon/50 pt-1 border-t border-tempo-carbon/10">
+                    <div className="flex items-center justify-center gap-8 text-xs text-tempo-carbon/50 pt-1 border-t border-tempo-carbon/10">
                       <Link to="/pages/warranty" className="flex items-center gap-2 hover:text-tempo-carbon/70 transition-colors">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         <span>12-Month Warranty</span>
