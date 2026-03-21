@@ -268,9 +268,9 @@ const TheArchitect = () => {
                     </div>
 
                     {/* Reviews link */}
-                    <Link
-                      to="/pages/batch-001"
-                      className="flex items-center justify-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group"
+                    <button
+                      onClick={() => testimonialsSectionRef.current?.scrollIntoView({ behavior: "smooth" })}
+                      className="flex items-center justify-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group cursor-pointer"
                     >
                       <span className="flex items-center gap-0.5 text-amber-500/60">
                         {"★★★★★".split("").map((star, i) => (
@@ -281,7 +281,7 @@ const TheArchitect = () => {
                         Read Batch 001 Reviews
                         <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                       </span>
-                    </Link>
+                    </button>
 
                   </div>
 
