@@ -112,12 +112,15 @@ const TestimonialsSection = ({ linkable = false, dark = false }: TestimonialsSec
           </h2>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} testimonial={testimonial} index={index} linkable={linkable} />
           ))}
         </div>
+
+        {/* Mobile Carousel */}
+        <MobileCarousel testimonials={testimonials} linkable={linkable} dark={dark} />
       </div>
     </section>
   );
