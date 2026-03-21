@@ -256,11 +256,31 @@ const TheArchitect = () => {
 
                     {/* Trust signals */}
                     <div className="flex items-center gap-6 text-xs text-tempo-carbon/50 pt-1 border-t border-tempo-carbon/10">
-                      <div className="flex items-center gap-2">
+                      <Link to="/pages/warranty" className="flex items-center gap-2 hover:text-tempo-carbon/70 transition-colors">
                         <ShieldCheck className="w-3.5 h-3.5" />
                         <span>12-Month Warranty</span>
+                      </Link>
+                      <div className="flex items-center gap-2">
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>Secure Checkout</span>
                       </div>
                     </div>
+
+                    {/* Reviews link */}
+                    <Link
+                      to="/pages/batch-001"
+                      className="flex items-center gap-3 text-xs text-tempo-carbon/60 hover:text-tempo-carbon transition-colors duration-300 group"
+                    >
+                      <span className="flex items-center gap-0.5 text-amber-500/60">
+                        {"★★★★★".split("").map((star, i) => (
+                          <span key={i}>{star}</span>
+                        ))}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        Read Batch 001 Reviews
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </Link>
 
                   </div>
 
