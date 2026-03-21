@@ -70,7 +70,7 @@ const ProductSection = () => {
                   
                   <div className="flex items-baseline gap-3">
                     <span className="text-sm line-through text-tempo-bone/40">$155</span>
-                    <span className="text-4xl font-black">$119</span>
+                    <span className="text-4xl font-black">$109</span>
                   </div>
                   
                   <p className="text-sm text-tempo-bone/70">
