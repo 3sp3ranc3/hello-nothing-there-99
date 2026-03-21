@@ -333,7 +333,7 @@ const HeroSection = () => {
                 Pre-order now
               </span>
               <span className="px-5 py-3.5 text-sm font-bold tracking-tight text-tempo-carbon border-l border-tempo-carbon/10 bg-tempo-carbon/[0.03]">
-                $135
+                $119
               </span>
             </Link>
           </div>

@@ -13,7 +13,7 @@ const collections: Record<string, {
     title: "Complete Paddles Collection",
     description: "Precision-engineered paddles for every play style. From power drives to surgical placement, find your instrument.",
     products: [
-      { name: "The Architect", price: "$135.00", href: "/", tag: "Now Available" },
+      { name: "The Architect", price: "$119.00", href: "/", tag: "Now Available" },
     ],
   },
   accessories: {

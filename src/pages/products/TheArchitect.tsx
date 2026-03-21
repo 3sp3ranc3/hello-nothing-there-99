@@ -181,10 +181,10 @@ const TheArchitect = () => {
                     {/* Pricing */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm text-tempo-carbon/40 line-through">Batch 001: $245</span>
+                        <span className="text-sm text-tempo-carbon/40 line-through">Batch 001: $155</span>
                       </div>
                       <div className="flex items-baseline gap-3">
-                        <span className="text-5xl font-black text-tempo-carbon tracking-tight">$135</span>
+                        <span className="text-5xl font-black text-tempo-carbon tracking-tight">$119</span>
                         <span className="text-sm font-medium text-tempo-carbon/50 uppercase tracking-widest">Preorder</span>
                       </div>
                       <p className="text-xs text-tempo-carbon/40 uppercase tracking-widest pt-0.5">Elite materials. Honest pricing.</p>
