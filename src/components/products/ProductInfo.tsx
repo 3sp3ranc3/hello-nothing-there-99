@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useState, useRef } from "react";
-import { ArrowRight, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 
 interface ProductInfoProps {
   title: string;
