@@ -60,6 +60,7 @@ const SpecCard = ({
   isFirst,
   dark,
   forceFlip,
+  isMobile,
 }: {
   spec: Spec;
   isFirst: boolean;
