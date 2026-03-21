@@ -93,7 +93,7 @@ const BatchNavbar = () => {
               </Link>
 
               <Link
-                to="/about"
+                to="/pages/about"
                 className={`relative flex items-center py-1.5 px-4 rounded-full border border-transparent transition-all duration-300 group-hover/nav:opacity-50 hover:!opacity-100 hover:border-white ${
                   isAbout ? textColor : textMuted
                 }`}
