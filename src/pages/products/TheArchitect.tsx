@@ -355,7 +355,9 @@ const TheArchitect = () => {
             </div>
           </section>
 
-          <TestimonialsSection dark />
+          <div ref={testimonialsSectionRef}>
+            <TestimonialsSection dark />
+          </div>
 
           <div ref={faqSectionRef} className="max-w-[1100px] mx-auto px-6 lg:px-12">
             <ProductFAQ items={faqItems} dark defaultOpenValue={faqDefaultOpen} />
