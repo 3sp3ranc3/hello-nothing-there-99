@@ -271,7 +271,7 @@ const TheArchitect = () => {
                     <div className="flex justify-center">
                       <button
                         onClick={() => testimonialsSectionRef.current?.scrollIntoView({ behavior: "smooth" })}
-                        className="flex items-center gap-3 text-sm font-medium text-tempo-carbon/70 hover:text-tempo-carbon transition-colors duration-300 group cursor-pointer underline underline-offset-4 decoration-tempo-carbon/20 hover:decoration-tempo-carbon/50"
+                        className="flex items-center gap-3 text-sm font-medium text-tempo-carbon/70 hover:text-tempo-carbon transition-colors duration-300 group cursor-pointer"
                       >
                         <span className="flex items-center gap-0.5 text-amber-500/60">
                           {"★★★★★".split("").map((star, i) => (
