@@ -240,6 +240,7 @@ const TechSpecs = ({ headline, description, specs, variant = "full", dark = fals
             isFirst={index === 0}
             dark={dark}
             forceFlip={revealAll}
+            isMobile={isMobile}
           />
         ))}
       </div>
