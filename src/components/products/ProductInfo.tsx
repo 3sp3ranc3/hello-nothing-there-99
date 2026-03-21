@@ -107,8 +107,7 @@ const ProductInfo = ({ title, description, price, retailPrice, features, onViewS
           <ShieldCheck className="w-4 h-4" />
           <span>12-Month Warranty</span>
         </div>
-        
-
+      </div>
       {/* Primary CTA */}
       <motion.button
         onMouseEnter={() => setIsButtonHovered(true)}

@@ -259,10 +259,6 @@ const TheArchitect = () => {
                         <ShieldCheck className="w-3.5 h-3.5" />
                         <span>12-Month Warranty</span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Truck className="w-3.5 h-3.5" />
-                        <span>Free Premium Shipping</span>
-                      </div>
                     </div>
 
                   </div>
