@@ -18,8 +18,8 @@ import { useCartStore } from "@/stores/cartStore";
 import { storefrontFetch, PRODUCT_QUERY, type ShopifyProduct } from "@/lib/shopify";
 import { openCartDrawer } from "@/components/ui/CartDrawer";
 
-import img1 from "@/assets/architect-45deg-white.webp";
-import img2 from "@/assets/architect-front-white.webp";
+import img1 from "@/assets/architect-front-square.webp";
+import img2 from "@/assets/architect-45-square.webp";
 
 const img3 = new URL("@/assets/architect-detail.webp", import.meta.url).href;
 const img4 = new URL("@/assets/architect-specs.webp", import.meta.url).href;
