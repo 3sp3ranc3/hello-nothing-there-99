@@ -37,7 +37,7 @@ const StickyReserveButton = forwardRef<HTMLDivElement, StickyReserveButtonProps>
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 px-6 py-4 bg-tempo-carbon text-tempo-bone text-sm uppercase tracking-widest font-bold rounded-full shadow-lg hover:bg-tempo-navy transition-colors disabled:opacity-50"
           >
-            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $109"}
+            {isLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Reserve Now — $105"}
           </motion.button>
         </motion.div>
       )}

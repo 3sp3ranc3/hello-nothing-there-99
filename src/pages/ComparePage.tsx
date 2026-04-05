@@ -10,7 +10,7 @@ const paddles = [
     id: "architect",
     name: "The Architect",
     tagline: "Control Series",
-    price: "$109.00",
+    price: "$105.00",
     href: "/",
     specs: {
       weight: "8.1 oz",
