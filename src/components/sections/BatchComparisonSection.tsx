@@ -201,7 +201,7 @@ const BatchComparisonSection = () => {
                     color: "#FFFFFF",
                   }}
                 >
-                  $109
+                  $105
                 </span>
                 <span
                   style={{

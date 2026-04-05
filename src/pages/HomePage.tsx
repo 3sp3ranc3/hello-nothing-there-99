@@ -59,7 +59,7 @@ const HomePage = () => {
                 whileHover={{ scale: 0.97 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Pre-order Batch 002 · $109
+                Pre-order Batch 002 · $105
                 <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-[3px]" />
               </motion.span>
             </Link>

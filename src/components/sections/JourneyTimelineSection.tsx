@@ -48,7 +48,7 @@ const EVENTS: TimelineEvent[] = [
   {
     date: "Today",
     headline: "The Evolution",
-    body: "The Batch 002 prototype landed — and so did the new pricing. Larger order volumes meant we finally had the leverage to do what this was always about. The Architect is now $109. A paddle built from the same manufacturers as the $280+ options — priced like it should have been from the start.",
+    body: "The Batch 002 prototype landed — and so did the new pricing. Larger order volumes meant we finally had the leverage to do what this was always about. The Architect is now $105. A paddle built from the same manufacturers as the $280+ options — priced like it should have been from the start.",
   },
 ];
 
